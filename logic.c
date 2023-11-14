@@ -33,6 +33,7 @@ void init(struct tessera * tessera, int size_tessere) {
     n2 = rand() % 6 + 1;
     tessera[i].n1 = n1;
     tessera[i].n2 = n2;
+    tessera[i].num=i+1;
     tessera[i].selected = false;
   }
 }
@@ -111,6 +112,7 @@ char * string_tessera(struct tessera tessera) {
 
 void print_disponibili(struct tessera * tessera, int size) {
   printf("Tessere disponibili:\n");
+  /*
   int n = 0;
   int k = 1;
   int j = 1 + size / 2;
@@ -131,6 +133,32 @@ void print_disponibili(struct tessera * tessera, int size) {
       printf("\n");
     }
   }
+  */
+ int j=size/2;
+ int k=0;
+ int c=0;
+ if(size%2!=0){
+    j++;
+ }
+ for(int i=0;i<size;i++){
+    /*
+    if(i%2==0){
+        c=k;
+        k++;
+    }else{
+        c=j;
+        j++;
+    }
+    */
+    printf("%d. [%d|%d]\t", tessera[i].num, tessera[i].n1, tessera[i].n2);
+    printf("\n");
+    /*
+    if ((i + 1) % 2 == 0) {
+        printf("\n");
+    }
+    */
+ }
+ printf("\n");
 }
 
 void print_giocate(struct tessera * tessera, int size) {
@@ -158,6 +186,9 @@ struct tessera * remove_tessera(struct tessera * tessera, int * size, int index)
     }
   }
   * size -= 1;
+  for(int i=0;i<*size;i++){
+    new_arr[i].num=i+1;
+  }
   free(tessera);
   return new_arr;
 }
