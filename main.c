@@ -24,8 +24,7 @@ int main() {
   struct tessera * giocate = (struct tessera * ) malloc(sizeof(struct tessera * ) * 1);
   int size_giocate = 0;
   int score = 0;
-
-  // num_tessere=21;
+  int input = 0;
 
   init(tessere, size_tessere);
   printf("\e[1;1H\e[2J"); // regex che pulisce schermo
@@ -35,11 +34,6 @@ int main() {
   print_disponibili(tessere, size_tessere);
   printf("Scegli una tessera:\n");
 
-  int points = 0;
-  // printf("Scegli una tessera tra quelle disponibili (es. %s digita 1)\n",string_tessera(tessere[0]));
-  // print_giocate(giocate,size_giocate);
-
-  int input = 0;
   while (!game_finished(tessere,giocate,size_tessere,size_giocate)) {
 
     bool selected = false;
@@ -47,7 +41,8 @@ int main() {
       scanf("%d", & input);
 
       if (input > 0 && input <= size_tessere) {
-        int index = get_index(tessere, size_tessere, input);
+        //int index = get_index(tessere, size_tessere, input);
+        int index=input-1;
         bool match = false;
          // se ho giocato almeno una tessera faccio il controllo se i numeri sono adiacenti
         if (size_giocate > 0) {
