@@ -5,23 +5,29 @@
 #include <string.h>
 #include <conio.h>
 
-#include "logic.c"
+#include "logic.h"
 
 int main() {
   srand(time(NULL));
+  int size_speciali=3;
+  struct Tessera *speciali=(struct Tessera*)malloc(sizeof(struct Tessera)*size_speciali);
+  init_speciali(speciali,size_speciali);
+      /*
+  [0|0]: può essere accostata a qualunque altra tessera. Esempio: [1|2][0|0][5|6]
+  */
 
-  struct tessera * tessere = (struct tessera * ) malloc(sizeof(struct tessera) * 21);
+  struct Tessera * tessere = (struct Tessera * ) malloc(sizeof(struct Tessera) * 21);
 
   int size_tessere = rand() % 21 + 2;
   printf("N=");
   scanf("%d", & size_tessere);
+  size_tessere+=3; //3 tessere speciali
 
-  tessere = (struct tessera * ) realloc(tessere, sizeof(struct tessera) * size_tessere);
+  tessere = (struct Tessera * ) realloc(tessere, sizeof(struct Tessera) * size_tessere);
 
-  /*
-  tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
-  */
-  struct tessera * giocate = (struct tessera * ) malloc(sizeof(struct tessera * ) * 1);
+  
+  // tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
+  struct Tessera * giocate = (struct Tessera * ) malloc(sizeof(struct Tessera * ) * 1);
   int size_giocate = 0;
   int score = 0;
   int input = 0;
@@ -29,9 +35,9 @@ int main() {
   init(tessere, size_tessere);
   printf("\e[1;1H\e[2J"); // regex che pulisce schermo
 
-  printf("Score=%d\n", score);
+  printf("Score=%d\n",score);
   print_giocate(giocate, size_giocate);
-  print_disponibili(tessere, size_tessere);
+  print_disponibili(tessere,speciali, size_tessere,size_speciali);
   printf("Scegli una tessera:\n");
 
   while (!game_finished(tessere,giocate,size_tessere,size_giocate)) {
@@ -78,7 +84,10 @@ int main() {
         } else {
           printf("Scegli una tessera valida!\n");
         }
-      } else {
+      } else if(input<0 && abs(input)<=size_speciali) {
+        
+      }
+      else {
         printf("\nScegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
       }
     }
@@ -86,7 +95,7 @@ int main() {
     printf("\e[1;1H\e[2J");
     printf("Score=%d\n", score);
     print_giocate(giocate, size_giocate);
-    print_disponibili(tessere, size_tessere);
+    print_disponibili(tessere, speciali,size_tessere,size_speciali);
     printf("Scegli una tessera:\n");
 
     // printf("%s",input);
