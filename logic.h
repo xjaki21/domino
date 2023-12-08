@@ -1,30 +1,33 @@
 #ifndef LOGIC_H
 #define LOGIC_H
 
-struct Tessera {
+typedef struct Tessera {
   int n1;
   int n2;
   int num;
   bool selected;
-};
-void init_speciali(struct Tessera *speciali,int size);
-void init(struct Tessera * tessera, int size_tessere); 
+  bool vertical;
+}Tessera;
 
-bool match_first(struct Tessera a,struct Tessera b);
-bool match_last(struct Tessera a,struct Tessera b);
+void init_speciali(Tessera *speciali,int size);
+void init(Tessera * tessera, int size_tessere); 
 
-struct Tessera* put_first(struct Tessera* tessere, int* size, struct Tessera new_tessera);
-struct Tessera* put_last(struct Tessera* tessere, int* size, struct Tessera new_tessera);
+bool match_first( Tessera a, Tessera b);
+bool match_last( Tessera a, Tessera b);
 
-bool game_finished(struct Tessera *tessere,struct Tessera *giocate,int size_tessere,int size_giocate);
+Tessera* put_first( Tessera* tessere, int* size,  Tessera new_tessera);
+Tessera* put_last( Tessera* tessere, int* size,  Tessera new_tessera);
 
-char * string_tessera(struct Tessera tessera);
+bool game_finished( Tessera *tessere, Tessera *giocate,int size_tessere,int size_giocate);
 
-void print_disponibili(struct Tessera *tessere, struct Tessera *speciali,int size_tessere,int size_speciali);
-void print_giocate(struct Tessera * tessera, int size);
+char * string_tessera( Tessera tessera);
 
-struct Tessera * remove_tessera(struct Tessera * tessera, int * size, int index);
+void print_disponibili( Tessera *tessere,  Tessera *speciali,int size_tessere,int size_speciali);
+void print_giocate( Tessera * tessera, int size);
 
-int get_index(struct Tessera * tessera, int size, int num);
-int score_update(struct Tessera*tessere,int size);
+Tessera * remove_tessera( Tessera * tessera, int *size, int index);
+
+int get_index( Tessera * tessera, int size, int num);
+int score_update( Tessera*tessere,int size);
+void update_screen(Tessera *tessere,Tessera *giocate,Tessera *speciali,int size_tessere,int size_giocate,int size_speciali,int score);
 #endif
