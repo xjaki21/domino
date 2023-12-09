@@ -13,6 +13,7 @@ void init_speciali(Tessera * speciali, int size) {
   speciali[0].n1 = 0;
   speciali[0].n2 = 0;
   speciali[0].num = -1;
+  speciali[0].vertical=false;
   /*
   [11|11]: somma 1 a tutte le cifre di tutte le tessere sul piano di gioco tranne il 6 che diventa 1.
   La tessera può essere posizionata in qualunque posizione e le sue cifre vegono sostituite con la cifra
@@ -21,7 +22,7 @@ void init_speciali(Tessera * speciali, int size) {
   speciali[1].n1 = 11;
   speciali[1].n2 = 11;
   speciali[1].num = -1;
-
+  speciali[1].vertical=false;
   /*
   [*|*]: copia “a specchio” la tessera adiacente. La tessera può essere posizionata in qualunque
   posizione e le sue cifre vegono sostituite con le cifre della tessera adiacente in ordine inverso. Esempio:
@@ -30,6 +31,7 @@ void init_speciali(Tessera * speciali, int size) {
   speciali[2].n1 = -1;
   speciali[2].n2 = -1;
   speciali[2].num = -1;
+  speciali[2].vertical=false;
 }
 void init(Tessera * tessera, int size_tessere) {
   int n1, n2;
@@ -57,6 +59,7 @@ void init(Tessera * tessera, int size_tessere) {
     tessera[i].n2 = n2;
     tessera[i].num = i + 1;
     tessera[i].selected = false;
+    tessera[i].vertical=false;
   }
 }
 
@@ -111,7 +114,8 @@ Tessera * put_last(Tessera * tessere, int * size, Tessera new_tessera) {
   scambio in caso i due numeri siano adiacenti in verso opposto,
   esempio: [5|2] [5|1] diventa [2|5] [5|1], metto il numero adiacente in maniera giusta
   */
-  if (new_tessera.n1 != tessere[ * size - 2].n2) {
+
+  if (new_tessera.n1 != tessere[*size-2].n2 && tessere[*size-2].n1!=0) { //se è tessera [0|0] mettila com'è
     int n2 = new_tessera.n2;
     new_tessera.n2 = new_tessera.n1;
     new_tessera.n1 = n2;
@@ -123,19 +127,18 @@ Tessera * put_last(Tessera * tessere, int * size, Tessera new_tessera) {
   return new_arr;
 }
 
-bool game_finished(Tessera * tessere, Tessera * giocate, int size_tessere, int size_giocate) {
-  bool finished = true;
-  Tessera last = giocate[size_giocate - 1];
-  Tessera first = giocate[0];
-  if (size_giocate > 0) {
-    for (int i = 0; i < size_tessere; i++) {
-      if (match_first(tessere[i], first) || match_last(tessere[i], last)) {
-        finished = false;
-        break;
+bool game_finished(Tessera * tessere, Linea * piano, int size_tessere, int size_piano) {
+  bool finished=true;
+  for(int i=0;i<size_piano;i++){
+    Tessera *tessere_linea=piano[i].tessere;
+    int size_linea= piano[i].size;
+    //printf("bello");
+    for(int j=0;j<size_tessere;j++){
+      if(match_first(tessere[j],tessere_linea[0]) || match_last(tessere[j],tessere_linea[size_linea-1])){
+        finished=false;
       }
     }
-  } else {
-    finished = false;
+    //printf("okokok");
   }
   return finished;
 }
@@ -148,28 +151,6 @@ char * string_tessera(Tessera tessera) {
 
 void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, int size_speciali) {
   printf("Tessere disponibili:\n");
-  /*
-  int n = 0;
-  int k = 1;
-  int j = 1 + size / 2;
-  if (size % 2 != 0) {
-    j++;
-  }
-  for (int i = 0; i < size; i++) {
-    if (i % 2 == 0) {
-      n = k;
-      k++;
-    } else {
-      n = j;
-      j++;
-    }
-    printf("%d. [%d|%d]\t", n, tessera[i].n1, tessera[i].n2);
-    tessera[i].num = n;
-    if ((i + 1) % 2 == 0 || i + 1 >= size) {
-      printf("\n");
-    }
-  }
-  */
   int righe = 10;
   int col = ((size_tessere) / righe) + 1; //-3 per le tessere speciale
   int count_col = 0;
@@ -181,18 +162,7 @@ void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, 
     for (int j = 0; j < col; j++) {
       printf("%d. [%d|%d]\t", tessere[i + j * 10].num, tessere[i + j * 10].n1, tessere[i + j * 10].n2);
     }
-
     printf("\n");
-
-    //printf("%d. [%d|%d]\t", tessera[i].num, tessera[i].n1, tessera[i].n2);
-    /*
-    if((i+1)%col==0){
-      printf("\n");
-      count_col=0;
-    }
-    */
-    //printf("\n");
-
   }
   if (size_speciali > 0) {
     printf("---TESSERE SPECIALI----\n");
@@ -204,19 +174,25 @@ void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, 
 
 }
 
-void print_giocate(Tessera * tessera, int size) {
+void print_giocate(Linea * piano, int size) {
   printf("Tessere giocate:\n");
-  for (int i = 0; i < size; i++) {
-    printf("[%d%d]\t", tessera[i].n1, tessera[i].n2);
-    // printf("\n");
+  for(int i=0;i<size;i++){
+    Tessera *a=piano[0].tessere;
+    int size_a=piano[0].size;
+    //printf("%d\t",size_a);
+    for(int j=0;j<size_a;j++){
+      printf("[%d|%d]\t",a[j].n1,a[j].n2);
+    }
   }
   printf("\n");
 }
 
-void update_screen(Tessera * tessere, Tessera * giocate, Tessera * speciali, int size_tessere, int size_giocate, int size_speciali, int score) {
-  printf("\e[1;1H\e[2J"); // regex che pulisce schermo
+void update_screen(Tessera * tessere, Linea * piano, Tessera * speciali, int size_tessere, int size_piano, int size_speciali, int score) {
+  //printf("\e[1;1H\e[2J"); // regex che pulisce schermo
+  system(CLEAR_SCREEN);//syscall al sistema operativo per "pulire" lo schermo
+
   printf("Score=%d\n", score);
-  print_giocate(giocate, size_giocate);
+  print_giocate(piano, size_piano);
   print_disponibili(tessere, speciali, size_tessere, size_speciali);
   printf("Scegli una tessera:\n");
 }
@@ -255,10 +231,109 @@ int get_index(Tessera * tessera, int size, int num) {
   return index;
 }
 
-int score_update(Tessera * tessere, int size) {
+int score_update(Linea *piano, int size) {
   int score = 0;
-  for (int i = 0; i < size; i++) {
-    score += tessere[i].n1 + tessere[i].n2;
+  for(int i=0;i<size;i++){
+    Tessera *a=piano[i].tessere;
+    int size_a=piano[i].size;
+    for(int j=0;j<size_a;j++){
+      score+=a[j].n1+a[j].n2;
+    }
   }
   return score;
+}
+
+bool add_horizontal(Linea * linea, Tessera new_tessera) {
+  bool selected = false; //mi serve per dire se ho scelto una tessere valida!
+  
+  Tessera * giocate = linea -> tessere;
+  int * size_giocate = &linea -> size;
+  bool match = false;
+  bool matchFirst = match_first(new_tessera, giocate[0]); // controllo se la tessera selezionata è adiacente con la prima tessera
+  bool matchLast = match_last(new_tessera, giocate[ *size_giocate - 1]); // controllo se la tessera selezionata è adiacente con l'ultima tessera
+  match = matchFirst || matchLast;
+  if(*size_giocate>0){
+  if (matchFirst && matchLast) {
+    printf("Posiziona a sinistra 's' o posiziona a destra 'd'\n");
+    char put = 0;
+    while (put != 'd' && put != 's') {
+      scanf("%c", & put);
+    }
+    if (put == 'd') {
+      giocate = put_last(giocate, size_giocate, new_tessera);
+      linea -> tessere = giocate; //l'indirizzo di memoria di ogni linea viene cambiato quando aggiungo!, quindi devo ricordarmi di memorizzarlo nel piano
+
+    } else {
+      giocate = put_first(giocate, size_giocate, new_tessera);
+      linea -> tessere = giocate;
+    }
+  } 
+  else if (matchFirst) {
+    giocate = put_first(giocate, size_giocate, new_tessera);
+    linea -> tessere = giocate;
+  } 
+  else if (matchLast) {
+    giocate = put_last(giocate, size_giocate, new_tessera);
+    linea -> tessere = giocate;
+  } 
+  }
+  else{
+    match=true;
+    giocate[0]=new_tessera;
+    ++*size_giocate;
+  }
+  return match;
+
+}
+
+void add_special(Linea * linea, Tessera new_tessera) {
+  Tessera *giocate=linea->tessere;
+  int *size_giocate=&linea->size;
+  if ( *size_giocate == 0) {
+    ++*size_giocate;
+    giocate[0] = new_tessera;
+  } 
+  else {
+    printf("Posiziona a sinistra 's' o posiziona a destra 'd'\n");
+    char put = 0;
+    while (put != 'd' && put != 's') {
+      scanf("%c", & put);
+    }
+    if (new_tessera.n1 == 11) {
+      for (int i = 0; i < * size_giocate; i++) {
+        ++giocate[i].n1;
+        ++giocate[i].n2;
+      }
+    }
+    if (put == 'd') {
+      /*
+      [11|11]: somma 1 a tutte le cifre di tutte le tessere sul piano di gioco tranne il 6 che diventa 1.
+      La tessera può essere posizionata in qualunque posizione e le sue cifre vegono sostituite con la cifra
+      adiacente dopo averla incrementata di 1. Esempio: [1|6][6|3][11|11] diventa [2|1][1|4][4|4]
+      */
+      if (new_tessera.n1 == 11) { //tessera somma tutti 1
+        new_tessera.n1 = giocate[ * size_giocate - 1].n2;
+        new_tessera.n2 = new_tessera.n1;
+      }
+      if (new_tessera.n1 == -1) { // tessera specchio
+        new_tessera.n1 = giocate[ * size_giocate - 1].n2;
+        new_tessera.n2 = giocate[ * size_giocate - 1].n1;
+      }
+      giocate = put_last(giocate, size_giocate, new_tessera);
+      linea->tessere=giocate;
+      // giocate=put_last(giocate,&size_giocate,tessere[index]);
+    } else {
+      if (new_tessera.n1 == 11) { // tessera somma tutti 1
+        new_tessera.n1 = giocate[0].n1;
+        new_tessera.n2 = new_tessera.n1;
+      }
+      if (new_tessera.n1 == -1) { //tessera specchio
+        new_tessera.n1 = giocate[0].n2;
+        new_tessera.n2 = giocate[0].n1;
+      }
+      giocate = put_first(giocate, size_giocate, new_tessera);
+      linea->tessere=giocate;
+    }
+
+  }
 }
