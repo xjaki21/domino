@@ -20,16 +20,20 @@ typedef struct Tessera {
 typedef struct Linea{
   Tessera*tessere;
   int size;
+  int capacity;
 }Linea;
 
 void init_speciali(Tessera *speciali,int size);
 void init(Tessera * tessera, int size_tessere); 
 
+Linea *create_linea();
+Tessera *create_arr_tessere(int size);
+
 bool match_first( Tessera a, Tessera b);
 bool match_last( Tessera a, Tessera b);
 
-Tessera* put_first( Tessera* tessere, int* size,  Tessera new_tessera);
-Tessera* put_last( Tessera* tessere, int* size,  Tessera new_tessera);
+void put_first( Linea *l,Tessera new_tessera);
+void put_last( Linea *l ,Tessera new_tessera);
 
 bool game_finished( Tessera *tessere, Linea *piano,int size_tessere,int size_piano);
 
@@ -44,6 +48,6 @@ int get_index( Tessera * tessera, int size, int num);
 int score_update( Linea*piano,int size);
 void update_screen(Tessera *tessere,Linea *piano,Tessera *speciali,int size_tessere,int size_piano,int size_speciali,int score);
 
-bool add_horizontal(Linea * linea, Tessera new_tessera);
+bool add_tessera(Linea * linea, Tessera new_tessera);
 void add_special(Linea*linea,Tessera new_tessera);
 #endif

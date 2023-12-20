@@ -35,24 +35,7 @@ void init_speciali(Tessera * speciali, int size) {
 }
 void init(Tessera * tessera, int size_tessere) {
   int n1, n2;
-
   for (int i = 0; i < size_tessere; i++) {
-
-    bool diverso = false;
-    /*
-    while (!diverso)
-    {
-        diverso=true; //supponiamo sempre che i numeri generati siano diversi
-        n1=rand()%6+1;
-        n2=rand()%6+1;
-        for(int j=0;j<i;j++){
-            if((n1==tessera[j].n1 && n2==tessera[j].n2) || (n2==tessera[j].n1 && n1==tessera[j].n2)){ //controllo se esiste tessera uguale
-                diverso=false; // i numeri generati mi danno una tessera che non è diversa rispetto a quelle già generate
-                break;
-            }
-        }
-    }
-    */
     n1 = rand() % 6 + 1;
     n2 = rand() % 6 + 1;
     tessera[i].n1 = n1;
@@ -61,6 +44,26 @@ void init(Tessera * tessera, int size_tessere) {
     tessera[i].selected = false;
     tessera[i].vertical=false;
   }
+}
+
+Linea *create_linea(){
+  Linea *new=(Linea*)malloc(sizeof(Linea));
+  new->capacity=10;
+  new->tessere=(Tessera*)malloc(sizeof(Tessera)*new->capacity);
+  new->size=0;
+
+  return new;
+}
+
+Tessera *create_arr_tessere(int size){
+  Tessera *new=(Tessera*)malloc(sizeof(Tessera)*size);
+  for(int i=0;i<size;i++){
+    new[i].n1=-1;
+    new[i].n2=-1;
+    new[i].selected=false;
+    new[i].vertical=false;
+  }
+  return new;
 }
 
 bool match_first(Tessera a, Tessera b) {
@@ -75,56 +78,57 @@ bool match_last(Tessera a, Tessera b) {
   }
   return a.n1 == b.n2 || a.n2 == b.n2;
 }
-Tessera * put_first(Tessera * tessere, int * size, Tessera new_tessera) {
-  ++*size;
-  Tessera * new_arr = (Tessera * ) malloc(sizeof(Tessera) * ( * size));
-  if (!new_arr) exit(EXIT_FAILURE);
 
-  for (int i = 0; i < * size; i++) {
-    new_arr[i] = tessere[i];
+void extend_arr_tessere(Linea *l){
+  if(l->size>=l->capacity){
+    l->tessere=(Tessera*)realloc(l->tessere,sizeof(Tessera)*l->size*2);
+    if(!l->tessere) exit(EXIT_FAILURE);
+    l->capacity*=2;
   }
-
-  for (int i = * size - 2; i >= 0; i--) {
-    new_arr[i + 1] = new_arr[i];
-  }
-  /*
-  scambio in caso i due numeri siano adiacenti in verso opposto,
-  esempio: [5|2] [5|1] diventa [2|5] [5|1], metto il numero adiacente in maniera giusta
-  */
-  if (new_tessera.n2 != new_arr[1].n1) {
-    int n2 = new_tessera.n2;
-    new_tessera.n2 = new_tessera.n1;
-    new_tessera.n1 = n2;
-  }
-  new_arr[0] = new_tessera;
-  free(tessere);
-  return new_arr;
 }
 
-Tessera * put_last(Tessera * tessere, int * size, Tessera new_tessera) {
-  ++*size;
-  Tessera * new_arr = (Tessera * ) malloc(sizeof(Tessera) * ( * size));
-  if (!new_arr) exit(EXIT_FAILURE);
 
-  for (int i = 0; i < * size; i++) {
-    new_arr[i] = tessere[i];
+
+
+void put_first(Linea *l, Tessera new_tessera) {
+  //++*size;
+  extend_arr_tessere(l);
+  /*
+  scambio in caso i due numeri siano adiacenti in verso opposto,
+  esempio: [5|2] [5|1] diventa [2|5] [5|1], metto il numero adiacente in maniera giusta
+  */
+ for(int i=l->size-1;i>=0;i--){
+  l->tessere[i+1]=l->tessere[i];
+ }
+  if (new_tessera.n2 != l->tessere[1].n1) {
+    int n2 = new_tessera.n2;
+    new_tessera.n2 = new_tessera.n1;
+    new_tessera.n1 = n2;
   }
+  l->tessere[0] = new_tessera;
+  l->size++;
+}
 
+
+
+void put_last(Linea *l, Tessera new_tessera) {
+  //Tessera * new_arr = (Tessera * ) malloc(sizeof(Tessera) * ( * size));
+  extend_arr_tessere(l);
+  int size=l->size;
   /*
   scambio in caso i due numeri siano adiacenti in verso opposto,
   esempio: [5|2] [5|1] diventa [2|5] [5|1], metto il numero adiacente in maniera giusta
   */
 
-  if (new_tessera.n1 != tessere[*size-2].n2 && tessere[*size-2].n1!=0) { //se è tessera [0|0] mettila com'è
+  if (new_tessera.n1 != l->tessere[size-1].n2 && l->tessere[size-1].n1!=0) { //se è tessera [0|0] mettila com'è
     int n2 = new_tessera.n2;
     new_tessera.n2 = new_tessera.n1;
     new_tessera.n1 = n2;
   }
 
-  new_arr[ *size-1] = new_tessera;
-  free(tessere);
+  l->tessere[size] = new_tessera;
+  l->size++;
 
-  return new_arr;
 }
 
 bool game_finished(Tessera * tessere, Linea * piano, int size_tessere, int size_piano) {
@@ -175,14 +179,34 @@ void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, 
 }
 
 void print_giocate(Linea * piano, int size) {
+
   printf("Tessere giocate:\n");
+  printf("\t  ");
+  for(int i=0;i<piano[0].size;i++){
+    printf("%d\t  ",i);
+  }
+  printf("\n");
   for(int i=0;i<size;i++){
-    Tessera *a=piano[0].tessere;
-    int size_a=piano[0].size;
+    Tessera *a=piano[i].tessere;
+    int size_a=piano[i].size;
+    printf("%d\t",i);
     //printf("%d\t",size_a);
     for(int j=0;j<size_a;j++){
-      printf("[%d|%d]\t",a[j].n1,a[j].n2);
+      if(a[j].vertical){
+        if(i>0 && piano[i-1].tessere[j].vertical){
+          printf("|%d]\t",a[j].n1);
+        }else{
+          printf("[%d|\t",a[j].n1);
+        }
+      }else{
+        if(a[j].selected){
+          printf("[%d|%d]\t",a[j].n1,a[j].n2);
+        }else{
+          printf("     \t");
+        }
+      }
     }
+    printf("\n");
   }
   printf("\n");
 }
@@ -243,7 +267,7 @@ int score_update(Linea *piano, int size) {
   return score;
 }
 
-bool add_horizontal(Linea * linea, Tessera new_tessera) {
+bool add_tessera(Linea * linea, Tessera new_tessera) {
   bool selected = false; //mi serve per dire se ho scelto una tessere valida!
   
   Tessera * giocate = linea -> tessere;
@@ -260,21 +284,26 @@ bool add_horizontal(Linea * linea, Tessera new_tessera) {
       scanf("%c", & put);
     }
     if (put == 'd') {
-      giocate = put_last(giocate, size_giocate, new_tessera);
-      linea -> tessere = giocate; //l'indirizzo di memoria di ogni linea viene cambiato quando aggiungo!, quindi devo ricordarmi di memorizzarlo nel piano
-
+      //giocate = put_last(giocate, size_giocate, new_tessera);
+      //linea -> tessere = giocate; //l'indirizzo di memoria di ogni linea viene cambiato quando aggiungo!, quindi devo ricordarmi di memorizzarlo nel piano
+      put_last(linea,new_tessera);
     } else {
-      giocate = put_first(giocate, size_giocate, new_tessera);
-      linea -> tessere = giocate;
+      //giocate = put_first(giocate, size_giocate, new_tessera);
+      //linea -> tessere = giocate;
+      put_first(linea,new_tessera);
     }
   } 
   else if (matchFirst) {
-    giocate = put_first(giocate, size_giocate, new_tessera);
-    linea -> tessere = giocate;
+    //giocate = put_first(giocate, size_giocate, new_tessera);
+    //linea -> tessere = giocate;
+    put_first(linea,new_tessera);
+
   } 
   else if (matchLast) {
-    giocate = put_last(giocate, size_giocate, new_tessera);
-    linea -> tessere = giocate;
+    //giocate = put_last(giocate, size_giocate, new_tessera);
+    //linea -> tessere = giocate;
+    put_last(linea,new_tessera);
+
   } 
   }
   else{
@@ -319,8 +348,9 @@ void add_special(Linea * linea, Tessera new_tessera) {
         new_tessera.n1 = giocate[ * size_giocate - 1].n2;
         new_tessera.n2 = giocate[ * size_giocate - 1].n1;
       }
-      giocate = put_last(giocate, size_giocate, new_tessera);
-      linea->tessere=giocate;
+      //giocate = put_last(giocate, size_giocate, new_tessera);
+      //linea->tessere=giocate;
+      put_last(linea,new_tessera);
       // giocate=put_last(giocate,&size_giocate,tessere[index]);
     } else {
       if (new_tessera.n1 == 11) { // tessera somma tutti 1
@@ -331,8 +361,9 @@ void add_special(Linea * linea, Tessera new_tessera) {
         new_tessera.n1 = giocate[0].n2;
         new_tessera.n2 = giocate[0].n1;
       }
-      giocate = put_first(giocate, size_giocate, new_tessera);
-      linea->tessere=giocate;
+      //giocate = put_first(giocate, size_giocate, new_tessera);
+      //linea->tessere=giocate;
+      put_first(linea,new_tessera);
     }
 
   }
