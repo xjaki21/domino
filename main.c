@@ -23,7 +23,10 @@ void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_t
       if (input > 0 && input <= *size_tessere) {
         int index = input - 1;
         tessere[index].selected=true;
-        bool match=add_tessera(&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera
+        
+
+        //bool match=add_tessera(&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera
+        bool match= scegli_tessera(piano,*size_piano,tessere[index]);
         if (match) {
           char scelta=0;
           while(scelta!='v' && scelta!='h'){
@@ -38,6 +41,7 @@ void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_t
             ++*size_piano;
             piano[1].tessere=create_arr_tessere(l_size);
             piano[1].size=l_size;
+            piano[1].start_index=l_size-1;
 
             Tessera *new_l=piano[1].tessere;
             new_l[l_size-1]=l_tessere[l_size-1];
@@ -101,6 +105,7 @@ int main() {
     
     Linea *piano=(Linea*)malloc(sizeof(Linea)*size_tessere);
     piano[0]=*create_linea();
+    piano[0].start_index=0;
     int size_piano=1;
     game_start(tessere,piano,speciali,&size_tessere,&size_piano,&size_speciali);
   }
