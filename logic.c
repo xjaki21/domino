@@ -92,16 +92,20 @@ int *scelte_possibili(Linea *piano,int size,Tessera tessera,int *num_scelte){
     Tessera *a=piano[i].tessere;
     int a_size=piano[i].size;
     int start_index=piano[i].start_index;
-    if(match_first(tessera,a[start_index])){
-      scelte[k]=i;
-      scelte[k+1]=start_index-1;
-      k=k+2;
+    for(int j=0;j<a_size;j++){
+      if(a[j].selected){
+        if((j==0 || !a[j-1].selected) && match_first(tessera,a[j])){
+          scelte[k]=i;
+          scelte[k+1]=j-1;
+          k=k+2;
+        }
+        if((j==a_size-1 || !a[j+1].selected) && match_last(tessera,a[j])){
+          scelte[k]=i;
+          scelte[k+1]=j+1;
+          k=k+2;
+        }
     }
-    if(match_last(tessera,a[a_size-1])){
-      scelte[k]=i;
-      scelte[k+1]=a_size;
-      k=k+2;
-    }
+  }
   }
   *num_scelte=(k+1)/2;
   scelte=(int*)realloc(scelte,sizeof(k));
@@ -221,26 +225,30 @@ void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, 
 
 }
 
+int max_linea(Linea *piano,int size){
+  int max=piano[0].size;
+  for(int i=1;i<size;i++){
+    if(piano[i].size>max){
+      max=piano[i].size;
+    }
+  }
+  return max;
+}
 void print_giocate(Linea * piano, int size) {
 
   printf("Tessere giocate:\n");
   printf("\t  ");
-  for(int i=0;i<piano[0].size+1;i++){
+  for(int i=0;i<max_linea(piano,size);i++){
     printf("%d\t  ",i);
   }
-  printf("\n");
+  printf("%d\n",max_linea(piano,size));
   for(int i=0;i<size;i++){
     Tessera *a=piano[i].tessere;
     int size_a=piano[i].size;
     printf("%d\t",i);
-    //printf("%d\t",size_a);
     for(int j=0;j<size_a;j++){
-      if(a[j].vertical){
-        if(i>0 && piano[i-1].tessere[j].vertical){
-          printf("|%d]\t",a[j].n1);
-        }else{
-          printf("[%d|\t",a[j].n1);
-        }
+      if(a[j].vertical && a[j].selected){
+          printf(" [%d]\t",a[j].n1);
       }else{
         if(a[j].selected){
           printf("[%d|%d]\t",a[j].n1,a[j].n2);
@@ -251,7 +259,6 @@ void print_giocate(Linea * piano, int size) {
     }
     printf("\n");
   }
-  printf("%d\t",size);
   printf("\n\n");
 }
 
@@ -313,7 +320,33 @@ int score_update(Linea *piano, int size) {
 
 
 
-bool scegli_tessera(Linea *piano,int size_piano,Tessera tessera){
+void put_tessera(Linea *l,Tessera tessera,int pos){
+  if(pos>=l->size){
+    extend_arr_tessere(l);
+    ++l->size;
+  }
+   //metto a sinistra la tessera
+  if(match_first(tessera,l->tessere[pos+1])){
+    if (tessera.n2 != l->tessere[pos+1].n1 && l->tessere[pos+1].n1!=0) { //se è tessera [0|0] mettila com'è
+      int n2=tessera.n2;
+      tessera.n2=tessera.n1;
+      tessera.n1=n2;
+    }
+  }
+  
+  
+   //metto a destra la tessera
+  if(pos>0 && match_last(tessera,l->tessere[pos-1])){
+    if(tessera.n1 !=l->tessere[pos-1].n2 && l->tessere[pos-1].n1!=0){
+    int n2=tessera.n2;
+    tessera.n2=tessera.n1;
+    tessera.n1=n2;
+    }
+  }
+  
+  l->tessere[pos]=tessera;
+}
+bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera){
   Linea *l_0=&piano[0];
   if(l_0->size==0){
     l_0->tessere[0]=tessera;
@@ -321,7 +354,7 @@ bool scegli_tessera(Linea *piano,int size_piano,Tessera tessera){
     return true;
   }
   int num_scelte=0;
-  int *scelte=scelte_possibili(piano,size_piano,tessera,&num_scelte);
+  int *scelte=scelte_possibili(piano,*size_piano,tessera,&num_scelte);
   int s=-1;
   if(num_scelte<=0){
     return false;
@@ -335,18 +368,52 @@ bool scegli_tessera(Linea *piano,int size_piano,Tessera tessera){
   }else{
     s=0;
   }
+  int pos=scelte[s*2+1];
   int num_linea=scelte[s*2];
-  int num_scelta=scelte[s*2+1];
   Linea *l=&piano[num_linea];
-  if(num_scelta>l->start_index){
-    put_last(l,tessera);
-  }else if(num_scelta<l->start_index){
-    put_first(l,tessera);
+  //put_tessera()
+  if(pos>=0){
+    //put_first()
+    put_tessera(l,tessera,pos);
+  }else{
+    //put_tessera
   }
 
-  return true;
+  char scelta=0;
+  while(scelta!='v' && scelta!='h'){
+    printf("Digita v o h (v=vertical e h=horizontal)\n");
+    scanf(" %c",&scelta);
+  }
+  if(scelta=='v'){
+    if(num_linea+1>=*size_piano){
+      ++*size_piano;
+      piano[num_linea+1].tessere=create_arr_tessere(l->size);
+      piano[num_linea+1].size=l->size;
+    }
+    Linea *under_line=&piano[num_linea+1];
+    if(l->size>under_line->size){
+      under_line->tessere=(Tessera*)realloc(under_line->tessere,sizeof(Tessera)*l->size);
+      if(!under_line->tessere) exit(EXIT_FAILURE);
+      under_line->size=l->size;
+    }
+    l->tessere[pos].vertical=true;
+    under_line->tessere[pos]=l->tessere[pos];
 
-  
+    l->tessere[pos].n2=l->tessere[pos].n1;
+
+    under_line->tessere[pos].n1=under_line->tessere[pos].n2;
+  }
+
+
+  /*
+  if(pos>l->start_index){
+    put_last(l,tessera);
+  }else if(pos<l->start_index){
+    put_first(l,tessera);
+  }
+  */
+
+  return true;
 }
 
 bool add_tessera(Linea * linea, Tessera new_tessera) {

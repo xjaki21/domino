@@ -33,7 +33,9 @@ Tessera *create_arr_tessere(int size);
 
 int *scelte_possibili(Linea *piano,int size,Tessera tessera,int *num_scelte);
 void print_scelte(int *m,int size);
-bool scegli_tessera(Linea *piano,int size_piano,Tessera tessera);
+
+void put_tessera(Linea *l,Tessera tessera,int pos);
+bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera);
 
 bool match_first( Tessera a, Tessera b);
 bool match_last( Tessera a, Tessera b);

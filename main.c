@@ -26,29 +26,9 @@ void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_t
         
 
         //bool match=add_tessera(&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera
-        bool match= scegli_tessera(piano,*size_piano,tessere[index]);
+        bool match= scegli_tessera(piano,size_piano,tessere[index]);
         if (match) {
-          char scelta=0;
-          while(scelta!='v' && scelta!='h'){
-            printf("Digita v o h (v=vertical e h=horizontal)\n");
-            scanf(" %c",&scelta);
-          }
-          if(scelta=='v'){
-            Tessera *l_tessere=piano[0].tessere;
-            int l_size=piano[0].size;
-            l_tessere[l_size-1].vertical=true;
 
-            ++*size_piano;
-            piano[1].tessere=create_arr_tessere(l_size);
-            piano[1].size=l_size;
-            piano[1].start_index=l_size-1;
-
-            Tessera *new_l=piano[1].tessere;
-            new_l[l_size-1]=l_tessere[l_size-1];
-            new_l[l_size-1].n1=new_l[l_size-1].n2;
-            
-            l_tessere[l_size-1].n2=l_tessere[l_size-1].n1;
-          }
           tessere = remove_tessera(tessere, size_tessere, index);//--*size_tessere; faccio già nella funzione
           selected = true;
         } else {
