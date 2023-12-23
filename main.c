@@ -46,8 +46,7 @@ void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_t
         printf("\nScegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
       }
     }
-    //score = score_update(piano, *size_piano);
-    score=0;
+    score = score_update(piano, *size_piano);
     //piano[0].tessere[0].n1=2;
     //piano[0].tessere[0].n2=2;
     update_screen(tessere,piano,speciali,*size_tessere,*size_piano,*size_speciali,score);

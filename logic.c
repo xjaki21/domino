@@ -81,7 +81,7 @@ bool match_last(Tessera a, Tessera b) {
 
 //matrice che restituisce le possibili scelte
 int *scelte_possibili(Linea *piano,int size,Tessera tessera,int *num_scelte){
-  int *scelte=(int*)malloc(sizeof(int)*size*2);
+  int *scelte=(int*)malloc(sizeof(int)*100);
   int k=0;
   /*
   int scelte={{1,2},
@@ -107,8 +107,11 @@ int *scelte_possibili(Linea *piano,int size,Tessera tessera,int *num_scelte){
     }
   }
   }
-  *num_scelte=(k+1)/2;
-  scelte=(int*)realloc(scelte,sizeof(k));
+  *num_scelte=k/2;
+  if(k>0){
+    scelte=(int*)realloc(scelte,sizeof(int)* k);
+    if(!scelte) exit(EXIT_FAILURE);
+  }
 
   return scelte;
 }
@@ -128,6 +131,13 @@ void extend_arr_tessere(Linea *l){
     l->tessere=(Tessera*)realloc(l->tessere,sizeof(Tessera)*l->size*2);
     if(!l->tessere) exit(EXIT_FAILURE);
     l->capacity*=2;
+    //inizializzo i nuovi spazi con false e -1, perché sono "vuoti"
+    for(int i=l->size;i<l->capacity;i++){
+      l->tessere[i].n1=-1;
+      l->tessere[i].n1=-1;
+      l->tessere[i].selected=false;
+      l->tessere[i].vertical=false;
+    }
   }
 }
 
@@ -312,7 +322,11 @@ int score_update(Linea *piano, int size) {
     Tessera *a=piano[i].tessere;
     int size_a=piano[i].size;
     for(int j=0;j<size_a;j++){
-      score+=a[j].n1+a[j].n2;
+      if(a[j].selected && !a[j].vertical){
+        score+=a[j].n1+a[j].n2;
+      }else if(a[j].selected && a[j].vertical){
+        score+=a[j].n1;
+      }
     }
   }
   return score;
@@ -366,7 +380,7 @@ bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera){
       scanf("%d",&s);
     }
   }else{
-    s=0;
+    s=0; //se la scelta è solo 1 la inserisco in automatico
   }
   int pos=scelte[s*2+1];
   int num_linea=scelte[s*2];
@@ -391,17 +405,25 @@ bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera){
       piano[num_linea+1].size=l->size;
     }
     Linea *under_line=&piano[num_linea+1];
+
     if(l->size>under_line->size){
-      under_line->tessere=(Tessera*)realloc(under_line->tessere,sizeof(Tessera)*l->size);
-      if(!under_line->tessere) exit(EXIT_FAILURE);
+      int old_size=under_line->size;
       under_line->size=l->size;
+      extend_arr_tessere(under_line);
+      for(int i=old_size;i<under_line->size;i++){
+        under_line->tessere[i].n1=-1;
+        under_line->tessere[i].n1=-1;
+        under_line->tessere[i].selected=false;
+        under_line->tessere[i].vertical=false;
+      }
+      
     }
     l->tessere[pos].vertical=true;
     under_line->tessere[pos]=l->tessere[pos];
 
-    l->tessere[pos].n2=l->tessere[pos].n1;
+    l->tessere[pos].n2=l->tessere[pos].n1; //per la tessera in alto voglio lasciare invariato solo n1, n2 sarà uguale ad n1 avranno lo stesso valore per comodità
 
-    under_line->tessere[pos].n1=under_line->tessere[pos].n2;
+    under_line->tessere[pos].n1=under_line->tessere[pos].n2; // per la tessera più in alto voglio lasciare invariato solo n2, n1 sarà uguale ad n1
   }
 
 
@@ -412,7 +434,7 @@ bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera){
     put_first(l,tessera);
   }
   */
-
+  free(scelte);
   return true;
 }
 
