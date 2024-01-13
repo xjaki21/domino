@@ -7,7 +7,7 @@
 #include "logic.h"
 
 
-void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali) {
+void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali) {
 
   Tessera *giocate=piano[0].tessere;
   int *size_giocate=&(piano[0].size);
@@ -39,7 +39,7 @@ void game_start(Tessera * tessere, Linea * piano, Tessera *speciali,int * size_t
         int index = abs(input) - 1;
         selected = true;
         speciali[index].selected=true;
-        add_special(&piano[0],speciali[index]);
+        //add_special(&piano[0],speciali[index]);
         speciali=remove_tessera(speciali,size_speciali,index);
       } 
       else {
@@ -82,8 +82,8 @@ int main() {
     
     // tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
     
-    Linea *piano=(Linea*)malloc(sizeof(Linea)*size_tessere);
-    piano[0]=*create_linea();
+    Row *piano=(Row*)malloc(sizeof(Row)*size_tessere);
+    piano[0]=*create_row();
     piano[0].start_index=0;
     int size_piano=1;
     game_start(tessere,piano,speciali,&size_tessere,&size_piano,&size_speciali);

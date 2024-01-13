@@ -17,45 +17,46 @@ typedef struct Tessera {
   bool vertical;
 }Tessera;
 
-typedef struct Linea{
+typedef struct Row{ //vector di tessere
   Tessera*tessere;
   int size;
   int capacity;
   int start_index;//indice della prima tessera di una riga
-}Linea;
+}Row;
 
 void init_speciali(Tessera *speciali,int size);
 void init(Tessera * tessera, int size_tessere); 
 
-Linea *create_linea();
+Row *create_row();
 Tessera *create_arr_tessere(int size);
 
 
-int *scelte_possibili(Linea *piano,int size,Tessera tessera,int *num_scelte);
+int *scelte_possibili(Row *piano,int size,Tessera tessera,int *num_scelte);
 void print_scelte(int *m,int size);
 
-void put_tessera(Linea *l,Tessera tessera,int pos);
-bool scegli_tessera(Linea *piano,int *size_piano,Tessera tessera);
+void put_front_tessera(Row *piano,int size_piano,Row *r,Tessera tessera);
+void put_tessera(Row *l,Tessera tessera,int pos);
+bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera);
 
 bool match_first( Tessera a, Tessera b);
 bool match_last( Tessera a, Tessera b);
 
-void put_first( Linea *l,Tessera new_tessera);
-void put_last( Linea *l ,Tessera new_tessera);
+//void put_first( Row *l,Tessera new_tessera);
+//void put_last( Row *l ,Tessera new_tessera);
 
-bool game_finished( Tessera *tessere, Linea *piano,int size_tessere,int size_piano);
+bool game_finished( Tessera *tessere, Row *piano,int size_tessere,int size_piano);
 
 char * string_tessera( Tessera tessera);
 
 void print_disponibili( Tessera *tessere,  Tessera *speciali,int size_tessere,int size_speciali);
-void print_giocate( Linea * piano, int size);
+void print_giocate( Row * piano, int size);
 
 Tessera * remove_tessera( Tessera * tessera, int *size, int index);
 
 int get_index( Tessera * tessera, int size, int num);
-int score_update( Linea*piano,int size);
-void update_screen(Tessera *tessere,Linea *piano,Tessera *speciali,int size_tessere,int size_piano,int size_speciali,int score);
+int score_update( Row*piano,int size);
+void update_screen(Tessera *tessere,Row *piano,Tessera *speciali,int size_tessere,int size_piano,int size_speciali,int score);
 
-bool add_tessera(Linea * linea, Tessera new_tessera);
-void add_special(Linea*linea,Tessera new_tessera);
+//bool add_tessera(Row *row, Tessera new_tessera);
+//void add_special(Row *row,Tessera new_tessera);
 #endif
