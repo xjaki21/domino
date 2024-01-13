@@ -38,8 +38,8 @@ void put_front_tessera(Row *piano,int size_piano,Row *r,Tessera tessera);
 void put_tessera(Row *l,Tessera tessera,int pos);
 bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera);
 
-bool match_first( Tessera a, Tessera b);
-bool match_last( Tessera a, Tessera b);
+bool mathc_left( Tessera a, Tessera b);
+bool match_right( Tessera a, Tessera b);
 
 //void put_first( Row *l,Tessera new_tessera);
 //void put_last( Row *l ,Tessera new_tessera);

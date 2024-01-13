@@ -66,14 +66,20 @@ Tessera *create_arr_tessere(int size){
   return new;
 }
 
-bool match_first(Tessera a, Tessera b) {
-  if(b.n1==0){
+bool is_special(Tessera a){
+  if(a.n1==0 || a.n1==-1 || a.n1==11)
+    return true;
+  return false;
+}
+
+bool match_left(Tessera a, Tessera b) {
+  if(is_special(a) || is_special(b)){
     return true;
   }
   return a.n1 == b.n1 || a.n2 == b.n1;
 }
-bool match_last(Tessera a, Tessera b) {
-  if(b.n1==0){
+bool match_right(Tessera a, Tessera b) {
+  if(is_special(a) || is_special(b)){
     return true;
   }
   return a.n1 == b.n2 || a.n2 == b.n2;
@@ -94,14 +100,13 @@ int *scelte_possibili(Row *piano,int size,Tessera tessera,int *num_scelte){
     int a_size=piano[i].size;
     for(int j=0;j<a_size;j++){
       if(a[j].selected){
-        if((j==0 || !a[j-1].selected) && match_first(tessera,a[j])){
-          
-            scelte[k]=i;
-            scelte[k+1]=j-1;
-            k=k+2;
+        if((j==0 || !a[j-1].selected) && match_left(tessera,a[j])){
+          scelte[k]=i;
+          scelte[k+1]=j-1;
+          k=k+2;
           
         }
-        if((j==a_size-1 || !a[j+1].selected) && match_last(tessera,a[j])){
+        if((j==a_size-1 || !a[j+1].selected) && match_right(tessera,a[j])){
             scelte[k]=i;
             scelte[k+1]=j+1;
             k=k+2;
@@ -126,8 +131,6 @@ void print_scelte(int *m,int size){
   }
 }
 
-
-
 void extend_arr_tessere(Row *r){
   if(r->size>=r->capacity){
     r->tessere=(Tessera*)realloc(r->tessere,sizeof(Tessera)*r->size*2);
@@ -145,19 +148,24 @@ void extend_arr_tessere(Row *r){
 
 
 bool game_finished(Tessera * tessere, Row * piano, int size_tessere, int size_piano) {
-  bool finished=true;
-  for(int i=0;i<size_piano;i++){
-    Tessera *tessere_row=piano[i].tessere;
-    int size_row= piano[i].size;
-    //printf("bello");
-    for(int j=0;j<size_tessere;j++){
-      if(match_first(tessere[j],tessere_row[0]) || match_last(tessere[j],tessere_row[size_row-1])){
-        finished=false;
+ for(int i=0;i<size_piano;i++){
+    Tessera *a=piano[i].tessere;
+    int a_size=piano[i].size;
+    for(int j=0;j<a_size;j++){
+      for(int k=0;k<size_tessere;k++){
+        if(a[j].selected){
+          if((j==0 || !a[j-1].selected) && match_left(tessere[k],a[j])){
+            return false;
+            
+          }
+          if((j==a_size-1 || !a[j+1].selected) && match_right(tessere[k],a[j])){
+            return false;
+          }
+        }
       }
     }
-    //printf("okokok");
   }
-  return finished;
+  return true;
 }
 
 char * string_tessera(Tessera tessera) {
@@ -316,7 +324,8 @@ void put_tessera(Row *r,Tessera tessera,int pos){
     ++r->size;
   }
    //metto a sinistra la tessera
-  if(match_first(tessera,r->tessere[pos+1])){
+  if(match_left(tessera,r->tessere[pos+1])){
+
     if (tessera.n2 != r->tessere[pos+1].n1 && r->tessere[pos+1].n1!=0) { //se è tessera [0|0] mettila com'è
       int n2=tessera.n2;
       tessera.n2=tessera.n1;
@@ -326,7 +335,7 @@ void put_tessera(Row *r,Tessera tessera,int pos){
   
   
    //metto a destra la tessera
-  if(pos>0 && match_last(tessera,r->tessere[pos-1])){
+  if(pos>0 && match_right(tessera,r->tessere[pos-1])){
     if(tessera.n1 !=r->tessere[pos-1].n2 && r->tessere[pos-1].n1!=0){
       int n2=tessera.n2;
       tessera.n2=tessera.n1;
@@ -335,6 +344,62 @@ void put_tessera(Row *r,Tessera tessera,int pos){
   }
   
   r->tessere[pos]=tessera;
+}
+
+
+/*
+• [0|0]: può essere accostata a qualunque altra tessera. Esempio: [1|2][0|0][5|6]
+• [11|11]: somma 1 a tutte le cifre di tutte le tessere sul piano di gioco tranne il 6 che diventa 1.
+La tessera può essere posizionata in qualunque posizione e le sue cifre vegono sostituite con la cifra
+adiacente dopo averla incrementata di 1. Esempio: [1|6][6|3][11|11] diventa [2|1][1|4][4|4]
+• [-1|-1]: copia “a specchio” la tessera adiacente. La tessera può essere posizionata in qualunque
+posizione e le sue cifre vegono sostituite con le cifre della tessera adiacente in ordine inverso. Esempio:
+[1|2][2|3][12|21] diventa [1|2][2|3][3|2]
+*/
+void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tessera){
+  if(pos>=row->size){
+    extend_arr_tessere(row);
+    ++row->size;
+  }
+  if(tessera.n1==11){
+    //sommo 1 a tutte le tessere
+    for(int i=0;i<size_piano;i++){
+      Row *r=&piano[i];
+      Tessera *tessere=r->tessere;
+      for(int j=0;j<r->size;j++){
+        //se 4%6=4 e 4+1=5, quindi va bene
+        //se 6%6=0 e 0+1=1, quindi va bene
+        tessere[j].n1=(tessere[j].n1%6)+1; 
+        tessere[j].n2=(tessere[j].n2%6)+1;
+      }
+    }
+    
+    if(pos>0 && row->tessere[pos-1].selected){
+      tessera.n1=row->tessere[pos-1].n2;
+      tessera.n2=row->tessere[pos-1].n2;
+    }else if(row->tessere[pos+1].selected){
+      tessera.n1=row->tessere[pos+1].n1;
+      tessera.n2=row->tessere[pos+1].n1;
+    }
+
+  }
+
+  if(tessera.n1==-1){
+    if(pos>0 && row->tessere[pos-1].selected){
+      tessera.n1=row->tessere[pos-1].n2;
+      tessera.n2=row->tessere[pos-1].n1;
+    } else if(row->tessere[pos+1].selected){
+      tessera.n1=row->tessere[pos+1].n2;
+      tessera.n2=row->tessere[pos+1].n1;
+    }
+  }
+  //se è zero inserisco normalmente
+  if(pos<0){
+    put_front_tessera(piano,size_piano,row,tessera);
+    return;
+  }
+  row->tessere[pos]=tessera;
+
 }
 bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
   Row *r_0=&piano[0];
@@ -364,10 +429,20 @@ bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
   //put_tessera()
   if(pos>=0){
     //put_first()
-    put_tessera(r,tessera,pos);
+    if(is_special(tessera)){
+      put_tessera_speciale(piano,*size_piano,r,pos,tessera);
+    }else{
+      put_tessera(r,tessera,pos);
+    }
+    
   }else{
     //put_tessera
-    put_front_tessera(piano,*size_piano,r,tessera);
+    if(is_special(tessera)){
+      put_tessera_speciale(piano,*size_piano,r,pos,tessera);
+    }else{
+      put_front_tessera(piano,*size_piano,r,tessera);
+    }
+    pos=0;
   }
 
   if(num_row+1>=*size_piano || !piano[num_row+1].tessere[pos].selected){
@@ -398,12 +473,15 @@ bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
         
       }
       r->tessere[pos].vertical=true;
-      if(pos+1<r->size && match_first(r->tessere[pos],r->tessere[pos+1])){
-        int n2=r->tessere[pos].n2;
-        r->tessere[pos].n2=r->tessere[pos].n1;
-        r->tessere[pos].n1=n2;
+      //[3|1]
+      if(pos+1<r->size && match_left(r->tessere[pos],r->tessere[pos+1])){
+        if (r->tessere[pos].n2 == r->tessere[pos+1].n1 && r->tessere[pos+1].n1!=0) { //se è tessera [0|0] mettila com'è
+          int n2=r->tessere[pos].n2;
+          r->tessere[pos].n2=r->tessere[pos].n1;
+          r->tessere[pos].n1=n2;
+        }
       }
-    
+
       under_row->tessere[pos]=r->tessere[pos];
 
       r->tessere[pos].n2=r->tessere[pos].n1; //per la tessera in alto voglio lasciare invariato solo n1, n2 sarà uguale ad n1 avranno lo stesso valore per comodità
@@ -430,8 +508,8 @@ bool add_tessera(Row * row, Tessera new_tessera) {
   Tessera * giocate = row -> tessere;
   int * size_giocate = &row -> size;
   bool match = false;
-  bool matchFirst = match_first(new_tessera, giocate[0]); // controllo se la tessera selezionata è adiacente con la prima tessera
-  bool matchLast = match_last(new_tessera, giocate[ *size_giocate - 1]); // controllo se la tessera selezionata è adiacente con l'ultima tessera
+  bool matchFirst = match_left(new_tessera, giocate[0]); // controllo se la tessera selezionata è adiacente con la prima tessera
+  bool matchLast = match_right(new_tessera, giocate[ *size_giocate - 1]); // controllo se la tessera selezionata è adiacente con l'ultima tessera
   match = matchFirst || matchLast;
   if(*size_giocate>0){
   if (matchFirst && matchLast) {

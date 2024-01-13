@@ -35,10 +35,11 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
           printf("Scegli una tessera valida!\n");
         }
       } 
-      else if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
+      if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
         int index = abs(input) - 1;
         selected = true;
         speciali[index].selected=true;
+        bool match=scegli_tessera(piano,size_piano,speciali[index]);
         //add_special(&piano[0],speciali[index]);
         speciali=remove_tessera(speciali,size_speciali,index);
       } 
