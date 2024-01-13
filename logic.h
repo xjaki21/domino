@@ -57,6 +57,8 @@ int get_index( Tessera * tessera, int size, int num);
 int score_update( Row*piano,int size);
 void update_screen(Tessera *tessere,Row *piano,Tessera *speciali,int size_tessere,int size_piano,int size_speciali,int score);
 
+void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali);
+
 //bool add_tessera(Row *row, Tessera new_tessera);
 //void add_special(Row *row,Tessera new_tessera);
 #endif

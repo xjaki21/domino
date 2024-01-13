@@ -501,107 +501,59 @@ bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
   free(scelte);
   return true;
 }
-/*
-bool add_tessera(Row * row, Tessera new_tessera) {
-  bool selected = false; //mi serve per dire se ho scelto una tessere valida!
-  
-  Tessera * giocate = row -> tessere;
-  int * size_giocate = &row -> size;
-  bool match = false;
-  bool matchFirst = match_left(new_tessera, giocate[0]); // controllo se la tessera selezionata è adiacente con la prima tessera
-  bool matchLast = match_right(new_tessera, giocate[ *size_giocate - 1]); // controllo se la tessera selezionata è adiacente con l'ultima tessera
-  match = matchFirst || matchLast;
-  if(*size_giocate>0){
-  if (matchFirst && matchLast) {
-    printf("Posiziona a sinistra 's' o posiziona a destra 'd'\n");
-    char put = 0;
-    while (put != 'd' && put != 's') {
-      scanf("%c", & put);
-    }
-    if (put == 'd') {
-      //giocate = put_last(giocate, size_giocate, new_tessera);
-      //row -> tessere = giocate; //l'indirizzo di memoria di ogni row viene cambiato quando aggiungo!, quindi devo ricordarmi di memorizzarlo nel piano
-      put_last(row,new_tessera);
-    } else {
-      //giocate = put_first(giocate, size_giocate, new_tessera);
-      //row -> tessere = giocate;
-      put_first(row,new_tessera);
-    }
-  } 
-  else if (matchFirst) {
-    //giocate = put_first(giocate, size_giocate, new_tessera);
-    //row -> tessere = giocate;
-    put_first(row,new_tessera);
 
-  } 
-  else if (matchLast) {
-    //giocate = put_last(giocate, size_giocate, new_tessera);
-    //row -> tessere = giocate;
-    put_last(row,new_tessera);
+void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali) {
 
-  } 
+  Tessera *giocate=piano[0].tessere;
+  int *size_giocate=&(piano[0].size);
+  int score = 0;
+  char key[2];
+  update_screen(tessere,piano,speciali,*size_tessere,*size_piano,*size_speciali,score);
+  while (!game_finished(tessere, piano, *size_tessere, *size_piano) || *size_speciali>0) {
+    bool selected = false; //mi serve per dire se ho scelto una tessere valida!
+    while (!selected) {
+      int input=0;
+      scanf("%d",&input);
+
+      if (input > 0 && input <= *size_tessere) {
+        int index = input - 1;
+        tessere[index].selected=true;
+        
+
+        //bool match=add_tessera(&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera
+        bool match= scegli_tessera(piano,size_piano,tessere[index]);
+        if (match) {
+
+          tessere = remove_tessera(tessere, size_tessere, index);//--*size_tessere; faccio già nella funzione
+          selected = true;
+        } else {
+          printf("Scegli una tessera valida!\n");
+        }
+      } 
+      if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
+        int index = abs(input) - 1;
+        selected = true;
+        speciali[index].selected=true;
+        bool match=scegli_tessera(piano,size_piano,speciali[index]);
+        //add_special(&piano[0],speciali[index]);
+        speciali=remove_tessera(speciali,size_speciali,index);
+      } 
+      else {
+        printf("\nScegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
+      }
+    }
+    score = score_update(piano, *size_piano);
+    //piano[0].tessere[0].n1=2;
+    //piano[0].tessere[0].n2=2;
+    update_screen(tessere,piano,speciali,*size_tessere,*size_piano,*size_speciali,score);
+
+    // printf("%s",input);
   }
-  else{
-    match=true;
-    giocate[0]=new_tessera;
-    ++*size_giocate;
-  }
-  return match;
+  printf("La partita e' terminata! Non ci sono piu' tessere giocabili");
+
+  free(tessere);
+  //free(giocate);
+  free(speciali);
+  free(piano);
 
 }
-*/
-/*
-void add_special(Row * row, Tessera new_tessera) {
-  Tessera *giocate=row->tessere;
-  int *size_giocate=&row->size;
-  if ( *size_giocate == 0) {
-    ++*size_giocate;
-    giocate[0] = new_tessera;
-  } 
-  else {
-    printf("Posiziona a sinistra 's' o posiziona a destra 'd'\n");
-    char put = 0;
-    while (put != 'd' && put != 's') {
-      scanf("%c", & put);
-    }
-    if (new_tessera.n1 == 11) {
-      for (int i = 0; i < * size_giocate; i++) {
-        ++giocate[i].n1;
-        ++giocate[i].n2;
-      }
-    }
-    if (put == 'd') {
-      
-      //[11|11]: somma 1 a tutte le cifre di tutte le tessere sul piano di gioco tranne il 6 che diventa 1.
-      //La tessera può essere posizionata in qualunque posizione e le sue cifre vegono sostituite con la cifra
-      //adiacente dopo averla incrementata di 1. Esempio: [1|6][6|3][11|11] diventa [2|1][1|4][4|4]
-      
-      if (new_tessera.n1 == 11) { //tessera somma tutti 1
-        new_tessera.n1 = giocate[ * size_giocate - 1].n2;
-        new_tessera.n2 = new_tessera.n1;
-      }
-      if (new_tessera.n1 == -1) { // tessera specchio
-        new_tessera.n1 = giocate[ * size_giocate - 1].n2;
-        new_tessera.n2 = giocate[ * size_giocate - 1].n1;
-      }
-      //giocate = put_last(giocate, size_giocate, new_tessera);
-      //row->tessere=giocate;
-      put_last(row,new_tessera);
-      // giocate=put_last(giocate,&size_giocate,tessere[index]);
-    } else {
-      if (new_tessera.n1 == 11) { // tessera somma tutti 1
-        new_tessera.n1 = giocate[0].n1;
-        new_tessera.n2 = new_tessera.n1;
-      }
-      if (new_tessera.n1 == -1) { //tessera specchio
-        new_tessera.n1 = giocate[0].n2;
-        new_tessera.n2 = giocate[0].n1;
-      }
-      //giocate = put_first(giocate, size_giocate, new_tessera);
-      //row->tessere=giocate;
-      put_first(row,new_tessera);
-    }
-
-  }
-}
-*/
