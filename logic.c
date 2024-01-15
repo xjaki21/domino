@@ -263,7 +263,7 @@ Tessera * remove_tessera(Tessera * tessera, int *size, int index) {
     new_arr[i].num = i + 1; //aggiorno numero relativo all'interfaccia utente, cioè i numeri che scelgo da tastiera
   }
   --*size;
-  free(tessera); //libero la vecchia memoria allocata
+  //free(tessera); //libero la vecchia memoria allocata
   return new_arr;
 }
 /*
@@ -324,8 +324,7 @@ void put_tessera(Row *r,Tessera tessera,int pos){
     ++r->size;
   }
    //metto a sinistra la tessera
-  if(match_left(tessera,r->tessere[pos+1])){
-
+  if(r->tessere[pos+1].selected && match_left(tessera,r->tessere[pos+1])){
     if (tessera.n2 != r->tessere[pos+1].n1 && r->tessere[pos+1].n1!=0) { //se è tessera [0|0] mettila com'è
       int n2=tessera.n2;
       tessera.n2=tessera.n1;
@@ -335,14 +334,14 @@ void put_tessera(Row *r,Tessera tessera,int pos){
   
   
    //metto a destra la tessera
-  if(pos>0 && match_right(tessera,r->tessere[pos-1])){
+  if(pos>0 && r->tessere[pos-1].selected && match_right(tessera,r->tessere[pos-1])){
     if(tessera.n1 !=r->tessere[pos-1].n2 && r->tessere[pos-1].n1!=0){
       int n2=tessera.n2;
       tessera.n2=tessera.n1;
       tessera.n1=n2;
     }
   }
-  
+  //tessera.selected=true;
   r->tessere[pos]=tessera;
 }
 
@@ -398,10 +397,11 @@ void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tes
     put_front_tessera(piano,size_piano,row,tessera);
     return;
   }
+ // tessera.selected=true;
   row->tessere[pos]=tessera;
 
 }
-bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
+bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera){
   Row *r_0=&piano[0];
   if(r_0->size==0){
     r_0->tessere[0]=tessera;
@@ -434,8 +434,7 @@ bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera){
     }else{
       put_tessera(r,tessera,pos);
     }
-    
-  }else{
+  }else{ //pos=-1
     //put_tessera
     if(is_special(tessera)){
       put_tessera_speciale(piano,*size_piano,r,pos,tessera);
@@ -518,28 +517,24 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
       if (input > 0 && input <= *size_tessere) {
         int index = input - 1;
         tessere[index].selected=true;
-        
 
         //bool match=add_tessera(&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera
-        bool match= scegli_tessera(piano,size_piano,tessere[index]);
+        bool match= posiziona_tessera(piano,size_piano,tessere[index]);
         if (match) {
-
           tessere = remove_tessera(tessere, size_tessere, index);//--*size_tessere; faccio già nella funzione
           selected = true;
         } else {
           printf("Scegli una tessera valida!\n");
         }
-      } 
-      if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
+      }else if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
         int index = abs(input) - 1;
         selected = true;
         speciali[index].selected=true;
-        bool match=scegli_tessera(piano,size_piano,speciali[index]);
+        bool match=posiziona_tessera(piano,size_piano,speciali[index]);
         //add_special(&piano[0],speciali[index]);
         speciali=remove_tessera(speciali,size_speciali,index);
-      } 
-      else {
-        printf("\nScegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
+      }else {
+        printf("Scegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
       }
     }
     score = score_update(piano, *size_piano);
@@ -552,8 +547,72 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
   printf("La partita e' terminata! Non ci sono piu' tessere giocabili");
 
   free(tessere);
-  //free(giocate);
   free(speciali);
   free(piano);
 
+}
+
+Row *mod_ai(Tessera * tessere, Row * piano, Tessera *speciali,int size_tessere, int size_piano,int size_speciali){
+
+
+
+  for(int i=0;i<size_tessere;i++){
+    Row *game=(Row*)malloc(sizeof(Row)* size_tessere);
+    game[0]=*create_row();
+    int size_game=1;
+    int size_game_tessere=size_tessere;
+    Tessera *new_tessere=tessere;
+    while(!game_finished(new_tessere,game,size_game_tessere,1)){
+
+      Row *r_0=&game[0];
+      Row *game_1=(Row*)malloc(sizeof(Row)* size_tessere);
+      game_1[0]=*create_row();
+      if(r_0->size==0){
+        tessere[i].selected=true;
+        printf("primo inserimento\n");
+        r_0->tessere[0]=tessere[i];
+        r_0->size=1;
+        Tessera *new_tessere=remove_tessera(new_tessere,&size_game_tessere,i);
+        print_giocate(game,1);
+        break;
+      }else{
+
+        int num_scelte=0;
+        int *scelte=scelte_possibili(game,1,tessere[i],&num_scelte);
+        if(num_scelte>0){
+          new_tessere=remove_tessera(new_tessere,&size_game_tessere,i);
+          tessere[i].selected=true;
+
+          int size_game_1=1;
+          for(int j=0;j<num_scelte;j++){
+            int pos=scelte[j*2+1];
+            int num_row=scelte[j*2];
+            Row *r=&game[num_row];
+            if(pos>=0){
+              put_tessera(r,tessere[i],pos);
+            }else{
+              put_front_tessera(game,1,r,tessere[i]);
+            }
+            Row *game_2=mod_ai(new_tessere,game,speciali,size_game_tessere,size_game,size_speciali);
+            if(score_update(game_1,1)<score_update(game_2,1)){
+              game_1=game_2;
+            }
+          }
+        }
+      }
+      if(score_update(game,1)<score_update(game_1,1)){
+        //free(game);
+        printf("secondo inserimento\n");
+
+        game=game_1;
+      }
+
+    }
+    if(score_update(piano,1)<score_update(game,1)){
+      piano=game;
+    }
+  }
+  return  piano;
+
+  
 }

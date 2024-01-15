@@ -36,7 +36,7 @@ void print_scelte(int *m,int size);
 
 void put_front_tessera(Row *piano,int size_piano,Row *r,Tessera tessera);
 void put_tessera(Row *l,Tessera tessera,int pos);
-bool scegli_tessera(Row *piano,int *size_piano,Tessera tessera);
+bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera);
 
 bool mathc_left( Tessera a, Tessera b);
 bool match_right( Tessera a, Tessera b);
@@ -58,7 +58,7 @@ int score_update( Row*piano,int size);
 void update_screen(Tessera *tessere,Row *piano,Tessera *speciali,int size_tessere,int size_piano,int size_speciali,int score);
 
 void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali);
-
+Row *mod_ai(Tessera * tessere, Row * piano, Tessera *speciali,int size_tessere, int size_piano,int size_speciali);
 //bool add_tessera(Row *row, Tessera new_tessera);
 //void add_special(Row *row,Tessera new_tessera);
 #endif
