@@ -148,15 +148,16 @@ void extend_arr_tessere(Row *r){
 
 
 bool game_finished(Tessera * tessere, Row * piano, int size_tessere, int size_piano) {
- for(int i=0;i<size_piano;i++){
+  bool one_piece=false;
+  for(int i=0;i<size_piano;i++){
     Tessera *a=piano[i].tessere;
     int a_size=piano[i].size;
     for(int j=0;j<a_size;j++){
+      one_piece=true;
       for(int k=0;k<size_tessere;k++){
         if(a[j].selected){
           if((j==0 || !a[j-1].selected) && match_left(tessere[k],a[j])){
             return false;
-            
           }
           if((j==a_size-1 || !a[j+1].selected) && match_right(tessere[k],a[j])){
             return false;
@@ -165,6 +166,8 @@ bool game_finished(Tessera * tessere, Row * piano, int size_tessere, int size_pi
       }
     }
   }
+  if(!one_piece)
+    return false;
   return true;
 }
 
@@ -263,7 +266,7 @@ Tessera * remove_tessera(Tessera * tessera, int *size, int index) {
     new_arr[i].num = i + 1; //aggiorno numero relativo all'interfaccia utente, cioè i numeri che scelgo da tastiera
   }
   --*size;
-  //free(tessera); //libero la vecchia memoria allocata
+  free(tessera); //libero la vecchia memoria allocata
   return new_arr;
 }
 /*
@@ -552,67 +555,157 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
 
 }
 
-Row *mod_ai(Tessera * tessere, Row * piano, Tessera *speciali,int size_tessere, int size_piano,int size_speciali){
-
-
-
+Tessera *copy_tessere(Tessera *tessere,int size_tessere){
+  Tessera *new=(Tessera*)malloc(sizeof(Tessera)*size_tessere);
   for(int i=0;i<size_tessere;i++){
-    Row *game=(Row*)malloc(sizeof(Row)* size_tessere);
-    game[0]=*create_row();
-    int size_game=1;
-    int size_game_tessere=size_tessere;
-    Tessera *new_tessere=tessere;
-    while(!game_finished(new_tessere,game,size_game_tessere,1)){
+    new[i].n1=tessere[i].n1;
+    new[i].n2=tessere[i].n2;
+    new[i].num=tessere[i].num;
+    new[i].selected=tessere[i].selected;
+    new[i].vertical=tessere[i].vertical;
+  }
+  return new;
+}
 
-      Row *r_0=&game[0];
-      Row *game_1=(Row*)malloc(sizeof(Row)* size_tessere);
-      game_1[0]=*create_row();
-      if(r_0->size==0){
-        tessere[i].selected=true;
-        printf("primo inserimento\n");
-        r_0->tessere[0]=tessere[i];
-        r_0->size=1;
-        Tessera *new_tessere=remove_tessera(new_tessere,&size_game_tessere,i);
-        print_giocate(game,1);
-        break;
-      }else{
+Row *copy_piano(Row *piano,int size){
+  Row *new=(Row*)malloc(sizeof(Row)*size);
+  for(int i=0;i<size;i++){
+    Row *r=&piano[i];
+    Tessera *tessere=r->tessere;
+    new[i].size=r->size;
+    new[i].capacity=r->capacity;
+    new[i].tessere=copy_tessere(tessere,r->size);
+  }
+  return new;
+}
 
-        int num_scelte=0;
-        int *scelte=scelte_possibili(game,1,tessere[i],&num_scelte);
-        if(num_scelte>0){
-          new_tessere=remove_tessera(new_tessere,&size_game_tessere,i);
-          tessere[i].selected=true;
 
-          int size_game_1=1;
-          for(int j=0;j<num_scelte;j++){
-            int pos=scelte[j*2+1];
-            int num_row=scelte[j*2];
-            Row *r=&game[num_row];
-            if(pos>=0){
-              put_tessera(r,tessere[i],pos);
-            }else{
-              put_front_tessera(game,1,r,tessere[i]);
-            }
-            Row *game_2=mod_ai(new_tessere,game,speciali,size_game_tessere,size_game,size_speciali);
-            if(score_update(game_1,1)<score_update(game_2,1)){
-              game_1=game_2;
-            }
+Row *mod_ai(Tessera * tessere, Row *piano, Tessera *speciali,int size_tessere, int size_piano,int size_speciali){
+
+
+    int i=0;
+  
+  while(!game_finished(tessere,piano,size_tessere,size_piano)){
+   // printf("start\n");
+    bool put=false;
+    Row *r_0=&piano[0];
+    //Row *game=copy_piano(piano,size_piano);
+    if(r_0->size==0){
+      // print_disponibili(new_tessere,speciali,size_game_tessere,size_speciali);
+      tessere[0].selected=true;
+      printf("primo inserimento\n");
+      r_0->tessere[0]=tessere[0];
+      r_0->size=1;
+      tessere=remove_tessera(tessere,&size_tessere,0);
+      put=true;
+      //i++;
+    }else{
+      int num_scelte=0;
+      int *scelte=scelte_possibili(piano,1,tessere[i],&num_scelte);
+      //print_scelte(scelte,num_scelte);
+      if(num_scelte>0){
+
+        Tessera t=tessere[i];
+        t.selected=true;
+        tessere=remove_tessera(tessere,&size_tessere,i);
+        for(int j=0;j<1;j++){
+          //piano=copy_piano(temp_piano,size_piano);
+
+          int pos=scelte[j*2+1];
+          //printf("POS:%d\n",pos);
+          int num_row=0;
+          Row *r=&piano[num_row];
+
+          if(pos>=0){
+            //printf("put\n");
+            put_tessera(r,t,pos);
+
+           // break;
+          }else{
+            //printf("put\n");
+
+            put_front_tessera(piano,size_piano,r,t);
+            //break;
           }
         }
+        /*
+        for(int j=0;j<num_scelte;j++){
+          int pos=scelte[j*2+1];
+          int num_row=scelte[j*2];
+          Row *r=&game[num_row];
+          if(pos>=0){
+            printf("put\n");
+            put_tessera(r,t,pos);
+          }else{
+            t.selected=true;
+            put_front_tessera(game,1,r,tessere[i]);
+          }
+          Tessera *new_tessere=copy_tessere(tessere,size_tessere);
+          Row *game_2=mod_ai(new_tessere,game_1,speciali,size_tessere,size_piano,size_speciali);
+          if(score_update(game_1,1)<score_update(game_2,1)){
+            game_1=game_2;
+          }
+        }
+        */
+        put=true;
       }
-      if(score_update(game,1)<score_update(game_1,1)){
-        //free(game);
-        printf("secondo inserimento\n");
-
-        game=game_1;
-      }
+     // print_giocate(piano,size_piano);
 
     }
-    if(score_update(piano,1)<score_update(game,1)){
-      piano=game;
+    if(!put){
+      i++;
+    }else{
+      i=0;
+    }
+
+ 
+    //print_giocate(piano,1);
+
+
+    //printf("gamefinished:%d\n",game_finished(new_tessere,game,size_game_tessere,1));
+  }
+
+  //print_giocate(piano,1);
+  //Row *temp_piano=copy_piano(piano,size_piano);
+  //piano=copy_piano(temp_piano,size_piano);
+  //print_giocate(piano,1);
+
+  return  piano;
+}
+
+Row *ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali){
+  Row *piano;
+  int size_piano=1;
+  for(int i=0;i<size_tessere;i++){
+    Tessera *copia_tessere=copy_tessere(tessere,size_tessere);
+    int copia_size_tessere=size_tessere;
+
+    Row *new_piano=(Row*)malloc(sizeof(Row)*size_tessere);
+    new_piano[0]=*create_row();
+    new_piano[0].size=0;
+    new_piano[0].start_index=0;
+
+    Row *r_0=&new_piano[0];
+    copia_tessere[i].selected=true;
+    r_0->tessere[0]=copia_tessere[i];
+    r_0->size=1;
+    copia_tessere=remove_tessera(copia_tessere,&copia_size_tessere,i);
+
+    new_piano=mod_ai(copia_tessere,new_piano,speciali,copia_size_tessere,size_piano,size_speciali);
+    //print_giocate(new_piano,size_piano);
+    print_giocate(new_piano,size_piano);
+    if(i==0){
+      piano=new_piano;
+
+    }else{
+      //printf("NEW_PIANO SCORE:%d\nPIANO_SCORE:%d\n",score_update(new_piano,size_piano),score_update(piano,size_piano));
+      if(score_update(new_piano,size_piano)>score_update(piano,size_piano)){
+        //printf("CAMBIO\n");
+        free(piano);
+        piano=new_piano;
+      }
     }
   }
-  return  piano;
-
-  
+  return piano;
 }
+  

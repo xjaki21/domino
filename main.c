@@ -29,6 +29,7 @@ int main() {
     // tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
     Row *piano=(Row*)malloc(sizeof(Row)*size_tessere);
     piano[0]=*create_row();
+    piano[0].size=0;
     piano[0].start_index=0;
     int size_piano=1;
 
@@ -42,11 +43,16 @@ int main() {
     if(mod==1)
       game_start(tessere,piano,speciali,&size_tessere,&size_piano,&size_speciali);
     if(mod==2){
-      piano=mod_ai(tessere,piano,speciali,size_tessere,1,size_speciali);
-      int score = score_update(piano, size_piano);
-
-      //update_screen(tessere,piano,speciali,size_tessere,size_piano,size_speciali,score);
+      print_disponibili(tessere,speciali,size_tessere,size_speciali);
+      //piano=mod_ai(tessere,piano,speciali,size_tessere,1,size_speciali);
+      piano=ai(tessere,speciali,size_tessere,size_speciali);
+      printf("Finito\n");
+      //printf("bello\n");
       print_giocate(piano,1);
+
+      int score = score_update(piano, size_piano);
+      ;
+      //update_screen(tessere,piano,speciali,size_tessere,size_piano,size_speciali,score);
     }
   }
   
