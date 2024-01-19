@@ -116,9 +116,8 @@ void print_scelte(int *m,int size){
 void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, int size_speciali) {
   printf("Tessere disponibili:\n");
   int righe = 10;
-  int col = ((size_tessere) / righe) + 1; //-3 per le tessere speciale
-  int count_col = 0;
-  int resto_last_col = (size_tessere) % righe; //-3 per le tessere speciale
+  int col = ((size_tessere) / righe) + 1;
+  int resto_last_col = (size_tessere) % righe; 
   for (int i = 0; i < righe; i++) {
     if (resto_last_col == i) {
       col--;

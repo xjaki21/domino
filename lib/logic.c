@@ -110,9 +110,14 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
   update_screen(tessere,piano,speciali,*size_tessere,*size_piano,*size_speciali,score);
   while (!game_finished(tessere, piano, *size_tessere, *size_piano) || *size_speciali>0) {
     bool selected = false; //mi serve per dire se ho scelto una tessere valida!
+
     while (!selected) {
-      char keys[10];
-      scanf("%s",&keys);
+      char keys[100];
+
+      scanf("%[^\n]s", keys);       
+      //gets(keys);
+      //fgets(keys, sizeof(keys), stdin);
+
       int input=char_to_int(keys);
       if (input > 0 && input <= *size_tessere) {
         int index = input - 1;
@@ -231,7 +236,9 @@ Row *first_match(Tessera * tessere, Row *piano, Tessera *speciali,int size_tesse
   return  piano;
 }
 
-Row *ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali){
+void game_start_ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali){
+  print_disponibili(tessere,speciali,size_tessere,size_speciali);
+  
   Row *piano;
   int size_piano=1;
   for(int i=0;i<size_tessere;i++){
@@ -241,8 +248,7 @@ Row *ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali)
     Row *new_piano=(Row*)malloc(sizeof(Row)*size_tessere);
     new_piano[0]=*create_row();
     new_piano[0].size=0;
-    new_piano[0].start_index=0;
-
+    
     Row *r_0=&new_piano[0];
     copia_tessere[i].selected=true;
     r_0->tessere[0]=copia_tessere[i];
@@ -250,8 +256,9 @@ Row *ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali)
     copia_tessere=remove_tessera(copia_tessere,&copia_size_tessere,i);
 
     new_piano=first_match(copia_tessere,new_piano,speciali,copia_size_tessere,size_piano,size_speciali);
-    //print_giocate(new_piano,size_piano);
-    print_giocate(new_piano,size_piano);
+    //print_giocate(new_piano,size_piano)
+    printf("Score=%d\n", score_update(new_piano, size_piano));
+    print_giocate(new_piano, size_piano);
     if(i==0){
       piano=new_piano;
 
@@ -264,6 +271,9 @@ Row *ai(Tessera * tessere, Tessera *speciali,int size_tessere,int size_speciali)
       }
     }
   }
-  return piano;
+  printf("Best game:\n");
+
+  printf("Score=%d\n", score_update(piano, size_piano));
+  print_giocate(piano, size_piano);
 }
   

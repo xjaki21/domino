@@ -1,0 +1,26 @@
+\hypertarget{structRow}{}\doxysection{Row Struct Reference}
+\label{structRow}\index{Row@{Row}}
+
+
+Collaboration diagram for Row\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}\label{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}} 
+\mbox{\hyperlink{structTessera}{Tessera}} $\ast$ {\bfseries tessere}
+\item 
+\mbox{\Hypertarget{structRow_a43d70cbe697594504027206fdbf52fce}\label{structRow_a43d70cbe697594504027206fdbf52fce}} 
+int {\bfseries size}
+\item 
+\mbox{\Hypertarget{structRow_ac052741f108068f08ab356d79c022c46}\label{structRow_ac052741f108068f08ab356d79c022c46}} 
+int {\bfseries capacity}
+\item 
+\mbox{\Hypertarget{structRow_afdf5d10aebfa81780f12f2363c65000b}\label{structRow_afdf5d10aebfa81780f12f2363c65000b}} 
+int {\bfseries start\+\_\+index}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+tessere.\+h\end{DoxyCompactItemize}
