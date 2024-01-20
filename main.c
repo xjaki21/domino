@@ -27,15 +27,7 @@ int main() {
 
     tessere = (Tessera * ) realloc(tessere, sizeof(Tessera) * size_tessere);
     init(tessere,size_tessere);
-    // tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
-    /*
-    Row *piano=(Row*)malloc(sizeof(Row)*size_tessere);
-    piano[0]=*create_row();
-    piano[0].size=0;
-    int size_piano=1;
-    */
-
-
+        
     char mod=0;
     printf("Modalita':\n1.Interattiva\n2.AI\n");
     

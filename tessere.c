@@ -382,12 +382,13 @@ bool posiziona_tessera(Board *board,Tessera tessera){
   if(num_scelte<=0){
     return false;
   }
-  printf("Tessera scelta: [%d|%d]\n",tessera.n1,tessera.n2);
+
+  printf("Tessera scelta:\n[%d|%d]\n",tessera.n1,tessera.n2);
 
   if(num_scelte>1){
     char keys[10];
     do{
-        printf("Scelte possibili:\n");
+        printf("Scelte possibili:\n{n1,n2} dove n1 indica la riga e n2 la colonna\n");
         print_scelte(scelte,num_scelte);
         scanf("%s",keys);
         s=char_to_int(keys);
@@ -432,7 +433,8 @@ bool posiziona_tessera(Board *board,Tessera tessera){
         board->rows[num_row+1].size=r->size;
       }
       Row *under_row=&(board->rows[num_row+1]);
-
+      
+      //estende la riga sotto per la tessera verticale se la riga superiore è più grande di dimensione
       if(r->size>under_row->size){
         int old_size=under_row->size;
         under_row->size=r->size;
