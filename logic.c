@@ -24,12 +24,12 @@ void init_speciali(Tessera * speciali, int size) {
   speciali[1].num = -1;
   speciali[1].vertical=false;
   /*
-  [*|*]: copia “a specchio” la tessera adiacente. La tessera può essere posizionata in qualunque
+  [12|21]: copia “a specchio” la tessera adiacente. La tessera può essere posizionata in qualunque
   posizione e le sue cifre vegono sostituite con le cifre della tessera adiacente in ordine inverso. Esempio:
   [1|2][2|3][12|21] diventa [1|2][2|3][3|2]
   */
-  speciali[2].n1 = -1;
-  speciali[2].n2 = -1;
+  speciali[2].n1 = 12;
+  speciali[2].n2 = 21;
   speciali[2].num = -1;
   speciali[2].vertical=false;
 }
@@ -101,6 +101,7 @@ int score_update(Row *piano, int size) {
 }
 
 
+
 void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tessere, int * size_piano,int *size_speciali) {
 
   Tessera *giocate=piano[0].tessere;
@@ -112,13 +113,11 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
     bool selected = false; //mi serve per dire se ho scelto una tessere valida!
 
     while (!selected) {
-      char keys[100];
-
-      scanf("%[^\n]s", keys);       
-      //gets(keys);
-      //fgets(keys, sizeof(keys), stdin);
-
+      char keys[10];
+      scanf(" %s",keys);
       int input=char_to_int(keys);
+     // int input=0;
+      //scanf(" %d",&input);
       if (input > 0 && input <= *size_tessere) {
         int index = input - 1;
         tessere[index].selected=true;
@@ -131,7 +130,8 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
         } else {
           printf("Scegli una tessera valida!\n");
         }
-      }else if (input < 0 && abs(input) <= *size_speciali && *size_speciali>0) { 
+      }
+      else if ( input < 0 && abs(input) <= *size_speciali && *size_speciali>0 && *size_giocate>0) { //se tessera è speciale
         int index = abs(input) - 1;
         selected = true;
         speciali[index].selected=true;
@@ -139,7 +139,12 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
         //add_special(&piano[0],speciali[index]);
         speciali=remove_tessera(speciali,size_speciali,index);
       }else {
-        printf("Scegli una tessera tra quelle disponibili (es. %s)\n", string_tessera(tessere[0]));
+        if(*size_giocate==0){
+          printf("La prima tessera non puo' essere speciale!\n");
+        }else{
+          printf("Scegli una tessera tra quelle disponibili\n");
+        }
+
       }
     }
     score = score_update(piano, *size_piano);
@@ -149,7 +154,7 @@ void game_start(Tessera * tessere, Row * piano, Tessera *speciali,int * size_tes
 
     // printf("%s",input);
   }
-  printf("La partita e' terminata! Non ci sono piu' tessere giocabili");
+  printf("La partita e' terminata! Non ci sono piu' tessere giocabili\n");
 
   free(tessere);
   free(speciali);

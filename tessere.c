@@ -41,14 +41,8 @@ Tessera *create_arr_tessere(int size){
   return new;
 }
 
-char * string_tessera(Tessera tessera) {
-  char * str = (char * ) malloc(sizeof(char) * 4);
-  sprintf(str, "[%d|%d]", tessera.n1, tessera.n2); // concateno la stringo con gli elementi
-  return str;
-}
-
 bool is_special(Tessera a){
-  if(a.n1==0 || a.n1==-1 || a.n1==11)
+  if(a.n1==0 || a.n1==12 || a.n1==11) //indicano se è speciale la tessera
     return true;
   return false;
 }
@@ -280,7 +274,7 @@ void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tes
 
   }
 
-  if(tessera.n1==-1){
+  if(tessera.n1==12){
     if(pos>0 && row->tessere[pos-1].selected){
       tessera.n1=row->tessere[pos-1].n2;
       tessera.n2=row->tessere[pos-1].n1;
@@ -330,14 +324,14 @@ bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera){
   if(num_scelte<=0){
     return false;
   }
-  printf("Tessera scelta: %s\n",string_tessera(tessera));
+  printf("Tessera scelta: [%d|%d]\n",tessera.n1,tessera.n2);
 
   if(num_scelte>1){
     char keys[10];
     do{
         printf("Scelte possibili:\n");
         print_scelte(scelte,num_scelte);
-        scanf("%s",&keys);
+        scanf("%s",keys);
         s=char_to_int(keys);
    }while(s<=0 || s>num_scelte);
    s=s-1; //per sistemare l'index, si accettano in input valori da 1 a x, per sistemare l'index devo fare -1

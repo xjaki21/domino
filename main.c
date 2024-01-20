@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string.h>
 
-#include "lib/logic.h"
+#include "logic.h"
 
 
 
@@ -20,7 +20,7 @@ int main() {
   int size_tessere = 0;
   
   system(CLEAR_SCREEN);
-  printf("N=");
+  printf("Con quante tessere vuoi giocare?\n");
   scanf("%d", &size_tessere);
   
   if(size_tessere>0){

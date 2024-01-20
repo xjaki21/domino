@@ -1,0 +1,664 @@
+\hypertarget{logic_8h}{}\doxysection{logic.\+h File Reference}
+\label{logic_8h}\index{logic.h@{logic.h}}
+
+
+Dichiarazioni delle funzioni per la logica del gioco.  
+
+
+{\ttfamily \#include \char`\"{}tessere.\+h\char`\"{}}\newline
+Include dependency graph for logic.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{logic_8h_a788be1e5263200d55dddebd3606ccad4}\label{logic_8h_a788be1e5263200d55dddebd3606ccad4}} 
+\#define {\bfseries CLEAR\+\_\+\+SCREEN}~\char`\"{}clear\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}{init\+\_\+speciali}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size)
+\begin{DoxyCompactList}\small\item\em Inizializza le tessere speciali. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}{init}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessera, int size\+\_\+tessere)
+\begin{DoxyCompactList}\small\item\em Inizializza un array di tessere con valori casuali. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{logic_8h_af621f668c15e05a948815c82c2db4295}{game\+\_\+finished}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size\+\_\+tessere, int size\+\_\+piano)
+\begin{DoxyCompactList}\small\item\em Verifica se il gioco è terminato. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a8e809eeef914d8a2756c3add21468f64}{update\+\_\+screen}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structRow}{Row}} $\ast$piano, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+piano, int size\+\_\+speciali, int score)
+\begin{DoxyCompactList}\small\item\em Aggiorna lo schermo di gioco. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\+\_\+update}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size)
+\begin{DoxyCompactList}\small\item\em Calcola e restituisce il punteggio corrente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a8b41592eb87b085423876dd6b751b70d}{game\+\_\+start}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structRow}{Row}} $\ast$piano, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int $\ast$size\+\_\+tessere, int $\ast$size\+\_\+piano, int $\ast$size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Avvia il gioco umano. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTessera}{Tessera}} $\ast$ \mbox{\hyperlink{logic_8h_abe1a1b4421f405b997baf580b24542e9}{copy\+\_\+tessere}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, int size\+\_\+tessere)
+\begin{DoxyCompactList}\small\item\em Crea una copia dell\textquotesingle{}array di tessere. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRow}{Row}} $\ast$ \mbox{\hyperlink{logic_8h_a33d75429b1065ef63aabcdc1de02e279}{copy\+\_\+piano}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size)
+\begin{DoxyCompactList}\small\item\em Crea una copia dell\textquotesingle{}array di righe della scacchiera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRow}{Row}} $\ast$ \mbox{\hyperlink{logic_8h_a5668054cf3ecffa4b14b52d408954762}{first\+\_\+match}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structRow}{Row}} $\ast$piano, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+piano, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Trova la prima combinazione valida di tessere e aggiorna la scacchiera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a695b067cb9b6a64b754902d9853d2408}{game\+\_\+start\+\_\+ai}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Avvia il gioco automatico (AI). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dichiarazioni delle funzioni per la logica del gioco. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{logic_8h_a33d75429b1065ef63aabcdc1de02e279}\label{logic_8h_a33d75429b1065ef63aabcdc1de02e279}} 
+\index{logic.h@{logic.h}!copy\_piano@{copy\_piano}}
+\index{copy\_piano@{copy\_piano}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{copy\_piano()}{copy\_piano()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRow}{Row}}$\ast$ copy\+\_\+piano (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Crea una copia dell\textquotesingle{}array di righe della scacchiera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe della scacchiera da copiare. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di righe della scacchiera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Puntatore alla copia dell\textquotesingle{}array di righe della scacchiera. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{177                                     \{}
+\DoxyCodeLine{178   \mbox{\hyperlink{structRow}{Row}} *\textcolor{keyword}{new}=(\mbox{\hyperlink{structRow}{Row}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structRow}{Row}})*size);}
+\DoxyCodeLine{179   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{180     \mbox{\hyperlink{structRow}{Row}} *r=\&piano[i];}
+\DoxyCodeLine{181     \mbox{\hyperlink{structTessera}{Tessera}} *tessere=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{182     \textcolor{keyword}{new}[i].size=r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{183     \textcolor{keyword}{new}[i].capacity=r-\/>\mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}};}
+\DoxyCodeLine{184     \textcolor{keyword}{new}[i].tessere=\mbox{\hyperlink{logic_8h_abe1a1b4421f405b997baf580b24542e9}{copy\_tessere}}(tessere,r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}});}
+\DoxyCodeLine{185   \}}
+\DoxyCodeLine{186   \textcolor{keywordflow}{return} \textcolor{keyword}{new};}
+\DoxyCodeLine{187 \}}
+
+\end{DoxyCode}
+
+
+References Row\+::capacity, copy\+\_\+tessere(), Row\+::size, and Row\+::tessere.
+
+\mbox{\Hypertarget{logic_8h_abe1a1b4421f405b997baf580b24542e9}\label{logic_8h_abe1a1b4421f405b997baf580b24542e9}} 
+\index{logic.h@{logic.h}!copy\_tessere@{copy\_tessere}}
+\index{copy\_tessere@{copy\_tessere}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{copy\_tessere()}{copy\_tessere()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTessera}{Tessera}}$\ast$ copy\+\_\+tessere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{int}]{size\+\_\+tessere }\end{DoxyParamCaption})}
+
+
+
+Crea una copia dell\textquotesingle{}array di tessere. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere da copiare. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Puntatore alla copia dell\textquotesingle{}array di tessere. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{165                                                         \{}
+\DoxyCodeLine{166   \mbox{\hyperlink{structTessera}{Tessera}} *\textcolor{keyword}{new}=(\mbox{\hyperlink{structTessera}{Tessera}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTessera}{Tessera}})*size\_tessere);}
+\DoxyCodeLine{167   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size\_tessere;i++)\{}
+\DoxyCodeLine{168     \textcolor{keyword}{new}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=tessere[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{169     \textcolor{keyword}{new}[i].n2=tessere[i].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{170     \textcolor{keyword}{new}[i].num=tessere[i].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}};}
+\DoxyCodeLine{171     \textcolor{keyword}{new}[i].selected=tessere[i].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}};}
+\DoxyCodeLine{172     \textcolor{keyword}{new}[i].vertical=tessere[i].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}};}
+\DoxyCodeLine{173   \}}
+\DoxyCodeLine{174   \textcolor{keywordflow}{return} \textcolor{keyword}{new};}
+\DoxyCodeLine{175 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1, Tessera\+::n2, Tessera\+::num, Tessera\+::selected, and Tessera\+::vertical.
+
+
+
+Referenced by copy\+\_\+piano(), and game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{logic_8h_a5668054cf3ecffa4b14b52d408954762}\label{logic_8h_a5668054cf3ecffa4b14b52d408954762}} 
+\index{logic.h@{logic.h}!first\_match@{first\_match}}
+\index{first\_match@{first\_match}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{first\_match()}{first\_match()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRow}{Row}}$\ast$ first\+\_\+match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+piano,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Trova la prima combinazione valida di tessere e aggiorna la scacchiera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere disponibili. \\
+\hline
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em speciali} & Array di tessere speciali disponibili. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere disponibili. \\
+\hline
+{\em size\+\_\+piano} & Dimensione dell\textquotesingle{}array di righe della scacchiera di gioco. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali disponibili. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Puntatore alla scacchiera aggiornata. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{190                                                                                                                      \{}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193   \textcolor{keywordtype}{int} i=0;}
+\DoxyCodeLine{194   }
+\DoxyCodeLine{195   \textcolor{keywordflow}{while}(!\mbox{\hyperlink{logic_8h_af621f668c15e05a948815c82c2db4295}{game\_finished}}(tessere,piano,size\_tessere,size\_piano))\{}
+\DoxyCodeLine{196    \textcolor{comment}{// printf("{}start\(\backslash\)n"{});}}
+\DoxyCodeLine{197     \textcolor{keywordtype}{bool} put=\textcolor{keyword}{false};}
+\DoxyCodeLine{198     \mbox{\hyperlink{structRow}{Row}} *r\_0=\&piano[0];}
+\DoxyCodeLine{199     \textcolor{comment}{//Row *game=copy\_piano(piano,size\_piano);}}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if}(r\_0-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}==0)\{}
+\DoxyCodeLine{201       \textcolor{comment}{// print\_disponibili(new\_tessere,speciali,size\_game\_tessere,size\_speciali);}}
+\DoxyCodeLine{202       tessere[0].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{203       printf(\textcolor{stringliteral}{"{}primo inserimento\(\backslash\)n"{}});}
+\DoxyCodeLine{204       r\_0-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0]=tessere[0];}
+\DoxyCodeLine{205       r\_0-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=1;}
+\DoxyCodeLine{206       tessere=\mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\_tessera}}(tessere,\&size\_tessere,0);}
+\DoxyCodeLine{207       put=\textcolor{keyword}{true};}
+\DoxyCodeLine{208       \textcolor{comment}{//i++;}}
+\DoxyCodeLine{209     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{210       \textcolor{keywordtype}{int} num\_scelte=0;}
+\DoxyCodeLine{211       \textcolor{keywordtype}{int} *scelte=\mbox{\hyperlink{tessere_8h_a984614f2789e46cf63228dd30f5d00c5}{scelte\_possibili}}(piano,1,tessere[i],\&num\_scelte);}
+\DoxyCodeLine{212       \textcolor{comment}{//print\_scelte(scelte,num\_scelte);}}
+\DoxyCodeLine{213       \textcolor{keywordflow}{if}(num\_scelte>0)\{}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215         \mbox{\hyperlink{structTessera}{Tessera}} t=tessere[i];}
+\DoxyCodeLine{216         t.\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{217         tessere=\mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\_tessera}}(tessere,\&size\_tessere,i);}
+\DoxyCodeLine{218         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<1;j++)\{}
+\DoxyCodeLine{219           \textcolor{comment}{//piano=copy\_piano(temp\_piano,size\_piano);}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221           \textcolor{keywordtype}{int} pos=scelte[j*2+1];}
+\DoxyCodeLine{222           \textcolor{comment}{//printf("{}POS:\%d\(\backslash\)n"{},pos);}}
+\DoxyCodeLine{223           \textcolor{keywordtype}{int} num\_row=0;}
+\DoxyCodeLine{224           \mbox{\hyperlink{structRow}{Row}} *r=\&piano[num\_row];}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226           \textcolor{keywordflow}{if}(pos>=0)\{}
+\DoxyCodeLine{227             \mbox{\hyperlink{tessere_8h_a734f142bede49200ac43c9fddb8b3060}{put\_tessera}}(r,t,pos);}
+\DoxyCodeLine{228           \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{229             \mbox{\hyperlink{tessere_8h_a94e23d66917b020362886fd4f10e7101}{put\_front\_tessera}}(piano,size\_piano,r,t);}
+\DoxyCodeLine{230           \}}
+\DoxyCodeLine{231         \}}
+\DoxyCodeLine{232         put=\textcolor{keyword}{true};}
+\DoxyCodeLine{233       \}}
+\DoxyCodeLine{234     \}}
+\DoxyCodeLine{235     \textcolor{keywordflow}{if}(!put)\{}
+\DoxyCodeLine{236       i++;}
+\DoxyCodeLine{237     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{238       i=0;}
+\DoxyCodeLine{239     \}}
+\DoxyCodeLine{240   \}}
+\DoxyCodeLine{241   \textcolor{keywordflow}{return}  piano;}
+\DoxyCodeLine{242 \}}
+
+\end{DoxyCode}
+
+
+References game\+\_\+finished(), put\+\_\+front\+\_\+tessera(), put\+\_\+tessera(), remove\+\_\+tessera(), scelte\+\_\+possibili(), Tessera\+::selected, Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{logic_8h_af621f668c15e05a948815c82c2db4295}\label{logic_8h_af621f668c15e05a948815c82c2db4295}} 
+\index{logic.h@{logic.h}!game\_finished@{game\_finished}}
+\index{game\_finished@{game\_finished}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_finished()}{game\_finished()}}
+{\footnotesize\ttfamily bool game\+\_\+finished (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+piano }\end{DoxyParamCaption})}
+
+
+
+Verifica se il gioco è terminato. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere disponibili. \\
+\hline
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere disponibili. \\
+\hline
+{\em size\+\_\+piano} & Dimensione dell\textquotesingle{}array di righe della scacchiera di gioco. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se il gioco è terminato, false altrimenti. 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                                                      \{}
+\DoxyCodeLine{50   \textcolor{keywordtype}{bool} one\_piece=\textcolor{keyword}{false};}
+\DoxyCodeLine{51   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size\_piano;i++)\{}
+\DoxyCodeLine{52     \mbox{\hyperlink{structTessera}{Tessera}} *a=piano[i].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{53     \textcolor{keywordtype}{int} a\_size=piano[i].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{54     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<a\_size;j++)\{}
+\DoxyCodeLine{55       one\_piece=\textcolor{keyword}{true};}
+\DoxyCodeLine{56       \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k=0;k<size\_tessere;k++)\{}
+\DoxyCodeLine{57         \textcolor{keywordflow}{if}(a[j].selected)\{}
+\DoxyCodeLine{58           \textcolor{keywordflow}{if}((j==0 || !a[j-\/1].selected) \&\& \mbox{\hyperlink{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}{match\_left}}(tessere[k],a[j]))\{}
+\DoxyCodeLine{59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{60           \}}
+\DoxyCodeLine{61           \textcolor{keywordflow}{if}((j==a\_size-\/1 || !a[j+1].selected) \&\& \mbox{\hyperlink{tessere_8h_aee53fac254138f383ffee228cf364437}{match\_right}}(tessere[k],a[j]))\{}
+\DoxyCodeLine{62             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{63           \}}
+\DoxyCodeLine{64         \}}
+\DoxyCodeLine{65       \}}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67   \}}
+\DoxyCodeLine{68   \textcolor{keywordflow}{if}(!one\_piece)}
+\DoxyCodeLine{69     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{70   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}
+
+
+References match\+\_\+left(), match\+\_\+right(), Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by first\+\_\+match(), and game\+\_\+start().
+
+\mbox{\Hypertarget{logic_8h_a8b41592eb87b085423876dd6b751b70d}\label{logic_8h_a8b41592eb87b085423876dd6b751b70d}} 
+\index{logic.h@{logic.h}!game\_start@{game\_start}}
+\index{game\_start@{game\_start}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_start()}{game\_start()}}
+{\footnotesize\ttfamily void game\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int $\ast$}]{size\+\_\+tessere,  }\item[{int $\ast$}]{size\+\_\+piano,  }\item[{int $\ast$}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Avvia il gioco umano. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere disponibili. \\
+\hline
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em speciali} & Array di tessere speciali disponibili. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere disponibili. \\
+\hline
+{\em size\+\_\+piano} & Dimensione dell\textquotesingle{}array di righe della scacchiera di gioco. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali disponibili. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 105 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105                                                                                                                            \{}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107   \mbox{\hyperlink{structTessera}{Tessera}} *giocate=piano[0].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{108   \textcolor{keywordtype}{int} *size\_giocate=\&(piano[0].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}});}
+\DoxyCodeLine{109   \textcolor{keywordtype}{int} score = 0;}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \mbox{\hyperlink{logic_8h_a8e809eeef914d8a2756c3add21468f64}{update\_screen}}(tessere,piano,speciali,*size\_tessere,*size\_piano,*size\_speciali,score);}
+\DoxyCodeLine{112   \textcolor{keywordflow}{while} (!\mbox{\hyperlink{logic_8h_af621f668c15e05a948815c82c2db4295}{game\_finished}}(tessere, piano, *size\_tessere, *size\_piano) || *size\_speciali>0) \{}
+\DoxyCodeLine{113     \textcolor{keywordtype}{bool} selected = \textcolor{keyword}{false}; \textcolor{comment}{//mi serve per dire se ho scelto una tessere valida!}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{while} (!selected) \{}
+\DoxyCodeLine{116       \textcolor{keywordtype}{char} keys[10];}
+\DoxyCodeLine{117       scanf(\textcolor{stringliteral}{"{} \%s"{}},keys);}
+\DoxyCodeLine{118       \textcolor{keywordtype}{int} input=\mbox{\hyperlink{tessere_8h_ad941bb431e900f49f1af85d316566c44}{char\_to\_int}}(keys);}
+\DoxyCodeLine{119      \textcolor{comment}{// int input=0;}}
+\DoxyCodeLine{120       \textcolor{comment}{//scanf("{} \%d"{},\&input);}}
+\DoxyCodeLine{121       \textcolor{keywordflow}{if} (input > 0 \&\& input <= *size\_tessere) \{}
+\DoxyCodeLine{122         \textcolor{keywordtype}{int} index = input -\/ 1;}
+\DoxyCodeLine{123         tessere[index].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125         \textcolor{comment}{//bool match=add\_tessera(\&piano[0],tessere[index]); //la funzione controlla se c'è un match e aggiunge la tessere se c'è, restituisce true o false se è stata aggiunta la tessera}}
+\DoxyCodeLine{126         \textcolor{keywordtype}{bool} match= \mbox{\hyperlink{tessere_8h_aa0a007a9d91d0bd6cad6af7b86212805}{posiziona\_tessera}}(piano,size\_piano,tessere[index]);}
+\DoxyCodeLine{127         \textcolor{keywordflow}{if} (match) \{}
+\DoxyCodeLine{128           tessere = \mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\_tessera}}(tessere, size\_tessere, index);\textcolor{comment}{//-\/-\/*size\_tessere; faccio già nella funzione}}
+\DoxyCodeLine{129           selected = \textcolor{keyword}{true};}
+\DoxyCodeLine{130         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{131           printf(\textcolor{stringliteral}{"{}Scegli una tessera valida!\(\backslash\)n"{}});}
+\DoxyCodeLine{132         \}}
+\DoxyCodeLine{133       \}}
+\DoxyCodeLine{134       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( input < 0 \&\& abs(input) <= *size\_speciali \&\& *size\_speciali>0 \&\& *size\_giocate>0) \{ \textcolor{comment}{//se tessera è speciale}}
+\DoxyCodeLine{135         \textcolor{keywordtype}{int} index = abs(input) -\/ 1;}
+\DoxyCodeLine{136         selected = \textcolor{keyword}{true};}
+\DoxyCodeLine{137         speciali[index].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{138         \textcolor{keywordtype}{bool} match=\mbox{\hyperlink{tessere_8h_aa0a007a9d91d0bd6cad6af7b86212805}{posiziona\_tessera}}(piano,size\_piano,speciali[index]);}
+\DoxyCodeLine{139         \textcolor{comment}{//add\_special(\&piano[0],speciali[index]);}}
+\DoxyCodeLine{140         speciali=\mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\_tessera}}(speciali,size\_speciali,index);}
+\DoxyCodeLine{141       \}\textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{142         \textcolor{keywordflow}{if}(*size\_giocate==0)\{}
+\DoxyCodeLine{143           printf(\textcolor{stringliteral}{"{}La prima tessera non puo' essere speciale!\(\backslash\)n"{}});}
+\DoxyCodeLine{144         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{145           printf(\textcolor{stringliteral}{"{}Scegli una tessera tra quelle disponibili\(\backslash\)n"{}});}
+\DoxyCodeLine{146         \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148       \}}
+\DoxyCodeLine{149     \}}
+\DoxyCodeLine{150     score = \mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\_update}}(piano, *size\_piano);}
+\DoxyCodeLine{151     \textcolor{comment}{//piano[0].tessere[0].n1=2;}}
+\DoxyCodeLine{152     \textcolor{comment}{//piano[0].tessere[0].n2=2;}}
+\DoxyCodeLine{153     \mbox{\hyperlink{logic_8h_a8e809eeef914d8a2756c3add21468f64}{update\_screen}}(tessere,piano,speciali,*size\_tessere,*size\_piano,*size\_speciali,score);}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     \textcolor{comment}{// printf("{}\%s"{},input);}}
+\DoxyCodeLine{156   \}}
+\DoxyCodeLine{157   printf(\textcolor{stringliteral}{"{}La partita e' terminata! Non ci sono piu' tessere giocabili\(\backslash\)n"{}});}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   free(tessere);}
+\DoxyCodeLine{160   free(speciali);}
+\DoxyCodeLine{161   free(piano);}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \}}
+
+\end{DoxyCode}
+
+
+References char\+\_\+to\+\_\+int(), game\+\_\+finished(), posiziona\+\_\+tessera(), remove\+\_\+tessera(), score\+\_\+update(), Tessera\+::selected, Row\+::size, Row\+::tessere, and update\+\_\+screen().
+
+\mbox{\Hypertarget{logic_8h_a695b067cb9b6a64b754902d9853d2408}\label{logic_8h_a695b067cb9b6a64b754902d9853d2408}} 
+\index{logic.h@{logic.h}!game\_start\_ai@{game\_start\_ai}}
+\index{game\_start\_ai@{game\_start\_ai}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_start\_ai()}{game\_start\_ai()}}
+{\footnotesize\ttfamily void game\+\_\+start\+\_\+ai (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Avvia il gioco automatico (AI). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere disponibili. \\
+\hline
+{\em speciali} & Array di tessere speciali disponibili. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere disponibili. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali disponibili. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{244                                                                                            \{}
+\DoxyCodeLine{245   \mbox{\hyperlink{tessere_8h_a5555b1b36e0498b9e0a68b55d858692a}{print\_disponibili}}(tessere,speciali,size\_tessere,size\_speciali);}
+\DoxyCodeLine{246   }
+\DoxyCodeLine{247   \mbox{\hyperlink{structRow}{Row}} *piano;}
+\DoxyCodeLine{248   \textcolor{keywordtype}{int} size\_piano=1;}
+\DoxyCodeLine{249   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size\_tessere;i++)\{}
+\DoxyCodeLine{250     \mbox{\hyperlink{structTessera}{Tessera}} *copia\_tessere=\mbox{\hyperlink{logic_8h_abe1a1b4421f405b997baf580b24542e9}{copy\_tessere}}(tessere,size\_tessere);}
+\DoxyCodeLine{251     \textcolor{keywordtype}{int} copia\_size\_tessere=size\_tessere;}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253     \mbox{\hyperlink{structRow}{Row}} *new\_piano=(\mbox{\hyperlink{structRow}{Row}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structRow}{Row}})*size\_tessere);}
+\DoxyCodeLine{254     new\_piano[0]=*\mbox{\hyperlink{tessere_8h_a03a6abda1fbee68e7663115270f94d24}{create\_row}}();}
+\DoxyCodeLine{255     new\_piano[0].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=0;}
+\DoxyCodeLine{256     }
+\DoxyCodeLine{257     \mbox{\hyperlink{structRow}{Row}} *r\_0=\&new\_piano[0];}
+\DoxyCodeLine{258     copia\_tessere[i].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{259     r\_0-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0]=copia\_tessere[i];}
+\DoxyCodeLine{260     r\_0-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=1;}
+\DoxyCodeLine{261     copia\_tessere=\mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\_tessera}}(copia\_tessere,\&copia\_size\_tessere,i);}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263     new\_piano=\mbox{\hyperlink{logic_8h_a5668054cf3ecffa4b14b52d408954762}{first\_match}}(copia\_tessere,new\_piano,speciali,copia\_size\_tessere,size\_piano,size\_speciali);}
+\DoxyCodeLine{264     \textcolor{comment}{//print\_giocate(new\_piano,size\_piano)}}
+\DoxyCodeLine{265     printf(\textcolor{stringliteral}{"{}Score=\%d\(\backslash\)n"{}}, \mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\_update}}(new\_piano, size\_piano));}
+\DoxyCodeLine{266     \mbox{\hyperlink{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}{print\_giocate}}(new\_piano, size\_piano);}
+\DoxyCodeLine{267     \textcolor{keywordflow}{if}(i==0)\{}
+\DoxyCodeLine{268       piano=new\_piano;}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{271       \textcolor{comment}{//printf("{}NEW\_PIANO SCORE:\%d\(\backslash\)nPIANO\_SCORE:\%d\(\backslash\)n"{},score\_update(new\_piano,size\_piano),score\_update(piano,size\_piano));}}
+\DoxyCodeLine{272       \textcolor{keywordflow}{if}(\mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\_update}}(new\_piano,size\_piano)>\mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\_update}}(piano,size\_piano))\{}
+\DoxyCodeLine{273         \textcolor{comment}{//printf("{}CAMBIO\(\backslash\)n"{});}}
+\DoxyCodeLine{274         free(piano);}
+\DoxyCodeLine{275         piano=new\_piano;}
+\DoxyCodeLine{276       \}}
+\DoxyCodeLine{277     \}}
+\DoxyCodeLine{278   \}}
+\DoxyCodeLine{279   printf(\textcolor{stringliteral}{"{}Best game:\(\backslash\)n"{}});}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281   printf(\textcolor{stringliteral}{"{}Score=\%d\(\backslash\)n"{}}, \mbox{\hyperlink{logic_8h_a660d32041cdff36facde72d997a49acd}{score\_update}}(piano, size\_piano));}
+\DoxyCodeLine{282   \mbox{\hyperlink{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}{print\_giocate}}(piano, size\_piano);}
+\DoxyCodeLine{283 \}}
+
+\end{DoxyCode}
+
+
+References copy\+\_\+tessere(), create\+\_\+row(), first\+\_\+match(), print\+\_\+disponibili(), print\+\_\+giocate(), remove\+\_\+tessera(), score\+\_\+update(), Tessera\+::selected, Row\+::size, and Row\+::tessere.
+
+\mbox{\Hypertarget{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}\label{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}} 
+\index{logic.h@{logic.h}!init@{init}}
+\index{init@{init}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessera,  }\item[{int}]{size\+\_\+tessere }\end{DoxyParamCaption})}
+
+
+
+Inizializza un array di tessere con valori casuali. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessera} & Array di tessere da inizializzare. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36                                                \{}
+\DoxyCodeLine{37   \textcolor{keywordtype}{int} n1, n2;}
+\DoxyCodeLine{38   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size\_tessere; i++) \{}
+\DoxyCodeLine{39     n1 = rand() \% 6 + 1;}
+\DoxyCodeLine{40     n2 = rand() \% 6 + 1;}
+\DoxyCodeLine{41     tessera[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} = n1;}
+\DoxyCodeLine{42     tessera[i].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} = n2;}
+\DoxyCodeLine{43     tessera[i].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}} = i + 1;}
+\DoxyCodeLine{44     tessera[i].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{45     tessera[i].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1, Tessera\+::n2, Tessera\+::num, Tessera\+::selected, and Tessera\+::vertical.
+
+\mbox{\Hypertarget{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}\label{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}} 
+\index{logic.h@{logic.h}!init\_speciali@{init\_speciali}}
+\index{init\_speciali@{init\_speciali}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{init\_speciali()}{init\_speciali()}}
+{\footnotesize\ttfamily void init\+\_\+speciali (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Inizializza le tessere speciali. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speciali} & Array di tessere speciali da inizializzare. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{9                                                  \{}
+\DoxyCodeLine{10   \textcolor{comment}{/*}}
+\DoxyCodeLine{11 \textcolor{comment}{  [0|0]: può essere accostata a qualunque altra tessera. Esempio: [1|2][0|0][5|6] }}
+\DoxyCodeLine{12 \textcolor{comment}{  */}}
+\DoxyCodeLine{13   speciali[0].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} = 0;}
+\DoxyCodeLine{14   speciali[0].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} = 0;}
+\DoxyCodeLine{15   speciali[0].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}} = -\/1;}
+\DoxyCodeLine{16   speciali[0].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{17   \textcolor{comment}{/*}}
+\DoxyCodeLine{18 \textcolor{comment}{  [11|11]: somma 1 a tutte le cifre di tutte le tessere sul piano di gioco tranne il 6 che diventa 1. }}
+\DoxyCodeLine{19 \textcolor{comment}{  La tessera può essere posizionata in qualunque posizione e le sue cifre vegono sostituite con la cifra }}
+\DoxyCodeLine{20 \textcolor{comment}{  adiacente dopo averla incrementata di 1. Esempio: [1|6][6|3][11|11] diventa [2|1][1|4][4|4] }}
+\DoxyCodeLine{21 \textcolor{comment}{  */}}
+\DoxyCodeLine{22   speciali[1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} = 11;}
+\DoxyCodeLine{23   speciali[1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} = 11;}
+\DoxyCodeLine{24   speciali[1].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}} = -\/1;}
+\DoxyCodeLine{25   speciali[1].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{26   \textcolor{comment}{/*}}
+\DoxyCodeLine{27 \textcolor{comment}{  [12|21]: copia “a specchio” la tessera adiacente. La tessera può essere posizionata in qualunque }}
+\DoxyCodeLine{28 \textcolor{comment}{  posizione e le sue cifre vegono sostituite con le cifre della tessera adiacente in ordine inverso. Esempio: }}
+\DoxyCodeLine{29 \textcolor{comment}{  [1|2][2|3][12|21] diventa [1|2][2|3][3|2] }}
+\DoxyCodeLine{30 \textcolor{comment}{  */}}
+\DoxyCodeLine{31   speciali[2].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} = 12;}
+\DoxyCodeLine{32   speciali[2].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} = 21;}
+\DoxyCodeLine{33   speciali[2].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}} = -\/1;}
+\DoxyCodeLine{34   speciali[2].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1, Tessera\+::n2, Tessera\+::num, and Tessera\+::vertical.
+
+\mbox{\Hypertarget{logic_8h_a660d32041cdff36facde72d997a49acd}\label{logic_8h_a660d32041cdff36facde72d997a49acd}} 
+\index{logic.h@{logic.h}!score\_update@{score\_update}}
+\index{score\_update@{score\_update}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{score\_update()}{score\_update()}}
+{\footnotesize\ttfamily int score\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Calcola e restituisce il punteggio corrente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di righe della scacchiera di gioco. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Il punteggio corrente. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{87                                        \{}
+\DoxyCodeLine{88   \textcolor{keywordtype}{int} score = 0;}
+\DoxyCodeLine{89   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{90     \mbox{\hyperlink{structTessera}{Tessera}} *a=piano[i].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{91     \textcolor{keywordtype}{int} size\_a=piano[i].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{92     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<size\_a;j++)\{}
+\DoxyCodeLine{93       \textcolor{keywordflow}{if}(a[j].selected \&\& !a[j].vertical)\{}
+\DoxyCodeLine{94         score+=a[j].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}+a[j].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{95       \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(a[j].selected \&\& a[j].vertical)\{}
+\DoxyCodeLine{96         score+=a[j].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{97       \}}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99   \}}
+\DoxyCodeLine{100   \textcolor{keywordflow}{return} score;}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1, Tessera\+::n2, Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by game\+\_\+start(), and game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{logic_8h_a8e809eeef914d8a2756c3add21468f64}\label{logic_8h_a8e809eeef914d8a2756c3add21468f64}} 
+\index{logic.h@{logic.h}!update\_screen@{update\_screen}}
+\index{update\_screen@{update\_screen}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{update\_screen()}{update\_screen()}}
+{\footnotesize\ttfamily void update\+\_\+screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+piano,  }\item[{int}]{size\+\_\+speciali,  }\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+Aggiorna lo schermo di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere disponibili. \\
+\hline
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em speciali} & Array di tessere speciali disponibili. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere disponibili. \\
+\hline
+{\em size\+\_\+piano} & Dimensione dell\textquotesingle{}array di righe della scacchiera di gioco. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali disponibili. \\
+\hline
+{\em score} & Punteggio corrente. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file logic.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                                                                                                        \{}
+\DoxyCodeLine{77   \textcolor{comment}{//printf("{}\(\backslash\)e[1;1H\(\backslash\)e[2J"{}); // regex che pulisce schermo}}
+\DoxyCodeLine{78   system(CLEAR\_SCREEN);\textcolor{comment}{//syscall al sistema operativo per "{}pulire"{} lo schermo}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   printf(\textcolor{stringliteral}{"{}Score=\%d\(\backslash\)n"{}}, score);}
+\DoxyCodeLine{81   \mbox{\hyperlink{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}{print\_giocate}}(piano, size\_piano);}
+\DoxyCodeLine{82   \mbox{\hyperlink{tessere_8h_a5555b1b36e0498b9e0a68b55d858692a}{print\_disponibili}}(tessere, speciali, size\_tessere, size\_speciali);}
+\DoxyCodeLine{83   printf(\textcolor{stringliteral}{"{}Scegli una tessera:\(\backslash\)n"{}});}
+\DoxyCodeLine{84 \}}
+
+\end{DoxyCode}
+
+
+Referenced by game\+\_\+start().
+

@@ -1,14 +1,10 @@
 CC=gcc
 CFLAGS=-O2 -std=c99 --pedantic -lm
 
-# Usa le variabili per i percorsi dei file sorgente
-SOURCE_DIR := .
-LIB_DIR := lib
-
 # Cerca i file sorgente nelle cartelle specificate
-SOURCES := $(wildcard $(SOURCE_DIR)/*.c) $(wildcard $(LIB_DIR)/*.c)
+SOURCES := $(wildcard *.c)
 
-EXECUTABLE=domino
+EXECUTABLE=iap
 
 all: $(EXECUTABLE)
 

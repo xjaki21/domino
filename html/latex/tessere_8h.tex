@@ -1,0 +1,1048 @@
+\hypertarget{tessere_8h}{}\doxysection{tessere.\+h File Reference}
+\label{tessere_8h}\index{tessere.h@{tessere.h}}
+
+
+File header contenente le funzioni e le strutture per la gestione di una scacchiera di tessere.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTessera}{Tessera}}
+\begin{DoxyCompactList}\small\item\em Struttura che rappresenta una tessera con due numeri (n1 e n2). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structRow}{Row}}
+\begin{DoxyCompactList}\small\item\em Struttura che rappresenta una riga sulla scacchiera di gioco. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tessere_8h_a83de270f6637f4237f2d6f392725a8bd}\label{tessere_8h_a83de270f6637f4237f2d6f392725a8bd}} 
+typedef struct \mbox{\hyperlink{structTessera}{Tessera}} {\bfseries Tessera}
+\item 
+\mbox{\Hypertarget{tessere_8h_a7bc1f54d1bc7d1c5c3faa1190f194b07}\label{tessere_8h_a7bc1f54d1bc7d1c5c3faa1190f194b07}} 
+typedef struct \mbox{\hyperlink{structRow}{Row}} {\bfseries Row}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structRow}{Row}} $\ast$ \mbox{\hyperlink{tessere_8h_a03a6abda1fbee68e7663115270f94d24}{create\+\_\+row}} ()
+\begin{DoxyCompactList}\small\item\em Crea una nuova riga. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}{extend\+\_\+arr\+\_\+tessere}} (\mbox{\hyperlink{structRow}{Row}} $\ast$r)
+\begin{DoxyCompactList}\small\item\em Estende l\textquotesingle{}array di tessere in una riga. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTessera}{Tessera}} $\ast$ \mbox{\hyperlink{tessere_8h_a77273a0ac680e1a2b2ea6f8e92f8dc58}{create\+\_\+arr\+\_\+tessere}} (int size)
+\begin{DoxyCompactList}\small\item\em Crea un array di tessere. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{tessere_8h_a458ee6f5c2684719c2d4f05bcb284c93}{string\+\_\+tessera}} (\mbox{\hyperlink{structTessera}{Tessera}} tessera)
+\begin{DoxyCompactList}\small\item\em Converte una tessera in una rappresentazione stringa. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\+\_\+special}} (\mbox{\hyperlink{structTessera}{Tessera}} a)
+\begin{DoxyCompactList}\small\item\em Verifica se una tessera è una tessera speciale. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}{match\+\_\+left}} (\mbox{\hyperlink{structTessera}{Tessera}} a, \mbox{\hyperlink{structTessera}{Tessera}} b)
+\begin{DoxyCompactList}\small\item\em Verifica se due tessere possono essere abbinate sul lato sinistro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tessere_8h_aee53fac254138f383ffee228cf364437}{match\+\_\+right}} (\mbox{\hyperlink{structTessera}{Tessera}} a, \mbox{\hyperlink{structTessera}{Tessera}} b)
+\begin{DoxyCompactList}\small\item\em Verifica se due tessere possono essere abbinate sul lato destro. \end{DoxyCompactList}\item 
+int $\ast$ \mbox{\hyperlink{tessere_8h_a984614f2789e46cf63228dd30f5d00c5}{scelte\+\_\+possibili}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size, \mbox{\hyperlink{structTessera}{Tessera}} tessera, int $\ast$num\+\_\+scelte)
+\begin{DoxyCompactList}\small\item\em Genera un array di scelte possibili per posizionare una tessera sulla scacchiera di gioco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_aecb16d6b825f375288603d9943854afb}{print\+\_\+scelte}} (int $\ast$m, int size)
+\begin{DoxyCompactList}\small\item\em Stampa l\textquotesingle{}array di scelte per posizionare una tessera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a5555b1b36e0498b9e0a68b55d858692a}{print\+\_\+disponibili}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Stampa le tessere disponibili e le tessere speciali. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tessere_8h_adc3d2c8fa08b72269d285324969e118c}{max\+\_\+row}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size)
+\begin{DoxyCompactList}\small\item\em Trova la dimensione massima tra tutte le righe nella scacchiera di gioco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}{print\+\_\+giocate}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size)
+\begin{DoxyCompactList}\small\item\em Stampa lo stato attuale della scacchiera di gioco. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTessera}{Tessera}} $\ast$ \mbox{\hyperlink{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}{remove\+\_\+tessera}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessera, int $\ast$size, int index)
+\begin{DoxyCompactList}\small\item\em Rimuove una tessera da un array di tessere. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a94e23d66917b020362886fd4f10e7101}{put\+\_\+front\+\_\+tessera}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size\+\_\+piano, \mbox{\hyperlink{structRow}{Row}} $\ast$r, \mbox{\hyperlink{structTessera}{Tessera}} tessera)
+\begin{DoxyCompactList}\small\item\em Posiziona una tessera all\textquotesingle{}inizio di una riga sulla scacchiera di gioco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a734f142bede49200ac43c9fddb8b3060}{put\+\_\+tessera}} (\mbox{\hyperlink{structRow}{Row}} $\ast$r, \mbox{\hyperlink{structTessera}{Tessera}} tessera, int pos)
+\begin{DoxyCompactList}\small\item\em Posiziona una tessera in una posizione specificata all\textquotesingle{}interno di una riga sulla scacchiera di gioco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tessere_8h_a92023f92bbcc6d7867c9942dd89b5af7}{put\+\_\+tessera\+\_\+speciale}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int size\+\_\+piano, \mbox{\hyperlink{structRow}{Row}} $\ast$row, int pos, \mbox{\hyperlink{structTessera}{Tessera}} tessera)
+\begin{DoxyCompactList}\small\item\em Posiziona una tessera speciale in una posizione specificata all\textquotesingle{}interno di una riga sulla scacchiera di gioco. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tessere_8h_ad941bb431e900f49f1af85d316566c44}{char\+\_\+to\+\_\+int}} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Converte una stringa in un intero. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tessere_8h_aa0a007a9d91d0bd6cad6af7b86212805}{posiziona\+\_\+tessera}} (\mbox{\hyperlink{structRow}{Row}} $\ast$piano, int $\ast$size\+\_\+piano, \mbox{\hyperlink{structTessera}{Tessera}} tessera)
+\begin{DoxyCompactList}\small\item\em Verifica se è possibile posizionare una tessera sulla scacchiera di gioco e la posiziona. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File header contenente le funzioni e le strutture per la gestione di una scacchiera di tessere. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tessere_8h_ad941bb431e900f49f1af85d316566c44}\label{tessere_8h_ad941bb431e900f49f1af85d316566c44}} 
+\index{tessere.h@{tessere.h}!char\_to\_int@{char\_to\_int}}
+\index{char\_to\_int@{char\_to\_int}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{char\_to\_int()}{char\_to\_int()}}
+{\footnotesize\ttfamily int char\+\_\+to\+\_\+int (\begin{DoxyParamCaption}\item[{char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Converte una stringa in un intero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & La stringa da convertire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Il valore intero ottenuto dalla conversione. 
+\end{DoxyReturn}
+
+
+Definition at line 296 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{296                        \{}
+\DoxyCodeLine{297   \textcolor{keywordtype}{int} sum=0;}
+\DoxyCodeLine{298   \textcolor{keywordtype}{int} sign=1;}
+\DoxyCodeLine{299   \textcolor{keywordtype}{int} i=0;}
+\DoxyCodeLine{300   \textcolor{keywordflow}{if}(s[0]==\textcolor{charliteral}{'-\/'})\{}
+\DoxyCodeLine{301     sign=-\/1;}
+\DoxyCodeLine{302     i=1;}
+\DoxyCodeLine{303   \}}
+\DoxyCodeLine{304   \textcolor{keywordflow}{while}(i<strlen(s))\{}
+\DoxyCodeLine{305     \textcolor{keywordtype}{int} cifra=s[i]-\/48;}
+\DoxyCodeLine{306     \textcolor{keywordflow}{if}(cifra<0 || cifra>=10) \textcolor{comment}{// se non è una cifra valida restituisco 0;}}
+\DoxyCodeLine{307       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{308     sum=sum+cifra*pow(10,strlen(s)-\/i-\/1);}
+\DoxyCodeLine{309     i++;}
+\DoxyCodeLine{310   \}}
+\DoxyCodeLine{311   \textcolor{keywordflow}{return} sum*sign;}
+\DoxyCodeLine{312 \}}
+
+\end{DoxyCode}
+
+
+Referenced by game\+\_\+start(), and posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a77273a0ac680e1a2b2ea6f8e92f8dc58}\label{tessere_8h_a77273a0ac680e1a2b2ea6f8e92f8dc58}} 
+\index{tessere.h@{tessere.h}!create\_arr\_tessere@{create\_arr\_tessere}}
+\index{create\_arr\_tessere@{create\_arr\_tessere}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{create\_arr\_tessere()}{create\_arr\_tessere()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTessera}{Tessera}}$\ast$ create\+\_\+arr\+\_\+tessere (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Crea un array di tessere. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Numero di tessere da creare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un puntatore all\textquotesingle{}array di tessere. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33                                      \{}
+\DoxyCodeLine{34   \mbox{\hyperlink{structTessera}{Tessera}} *\textcolor{keyword}{new}=(\mbox{\hyperlink{structTessera}{Tessera}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTessera}{Tessera}})*size);}
+\DoxyCodeLine{35   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{36     \textcolor{keyword}{new}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{37     \textcolor{keyword}{new}[i].n2=-\/1;}
+\DoxyCodeLine{38     \textcolor{keyword}{new}[i].selected=\textcolor{keyword}{false};}
+\DoxyCodeLine{39     \textcolor{keyword}{new}[i].vertical=\textcolor{keyword}{false};}
+\DoxyCodeLine{40   \}}
+\DoxyCodeLine{41   \textcolor{keywordflow}{return} \textcolor{keyword}{new};}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1.
+
+
+
+Referenced by posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a03a6abda1fbee68e7663115270f94d24}\label{tessere_8h_a03a6abda1fbee68e7663115270f94d24}} 
+\index{tessere.h@{tessere.h}!create\_row@{create\_row}}
+\index{create\_row@{create\_row}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{create\_row()}{create\_row()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRow}{Row}}$\ast$ create\+\_\+row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Crea una nuova riga. 
+
+\begin{DoxyReturn}{Returns}
+Un puntatore alla nuova riga creata. 
+\end{DoxyReturn}
+
+
+Definition at line 9 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{9                  \{}
+\DoxyCodeLine{10   \mbox{\hyperlink{structRow}{Row}} *\textcolor{keyword}{new}=(\mbox{\hyperlink{structRow}{Row}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structRow}{Row}}));}
+\DoxyCodeLine{11   \textcolor{keyword}{new}-\/>\mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}}=10;}
+\DoxyCodeLine{12   \textcolor{keyword}{new}-\/>tessere=(\mbox{\hyperlink{structTessera}{Tessera}}*)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTessera}{Tessera}})*\textcolor{keyword}{new}-\/>capacity);}
+\DoxyCodeLine{13   \textcolor{keyword}{new}-\/>size=0;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15   \textcolor{keywordflow}{return} \textcolor{keyword}{new};}
+\DoxyCodeLine{16 \}}
+
+\end{DoxyCode}
+
+
+References Row\+::capacity.
+
+
+
+Referenced by game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}\label{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}} 
+\index{tessere.h@{tessere.h}!extend\_arr\_tessere@{extend\_arr\_tessere}}
+\index{extend\_arr\_tessere@{extend\_arr\_tessere}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{extend\_arr\_tessere()}{extend\_arr\_tessere()}}
+{\footnotesize\ttfamily void extend\+\_\+arr\+\_\+tessere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+
+
+Estende l\textquotesingle{}array di tessere in una riga. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Puntatore alla riga. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18                                \{}
+\DoxyCodeLine{19   \textcolor{keywordflow}{if}(r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}>=r-\/>\mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}})\{}
+\DoxyCodeLine{20     r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}=(\mbox{\hyperlink{structTessera}{Tessera}}*)realloc(r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}},\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTessera}{Tessera}})*r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}*2);}
+\DoxyCodeLine{21     \textcolor{keywordflow}{if}(!r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}) exit(EXIT\_FAILURE);}
+\DoxyCodeLine{22     r-\/>\mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}}*=2;}
+\DoxyCodeLine{23     \textcolor{comment}{//inizializzo i nuovi spazi con false e -\/1, perché sono "{}vuoti"{}}}
+\DoxyCodeLine{24     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};i<r-\/>capacity;i++)\{}
+\DoxyCodeLine{25       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{26       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{27       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{28       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{29     \}}
+\DoxyCodeLine{30   \}}
+\DoxyCodeLine{31 \}}
+
+\end{DoxyCode}
+
+
+References Row\+::capacity, Tessera\+::n1, Tessera\+::selected, Row\+::size, Row\+::tessere, and Tessera\+::vertical.
+
+
+
+Referenced by posiziona\+\_\+tessera(), put\+\_\+front\+\_\+tessera(), put\+\_\+tessera(), and put\+\_\+tessera\+\_\+speciale().
+
+\mbox{\Hypertarget{tessere_8h_a67485a7580384cf445ae6b64beecdf37}\label{tessere_8h_a67485a7580384cf445ae6b64beecdf37}} 
+\index{tessere.h@{tessere.h}!is\_special@{is\_special}}
+\index{is\_special@{is\_special}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{is\_special()}{is\_special()}}
+{\footnotesize\ttfamily bool is\+\_\+special (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{a }\end{DoxyParamCaption})}
+
+
+
+Verifica se una tessera è una tessera speciale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & La tessera da verificare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se la tessera è speciale, false altrimenti. 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44                           \{}
+\DoxyCodeLine{45   \textcolor{keywordflow}{if}(a.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}==0 || a.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}==12 || a.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}==11) \textcolor{comment}{//indicano se è speciale la tessera}}
+\DoxyCodeLine{46     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{47   \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::n1.
+
+
+
+Referenced by match\+\_\+left(), match\+\_\+right(), and posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}\label{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}} 
+\index{tessere.h@{tessere.h}!match\_left@{match\_left}}
+\index{match\_left@{match\_left}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{match\_left()}{match\_left()}}
+{\footnotesize\ttfamily bool match\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{a,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Verifica se due tessere possono essere abbinate sul lato sinistro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Prima tessera. \\
+\hline
+{\em b} & Seconda tessera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se le tessere possono essere abbinate a sinistra, false altrimenti. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50                                       \{}
+\DoxyCodeLine{51   \textcolor{keywordflow}{if}(\mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(a) || \mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(b))\{}
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{53   \}}
+\DoxyCodeLine{54   \textcolor{keywordflow}{return} a.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} == b.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} || a.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} == b.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+
+
+References is\+\_\+special(), Tessera\+::n1, and Tessera\+::n2.
+
+
+
+Referenced by game\+\_\+finished(), posiziona\+\_\+tessera(), put\+\_\+tessera(), and scelte\+\_\+possibili().
+
+\mbox{\Hypertarget{tessere_8h_aee53fac254138f383ffee228cf364437}\label{tessere_8h_aee53fac254138f383ffee228cf364437}} 
+\index{tessere.h@{tessere.h}!match\_right@{match\_right}}
+\index{match\_right@{match\_right}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{match\_right()}{match\_right()}}
+{\footnotesize\ttfamily bool match\+\_\+right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{a,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Verifica se due tessere possono essere abbinate sul lato destro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Prima tessera. \\
+\hline
+{\em b} & Seconda tessera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se le tessere possono essere abbinate a destra, false altrimenti. 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57                                        \{}
+\DoxyCodeLine{58   \textcolor{keywordflow}{if}(\mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(a) || \mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(b))\{}
+\DoxyCodeLine{59     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61   \textcolor{keywordflow}{return} a.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} == b.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} || a.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} == b.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+
+
+References is\+\_\+special(), Tessera\+::n1, and Tessera\+::n2.
+
+
+
+Referenced by game\+\_\+finished(), put\+\_\+tessera(), and scelte\+\_\+possibili().
+
+\mbox{\Hypertarget{tessere_8h_adc3d2c8fa08b72269d285324969e118c}\label{tessere_8h_adc3d2c8fa08b72269d285324969e118c}} 
+\index{tessere.h@{tessere.h}!max\_row@{max\_row}}
+\index{max\_row@{max\_row}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{max\_row()}{max\_row()}}
+{\footnotesize\ttfamily int max\+\_\+row (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Trova la dimensione massima tra tutte le righe nella scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di righe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La dimensione massima tra tutte le righe. 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{133                                 \{}
+\DoxyCodeLine{134   \textcolor{keywordtype}{int} max=piano[0].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{135   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=1;i<size;i++)\{}
+\DoxyCodeLine{136     \textcolor{keywordflow}{if}(piano[i].size>max)\{}
+\DoxyCodeLine{137       max=piano[i].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{138     \}}
+\DoxyCodeLine{139   \}}
+\DoxyCodeLine{140   \textcolor{keywordflow}{return} max;}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+
+
+References Row\+::size.
+
+
+
+Referenced by print\+\_\+giocate().
+
+\mbox{\Hypertarget{tessere_8h_aa0a007a9d91d0bd6cad6af7b86212805}\label{tessere_8h_aa0a007a9d91d0bd6cad6af7b86212805}} 
+\index{tessere.h@{tessere.h}!posiziona\_tessera@{posiziona\_tessera}}
+\index{posiziona\_tessera@{posiziona\_tessera}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{posiziona\_tessera()}{posiziona\_tessera()}}
+{\footnotesize\ttfamily bool posiziona\+\_\+tessera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int $\ast$}]{size\+\_\+piano,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera }\end{DoxyParamCaption})}
+
+
+
+Verifica se è possibile posizionare una tessera sulla scacchiera di gioco e la posiziona. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size\+\_\+piano} & Puntatore alla dimensione dell\textquotesingle{}array di righe. \\
+\hline
+{\em tessera} & La tessera da posizionare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se la tessera è stata posizionata con successo, false altrimenti. 
+\end{DoxyReturn}
+
+
+Definition at line 314 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{314                                                                   \{}
+\DoxyCodeLine{315   \mbox{\hyperlink{structRow}{Row}} *r\_0=\&piano[0];}
+\DoxyCodeLine{316   \textcolor{keywordflow}{if}(r\_0-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}==0)\{}
+\DoxyCodeLine{317     r\_0-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0]=tessera;}
+\DoxyCodeLine{318     r\_0-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=1;}
+\DoxyCodeLine{319     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{320   \}}
+\DoxyCodeLine{321   \textcolor{keywordtype}{int} num\_scelte=0;}
+\DoxyCodeLine{322   \textcolor{keywordtype}{int} *scelte=\mbox{\hyperlink{tessere_8h_a984614f2789e46cf63228dd30f5d00c5}{scelte\_possibili}}(piano,*size\_piano,tessera,\&num\_scelte);}
+\DoxyCodeLine{323   \textcolor{keywordtype}{int} s;}
+\DoxyCodeLine{324   \textcolor{keywordflow}{if}(num\_scelte<=0)\{}
+\DoxyCodeLine{325     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{326   \}}
+\DoxyCodeLine{327   printf(\textcolor{stringliteral}{"{}Tessera scelta: [\%d|\%d]\(\backslash\)n"{}},tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}},tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}});}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329   \textcolor{keywordflow}{if}(num\_scelte>1)\{}
+\DoxyCodeLine{330     \textcolor{keywordtype}{char} keys[10];}
+\DoxyCodeLine{331     \textcolor{keywordflow}{do}\{}
+\DoxyCodeLine{332         printf(\textcolor{stringliteral}{"{}Scelte possibili:\(\backslash\)n"{}});}
+\DoxyCodeLine{333         \mbox{\hyperlink{tessere_8h_aecb16d6b825f375288603d9943854afb}{print\_scelte}}(scelte,num\_scelte);}
+\DoxyCodeLine{334         scanf(\textcolor{stringliteral}{"{}\%s"{}},keys);}
+\DoxyCodeLine{335         s=\mbox{\hyperlink{tessere_8h_ad941bb431e900f49f1af85d316566c44}{char\_to\_int}}(keys);}
+\DoxyCodeLine{336    \}\textcolor{keywordflow}{while}(s<=0 || s>num\_scelte);}
+\DoxyCodeLine{337    s=s-\/1; \textcolor{comment}{//per sistemare l'index, si accettano in input valori da 1 a x, per sistemare l'index devo fare -\/1}}
+\DoxyCodeLine{338   \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{339     s=0; \textcolor{comment}{//se la scelta è solo 1 la inserisco in automatico}}
+\DoxyCodeLine{340   \}}
+\DoxyCodeLine{341   \textcolor{keywordtype}{int} pos=scelte[s*2+1]; \textcolor{comment}{//num col}}
+\DoxyCodeLine{342   \textcolor{keywordtype}{int} num\_row=scelte[s*2]; \textcolor{comment}{//num row}}
+\DoxyCodeLine{343   \mbox{\hyperlink{structRow}{Row}} *r=\&piano[num\_row];}
+\DoxyCodeLine{344   \textcolor{comment}{//put\_tessera()}}
+\DoxyCodeLine{345   \textcolor{keywordflow}{if}(pos>=0)\{}
+\DoxyCodeLine{346     \textcolor{comment}{//put\_first()}}
+\DoxyCodeLine{347     \textcolor{keywordflow}{if}(\mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(tessera))\{}
+\DoxyCodeLine{348       \mbox{\hyperlink{tessere_8h_a92023f92bbcc6d7867c9942dd89b5af7}{put\_tessera\_speciale}}(piano,*size\_piano,r,pos,tessera);}
+\DoxyCodeLine{349     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{350       \mbox{\hyperlink{tessere_8h_a734f142bede49200ac43c9fddb8b3060}{put\_tessera}}(r,tessera,pos);}
+\DoxyCodeLine{351     \}}
+\DoxyCodeLine{352   \}\textcolor{keywordflow}{else}\{ \textcolor{comment}{//pos=-\/1}}
+\DoxyCodeLine{353     \textcolor{comment}{//put\_tessera}}
+\DoxyCodeLine{354     \textcolor{keywordflow}{if}(\mbox{\hyperlink{tessere_8h_a67485a7580384cf445ae6b64beecdf37}{is\_special}}(tessera))\{}
+\DoxyCodeLine{355       \mbox{\hyperlink{tessere_8h_a92023f92bbcc6d7867c9942dd89b5af7}{put\_tessera\_speciale}}(piano,*size\_piano,r,pos,tessera);}
+\DoxyCodeLine{356     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{357       \mbox{\hyperlink{tessere_8h_a94e23d66917b020362886fd4f10e7101}{put\_front\_tessera}}(piano,*size\_piano,r,tessera);}
+\DoxyCodeLine{358     \}}
+\DoxyCodeLine{359     pos=0;}
+\DoxyCodeLine{360   \}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362   \textcolor{keywordflow}{if}(num\_row+1>=*size\_piano || !piano[num\_row+1].tessere[pos].selected)\{}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364     \textcolor{keywordtype}{char} scelta=0;}
+\DoxyCodeLine{365     \textcolor{keywordflow}{while}(scelta!=\textcolor{charliteral}{'v'} \&\& scelta!=\textcolor{charliteral}{'h'})\{}
+\DoxyCodeLine{366       printf(\textcolor{stringliteral}{"{}Digita v o h (v=vertical e h=horizontal)\(\backslash\)n"{}});}
+\DoxyCodeLine{367       scanf(\textcolor{stringliteral}{"{} \%c"{}},\&scelta);}
+\DoxyCodeLine{368     \}}
+\DoxyCodeLine{369     \textcolor{keywordflow}{if}(scelta==\textcolor{charliteral}{'v'})\{}
+\DoxyCodeLine{370       \textcolor{keywordflow}{if}(num\_row+1>=*size\_piano)\{}
+\DoxyCodeLine{371         ++*size\_piano;}
+\DoxyCodeLine{372         piano[num\_row+1].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}=\mbox{\hyperlink{tessere_8h_a77273a0ac680e1a2b2ea6f8e92f8dc58}{create\_arr\_tessere}}(r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}});}
+\DoxyCodeLine{373         piano[num\_row+1].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{374       \}}
+\DoxyCodeLine{375       \mbox{\hyperlink{structRow}{Row}} *under\_row=\&piano[num\_row+1];}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377       \textcolor{keywordflow}{if}(r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}>under\_row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}})\{}
+\DoxyCodeLine{378         \textcolor{keywordtype}{int} old\_size=under\_row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{379         under\_row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}=r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{380         \mbox{\hyperlink{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}{extend\_arr\_tessere}}(under\_row);}
+\DoxyCodeLine{381         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=old\_size;i<under\_row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};i++)\{}
+\DoxyCodeLine{382           under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{383           under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{384           under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{385           under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[i].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{386         \}}
+\DoxyCodeLine{387         }
+\DoxyCodeLine{388       \}}
+\DoxyCodeLine{389       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{390       \textcolor{comment}{//[3|1]}}
+\DoxyCodeLine{391       \textcolor{keywordflow}{if}(pos+1<r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}} \&\& \mbox{\hyperlink{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}{match\_left}}(r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos],r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1]))\{}
+\DoxyCodeLine{392         \textcolor{keywordflow}{if} (r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} == r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} \&\& r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}!=0) \{ \textcolor{comment}{//se è tessera [0|0] mettila com'è}}
+\DoxyCodeLine{393           \textcolor{keywordtype}{int} n2=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{394           r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{395           r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=n2;}
+\DoxyCodeLine{396         \}}
+\DoxyCodeLine{397       \}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399       under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos]=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos];}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401       r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}; \textcolor{comment}{//per la tessera in alto voglio lasciare invariato solo n1, n2 sarà uguale ad n1 avranno lo stesso valore per comodità}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403       under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=under\_row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}; \textcolor{comment}{// per la tessera più in alto voglio lasciare invariato solo n2, n1 sarà uguale ad n1}}
+\DoxyCodeLine{404     \}}
+\DoxyCodeLine{405   \}}
+\DoxyCodeLine{406   free(scelte);}
+\DoxyCodeLine{407   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{408 \}}
+
+\end{DoxyCode}
+
+
+References char\+\_\+to\+\_\+int(), create\+\_\+arr\+\_\+tessere(), extend\+\_\+arr\+\_\+tessere(), is\+\_\+special(), match\+\_\+left(), Tessera\+::n1, Tessera\+::n2, print\+\_\+scelte(), put\+\_\+front\+\_\+tessera(), put\+\_\+tessera(), put\+\_\+tessera\+\_\+speciale(), scelte\+\_\+possibili(), Tessera\+::selected, Row\+::size, Row\+::tessere, and Tessera\+::vertical.
+
+
+
+Referenced by game\+\_\+start().
+
+\mbox{\Hypertarget{tessere_8h_a5555b1b36e0498b9e0a68b55d858692a}\label{tessere_8h_a5555b1b36e0498b9e0a68b55d858692a}} 
+\index{tessere.h@{tessere.h}!print\_disponibili@{print\_disponibili}}
+\index{print\_disponibili@{print\_disponibili}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{print\_disponibili()}{print\_disponibili()}}
+{\footnotesize\ttfamily void print\+\_\+disponibili (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Stampa le tessere disponibili e le tessere speciali. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessere} & Array di tessere. \\
+\hline
+{\em speciali} & Array di tessere speciali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 110 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{110                                                                                                    \{}
+\DoxyCodeLine{111   printf(\textcolor{stringliteral}{"{}Tessere disponibili:\(\backslash\)n"{}});}
+\DoxyCodeLine{112   \textcolor{keywordtype}{int} righe = 10;}
+\DoxyCodeLine{113   \textcolor{keywordtype}{int} col = ((size\_tessere) / righe) + 1;}
+\DoxyCodeLine{114   \textcolor{keywordtype}{int} resto\_last\_col = (size\_tessere) \% righe; }
+\DoxyCodeLine{115   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < righe; i++) \{}
+\DoxyCodeLine{116     \textcolor{keywordflow}{if} (resto\_last\_col == i) \{}
+\DoxyCodeLine{117       col-\/-\/;}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < col; j++) \{}
+\DoxyCodeLine{120       printf(\textcolor{stringliteral}{"{}\%d. [\%d|\%d]\(\backslash\)t"{}}, tessere[i + j * 10].num, tessere[i + j * 10].n1, tessere[i + j * 10].n2);}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122     printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{123   \}}
+\DoxyCodeLine{124   \textcolor{keywordflow}{if} (size\_speciali > 0) \{}
+\DoxyCodeLine{125     printf(\textcolor{stringliteral}{"{}-\/-\/-\/TESSERE SPECIALI-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{126     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size\_speciali; i++) \{}
+\DoxyCodeLine{127       printf(\textcolor{stringliteral}{"{}-\/\%d. [\%d|\%d]\(\backslash\)n"{}}, i + 1, speciali[i].n1, speciali[i].n2);}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129   \}}
+\DoxyCodeLine{130   printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{131 \}}
+
+\end{DoxyCode}
+
+
+Referenced by game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}\label{tessere_8h_a70f58aed201144bc1093cf50ae0e5ea5}} 
+\index{tessere.h@{tessere.h}!print\_giocate@{print\_giocate}}
+\index{print\_giocate@{print\_giocate}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{print\_giocate()}{print\_giocate()}}
+{\footnotesize\ttfamily void print\+\_\+giocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Stampa lo stato attuale della scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di righe. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 143 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{143                                           \{}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   printf(\textcolor{stringliteral}{"{}Tessere giocate:\(\backslash\)n"{}});}
+\DoxyCodeLine{146   printf(\textcolor{stringliteral}{"{}\(\backslash\)t  "{}});}
+\DoxyCodeLine{147   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<\mbox{\hyperlink{tessere_8h_adc3d2c8fa08b72269d285324969e118c}{max\_row}}(piano,size);i++)\{}
+\DoxyCodeLine{148     printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)t  "{}},i);}
+\DoxyCodeLine{149   \}}
+\DoxyCodeLine{150   printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)n"{}},\mbox{\hyperlink{tessere_8h_adc3d2c8fa08b72269d285324969e118c}{max\_row}}(piano,size));}
+\DoxyCodeLine{151   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{152     \mbox{\hyperlink{structTessera}{Tessera}} *a=piano[i].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{153     \textcolor{keywordtype}{int} size\_a=piano[i].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{154     printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)t"{}},i);}
+\DoxyCodeLine{155     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<size\_a;j++)\{}
+\DoxyCodeLine{156       \textcolor{keywordflow}{if}(a[j].vertical \&\& a[j].selected)\{}
+\DoxyCodeLine{157           printf(\textcolor{stringliteral}{"{} [\%d]\(\backslash\)t"{}},a[j].n1);}
+\DoxyCodeLine{158       \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{159         \textcolor{keywordflow}{if}(a[j].selected)\{}
+\DoxyCodeLine{160           printf(\textcolor{stringliteral}{"{}[\%d|\%d]\(\backslash\)t"{}},a[j].n1,a[j].n2);}
+\DoxyCodeLine{161         \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{162           printf(\textcolor{stringliteral}{"{}     \(\backslash\)t"{}});}
+\DoxyCodeLine{163         \}}
+\DoxyCodeLine{164       \}}
+\DoxyCodeLine{165     \}}
+\DoxyCodeLine{166     printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{167   \}}
+\DoxyCodeLine{168   printf(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{169 \}}
+
+\end{DoxyCode}
+
+
+References max\+\_\+row(), Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{tessere_8h_aecb16d6b825f375288603d9943854afb}\label{tessere_8h_aecb16d6b825f375288603d9943854afb}} 
+\index{tessere.h@{tessere.h}!print\_scelte@{print\_scelte}}
+\index{print\_scelte@{print\_scelte}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{print\_scelte()}{print\_scelte()}}
+{\footnotesize\ttfamily void print\+\_\+scelte (\begin{DoxyParamCaption}\item[{int $\ast$}]{m,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Stampa l\textquotesingle{}array di scelte per posizionare una tessera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Array di scelte. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 102 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{102                                   \{}
+\DoxyCodeLine{103   \textcolor{keywordtype}{int} k=0;}
+\DoxyCodeLine{104   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{105     printf(\textcolor{stringliteral}{"{}\%d. \{\%d,\%d\}\(\backslash\)n"{}},i+1,m[k],m[k+1]);}
+\DoxyCodeLine{106     k=k+2;}
+\DoxyCodeLine{107   \}}
+\DoxyCodeLine{108 \}}
+
+\end{DoxyCode}
+
+
+Referenced by posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a94e23d66917b020362886fd4f10e7101}\label{tessere_8h_a94e23d66917b020362886fd4f10e7101}} 
+\index{tessere.h@{tessere.h}!put\_front\_tessera@{put\_front\_tessera}}
+\index{put\_front\_tessera@{put\_front\_tessera}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{put\_front\_tessera()}{put\_front\_tessera()}}
+{\footnotesize\ttfamily void put\+\_\+front\+\_\+tessera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size\+\_\+piano,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera }\end{DoxyParamCaption})}
+
+
+
+Posiziona una tessera all\textquotesingle{}inizio di una riga sulla scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size\+\_\+piano} & Puntatore alla dimensione dell\textquotesingle{}array di righe. \\
+\hline
+{\em r} & Puntatore alla riga in cui posizionare la tessera. \\
+\hline
+{\em tessera} & La tessera da posizionare. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 192 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{192                                                                         \{}
+\DoxyCodeLine{193   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size\_piano;i++)\{}
+\DoxyCodeLine{194     \mbox{\hyperlink{structRow}{Row}} *row=\&piano[i];}
+\DoxyCodeLine{195     \mbox{\hyperlink{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}{extend\_arr\_tessere}}(row);}
+\DoxyCodeLine{196     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}-\/1;j>=0;j-\/-\/)\{}
+\DoxyCodeLine{197       row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[j+1]=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[j];}
+\DoxyCodeLine{198     \}}
+\DoxyCodeLine{199     row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=-\/1;}
+\DoxyCodeLine{200     row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=-\/1;}
+\DoxyCodeLine{201     row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{202     row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0].\mbox{\hyperlink{structTessera_abf503ed02eb6dc33957030cbaa147f0c}{vertical}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{203     ++row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{204   \}}
+\DoxyCodeLine{205   \textcolor{keywordflow}{if}(tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}!=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}})\{}
+\DoxyCodeLine{206     \textcolor{keywordtype}{int} n2=tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{207     tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{208     tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=n2;}
+\DoxyCodeLine{209   \}}
+\DoxyCodeLine{210   r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[0]=tessera;}
+\DoxyCodeLine{211 \}}
+
+\end{DoxyCode}
+
+
+References extend\+\_\+arr\+\_\+tessere(), Tessera\+::n1, Tessera\+::n2, Tessera\+::selected, Row\+::size, Row\+::tessere, and Tessera\+::vertical.
+
+
+
+Referenced by first\+\_\+match(), posiziona\+\_\+tessera(), and put\+\_\+tessera\+\_\+speciale().
+
+\mbox{\Hypertarget{tessere_8h_a734f142bede49200ac43c9fddb8b3060}\label{tessere_8h_a734f142bede49200ac43c9fddb8b3060}} 
+\index{tessere.h@{tessere.h}!put\_tessera@{put\_tessera}}
+\index{put\_tessera@{put\_tessera}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{put\_tessera()}{put\_tessera()}}
+{\footnotesize\ttfamily void put\+\_\+tessera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera,  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Posiziona una tessera in una posizione specificata all\textquotesingle{}interno di una riga sulla scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Puntatore alla riga in cui posizionare la tessera. \\
+\hline
+{\em tessera} & La tessera da posizionare. \\
+\hline
+{\em pos} & Posizione in cui posizionare la tessera. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 213 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{213                                                 \{}
+\DoxyCodeLine{214   \textcolor{keywordflow}{if}(pos>=r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}})\{}
+\DoxyCodeLine{215     \mbox{\hyperlink{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}{extend\_arr\_tessere}}(r);}
+\DoxyCodeLine{216     ++r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{217   \}}
+\DoxyCodeLine{218    \textcolor{comment}{//metto a sinistra la tessera}}
+\DoxyCodeLine{219   \textcolor{keywordflow}{if}(r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}} \&\& \mbox{\hyperlink{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}{match\_left}}(tessera,r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1]))\{}
+\DoxyCodeLine{220     \textcolor{keywordflow}{if} (tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} != r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} \&\& r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}!=0) \{ \textcolor{comment}{//se è tessera [0|0] mettila com'è}}
+\DoxyCodeLine{221       \textcolor{keywordtype}{int} n2=tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{222       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{223       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=n2;}
+\DoxyCodeLine{224     \}}
+\DoxyCodeLine{225   \}}
+\DoxyCodeLine{226   }
+\DoxyCodeLine{227   }
+\DoxyCodeLine{228    \textcolor{comment}{//metto a destra la tessera}}
+\DoxyCodeLine{229   \textcolor{keywordflow}{if}(pos>0 \&\& r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}} \&\& \mbox{\hyperlink{tessere_8h_aee53fac254138f383ffee228cf364437}{match\_right}}(tessera,r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1]))\{}
+\DoxyCodeLine{230     \textcolor{keywordflow}{if}(tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}} !=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}} \&\& r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}!=0)\{}
+\DoxyCodeLine{231       \textcolor{keywordtype}{int} n2=tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{232       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{233       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=n2;}
+\DoxyCodeLine{234     \}}
+\DoxyCodeLine{235   \}}
+\DoxyCodeLine{236   \textcolor{comment}{//tessera.selected=true;}}
+\DoxyCodeLine{237   r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos]=tessera;}
+\DoxyCodeLine{238 \}}
+
+\end{DoxyCode}
+
+
+References extend\+\_\+arr\+\_\+tessere(), match\+\_\+left(), match\+\_\+right(), Tessera\+::n1, Tessera\+::n2, Tessera\+::selected, Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by first\+\_\+match(), and posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a92023f92bbcc6d7867c9942dd89b5af7}\label{tessere_8h_a92023f92bbcc6d7867c9942dd89b5af7}} 
+\index{tessere.h@{tessere.h}!put\_tessera\_speciale@{put\_tessera\_speciale}}
+\index{put\_tessera\_speciale@{put\_tessera\_speciale}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{put\_tessera\_speciale()}{put\_tessera\_speciale()}}
+{\footnotesize\ttfamily void put\+\_\+tessera\+\_\+speciale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size\+\_\+piano,  }\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{row,  }\item[{int}]{pos,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera }\end{DoxyParamCaption})}
+
+
+
+Posiziona una tessera speciale in una posizione specificata all\textquotesingle{}interno di una riga sulla scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size\+\_\+piano} & Puntatore alla dimensione dell\textquotesingle{}array di righe. \\
+\hline
+{\em row} & Puntatore alla riga in cui posizionare la tessera speciale. \\
+\hline
+{\em pos} & Posizione in cui posizionare la tessera speciale. \\
+\hline
+{\em tessera} & La tessera speciale da posizionare. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 249 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{249                                                                                      \{}
+\DoxyCodeLine{250   \textcolor{keywordflow}{if}(pos>=row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}})\{}
+\DoxyCodeLine{251     \mbox{\hyperlink{tessere_8h_a43e9af00e975c9e1f1155fe03ad06142}{extend\_arr\_tessere}}(row);}
+\DoxyCodeLine{252     ++row-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{253   \}}
+\DoxyCodeLine{254   \textcolor{keywordflow}{if}(tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}==11)\{}
+\DoxyCodeLine{255     \textcolor{comment}{//sommo 1 a tutte le tessere}}
+\DoxyCodeLine{256     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size\_piano;i++)\{}
+\DoxyCodeLine{257       \mbox{\hyperlink{structRow}{Row}} *r=\&piano[i];}
+\DoxyCodeLine{258       \mbox{\hyperlink{structTessera}{Tessera}} *tessere=r-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{259       \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<r-\/>\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};j++)\{}
+\DoxyCodeLine{260         \textcolor{comment}{//se 4\%6=4 e 4+1=5, quindi va bene}}
+\DoxyCodeLine{261         \textcolor{comment}{//se 6\%6=0 e 0+1=1, quindi va bene}}
+\DoxyCodeLine{262         tessere[j].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=(tessere[j].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}\%6)+1; }
+\DoxyCodeLine{263         tessere[j].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=(tessere[j].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}\%6)+1;}
+\DoxyCodeLine{264       \}}
+\DoxyCodeLine{265     \}}
+\DoxyCodeLine{266     }
+\DoxyCodeLine{267     \textcolor{keywordflow}{if}(pos>0 \&\& row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}})\{}
+\DoxyCodeLine{268       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{269       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{270     \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}})\{}
+\DoxyCodeLine{271       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{272       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{273     \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275   \}}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277   \textcolor{keywordflow}{if}(tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}==12)\{}
+\DoxyCodeLine{278     \textcolor{keywordflow}{if}(pos>0 \&\& row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}})\{}
+\DoxyCodeLine{279       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{280       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos-\/1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{281     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_ac70a4116e5d5f36d6754e4d03e043aec}{selected}})\{}
+\DoxyCodeLine{282       tessera.\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}};}
+\DoxyCodeLine{283       tessera.\mbox{\hyperlink{structTessera_aee82985e3acfd9d352a679de43760cfe}{n2}}=row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos+1].\mbox{\hyperlink{structTessera_a088f0f1bbf9fdd8e684bab3313a25e8b}{n1}};}
+\DoxyCodeLine{284     \}}
+\DoxyCodeLine{285   \}}
+\DoxyCodeLine{286   \textcolor{comment}{//se è zero inserisco normalmente}}
+\DoxyCodeLine{287   \textcolor{keywordflow}{if}(pos<0)\{}
+\DoxyCodeLine{288     \mbox{\hyperlink{tessere_8h_a94e23d66917b020362886fd4f10e7101}{put\_front\_tessera}}(piano,size\_piano,row,tessera);}
+\DoxyCodeLine{289     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{290   \}}
+\DoxyCodeLine{291  \textcolor{comment}{// tessera.selected=true;}}
+\DoxyCodeLine{292   row-\/>\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}[pos]=tessera;}
+\DoxyCodeLine{293 \}}
+
+\end{DoxyCode}
+
+
+References extend\+\_\+arr\+\_\+tessere(), Tessera\+::n1, Tessera\+::n2, put\+\_\+front\+\_\+tessera(), Tessera\+::selected, Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}\label{tessere_8h_a1375372f7f66ec723bd67d65b9f61faf}} 
+\index{tessere.h@{tessere.h}!remove\_tessera@{remove\_tessera}}
+\index{remove\_tessera@{remove\_tessera}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{remove\_tessera()}{remove\_tessera()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTessera}{Tessera}}$\ast$ remove\+\_\+tessera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessera,  }\item[{int $\ast$}]{size,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Rimuove una tessera da un array di tessere. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessera} & Array di tessere. \\
+\hline
+{\em size} & Puntatore alla dimensione dell\textquotesingle{}array. \\
+\hline
+{\em index} & Indice della tessera da rimuovere. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un nuovo array di tessere allocato dinamicamente con la tessera specificata rimossa. 
+\end{DoxyReturn}
+
+
+Definition at line 174 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{174                                                                   \{}
+\DoxyCodeLine{175   \mbox{\hyperlink{structTessera}{Tessera}} * new\_arr = (\mbox{\hyperlink{structTessera}{Tessera}} * ) malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTessera}{Tessera}}) * (*size -\/ 1));}
+\DoxyCodeLine{176   \textcolor{keywordflow}{if} (!new\_arr) exit(EXIT\_FAILURE);}
+\DoxyCodeLine{177   \textcolor{keywordtype}{int} j = 0;}
+\DoxyCodeLine{178   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < *size; i++) \{}
+\DoxyCodeLine{179     \textcolor{keywordflow}{if} (i != index) \{}
+\DoxyCodeLine{180       new\_arr[j] = tessera[i];}
+\DoxyCodeLine{181       ++j;}
+\DoxyCodeLine{182     \}}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < *size -\/ 1; i++) \{}
+\DoxyCodeLine{185     new\_arr[i].\mbox{\hyperlink{structTessera_ab2faad401b5c237b3ba7b28781f2278a}{num}} = i + 1; \textcolor{comment}{//aggiorno numero relativo all'interfaccia utente, cioè i numeri che scelgo da tastiera}}
+\DoxyCodeLine{186   \}}
+\DoxyCodeLine{187   -\/-\/*size;}
+\DoxyCodeLine{188   free(tessera); \textcolor{comment}{//libero la vecchia memoria allocata}}
+\DoxyCodeLine{189   \textcolor{keywordflow}{return} new\_arr;}
+\DoxyCodeLine{190 \}}
+
+\end{DoxyCode}
+
+
+References Tessera\+::num.
+
+
+
+Referenced by first\+\_\+match(), game\+\_\+start(), and game\+\_\+start\+\_\+ai().
+
+\mbox{\Hypertarget{tessere_8h_a984614f2789e46cf63228dd30f5d00c5}\label{tessere_8h_a984614f2789e46cf63228dd30f5d00c5}} 
+\index{tessere.h@{tessere.h}!scelte\_possibili@{scelte\_possibili}}
+\index{scelte\_possibili@{scelte\_possibili}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{scelte\_possibili()}{scelte\_possibili()}}
+{\footnotesize\ttfamily int$\ast$ scelte\+\_\+possibili (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRow}{Row}} $\ast$}]{piano,  }\item[{int}]{size,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera,  }\item[{int $\ast$}]{num\+\_\+scelte }\end{DoxyParamCaption})}
+
+
+
+Genera un array di scelte possibili per posizionare una tessera sulla scacchiera di gioco. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piano} & Array di righe che rappresenta la scacchiera di gioco. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di righe. \\
+\hline
+{\em tessera} & La tessera da posizionare. \\
+\hline
+{\em num\+\_\+scelte} & Parametro di output per memorizzare il numero di scelte. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un array allocato dinamicamente di interi che rappresenta le scelte. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file tessere.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65                                                                           \{}
+\DoxyCodeLine{66   }
+\DoxyCodeLine{67   \textcolor{keywordtype}{int} *scelte=(\textcolor{keywordtype}{int}*)malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int})*size*100);}
+\DoxyCodeLine{68   \textcolor{keywordtype}{int} k=0;}
+\DoxyCodeLine{69   \textcolor{comment}{/*}}
+\DoxyCodeLine{70 \textcolor{comment}{  int scelte=\{\{1,2\}, }}
+\DoxyCodeLine{71 \textcolor{comment}{              \{0,1\}, }}
+\DoxyCodeLine{72 \textcolor{comment}{              \{1,1\}\} }}
+\DoxyCodeLine{73 \textcolor{comment}{  */}}
+\DoxyCodeLine{74   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<size;i++)\{}
+\DoxyCodeLine{75     \mbox{\hyperlink{structTessera}{Tessera}} *a=piano[i].\mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}};}
+\DoxyCodeLine{76     \textcolor{keywordtype}{int} a\_size=piano[i].\mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}};}
+\DoxyCodeLine{77     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0;j<a\_size;j++)\{}
+\DoxyCodeLine{78       \textcolor{keywordflow}{if}(a[j].selected)\{}
+\DoxyCodeLine{79         \textcolor{keywordflow}{if}((j==0 || !a[j-\/1].selected) \&\& \mbox{\hyperlink{tessere_8h_a7651749f0e6c4fcbbed264205a30eafa}{match\_left}}(tessera,a[j]))\{}
+\DoxyCodeLine{80           scelte[k]=i;}
+\DoxyCodeLine{81           scelte[k+1]=j-\/1;}
+\DoxyCodeLine{82           k=k+2;}
+\DoxyCodeLine{83           }
+\DoxyCodeLine{84         \}}
+\DoxyCodeLine{85         \textcolor{keywordflow}{if}((j==a\_size-\/1 || !a[j+1].selected) \&\& \mbox{\hyperlink{tessere_8h_aee53fac254138f383ffee228cf364437}{match\_right}}(tessera,a[j]))\{}
+\DoxyCodeLine{86             scelte[k]=i;}
+\DoxyCodeLine{87             scelte[k+1]=j+1;}
+\DoxyCodeLine{88             k=k+2;}
+\DoxyCodeLine{89         \}}
+\DoxyCodeLine{90       \}}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92   \}}
+\DoxyCodeLine{93   *num\_scelte=k/2;}
+\DoxyCodeLine{94   \textcolor{keywordflow}{if}(k>0)\{}
+\DoxyCodeLine{95     scelte=(\textcolor{keywordtype}{int}*)realloc(scelte,\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int})* k);}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if}(!scelte) exit(EXIT\_FAILURE);}
+\DoxyCodeLine{97   \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99   \textcolor{keywordflow}{return} scelte;}
+\DoxyCodeLine{100 \}}
+
+\end{DoxyCode}
+
+
+References match\+\_\+left(), match\+\_\+right(), Row\+::size, and Row\+::tessere.
+
+
+
+Referenced by first\+\_\+match(), and posiziona\+\_\+tessera().
+
+\mbox{\Hypertarget{tessere_8h_a458ee6f5c2684719c2d4f05bcb284c93}\label{tessere_8h_a458ee6f5c2684719c2d4f05bcb284c93}} 
+\index{tessere.h@{tessere.h}!string\_tessera@{string\_tessera}}
+\index{string\_tessera@{string\_tessera}!tessere.h@{tessere.h}}
+\doxysubsubsection{\texorpdfstring{string\_tessera()}{string\_tessera()}}
+{\footnotesize\ttfamily char$\ast$ string\+\_\+tessera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}}}]{tessera }\end{DoxyParamCaption})}
+
+
+
+Converte una tessera in una rappresentazione stringa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tessera} & La tessera da convertire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Una stringa allocata dinamicamente che rappresenta la tessera. 
+\end{DoxyReturn}
