@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_5fscreen_71',['update_screen',['../logic_8h.html#a8e809eeef914d8a2756c3add21468f64',1,'logic.c']]]
+  ['update_5fscreen_78',['update_screen',['../logic_8h.html#a1fc0d9ab93d94f4086e4e5711edb474b',1,'logic.c']]]
 ];

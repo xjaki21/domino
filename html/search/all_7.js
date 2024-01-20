@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['n1_18',['n1',['../structTessera.html#a088f0f1bbf9fdd8e684bab3313a25e8b',1,'Tessera']]],
-  ['n2_19',['n2',['../structTessera.html#aee82985e3acfd9d352a679de43760cfe',1,'Tessera']]],
-  ['num_20',['num',['../structTessera.html#ab2faad401b5c237b3ba7b28781f2278a',1,'Tessera']]]
+  ['match_5fleft_19',['match_left',['../tessere_8h.html#a7651749f0e6c4fcbbed264205a30eafa',1,'tessere.c']]],
+  ['match_5fright_20',['match_right',['../tessere_8h.html#aee53fac254138f383ffee228cf364437',1,'tessere.c']]],
+  ['max_5frow_21',['max_row',['../tessere_8h.html#af9e4b51a21eb4daa14387c8f29167278',1,'tessere.c']]]
 ];

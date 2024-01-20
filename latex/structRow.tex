@@ -2,7 +2,7 @@
 \label{structRow}\index{Row@{Row}}
 
 
-Struttura che rappresenta una riga sulla scacchiera di gioco.  
+Rappresenta una riga della scacchiera di gioco con un array di tessere.  
 
 
 
@@ -16,19 +16,37 @@ Collaboration diagram for Row\+:
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}\label{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}} 
 \mbox{\hyperlink{structTessera}{Tessera}} $\ast$ \mbox{\hyperlink{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}{tessere}}
-\begin{DoxyCompactList}\small\item\em Array di tessere nella riga. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structRow_ac052741f108068f08ab356d79c022c46}\label{structRow_ac052741f108068f08ab356d79c022c46}} 
-int \mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}}
-\begin{DoxyCompactList}\small\item\em Capacità dell\textquotesingle{}array. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structRow_a43d70cbe697594504027206fdbf52fce}\label{structRow_a43d70cbe697594504027206fdbf52fce}} 
+\item 
 int \mbox{\hyperlink{structRow_a43d70cbe697594504027206fdbf52fce}{size}}
-\begin{DoxyCompactList}\small\item\em Numero di tessere attualmente nella riga. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structRow_ac052741f108068f08ab356d79c022c46}{capacity}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Struttura che rappresenta una riga sulla scacchiera di gioco. 
+Rappresenta una riga della scacchiera di gioco con un array di tessere. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structRow_ac052741f108068f08ab356d79c022c46}\label{structRow_ac052741f108068f08ab356d79c022c46}} 
+\index{Row@{Row}!capacity@{capacity}}
+\index{capacity@{capacity}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{capacity}{capacity}}
+{\footnotesize\ttfamily int Row\+::capacity}
+
+Capacità massima dell\textquotesingle{}array di tessere. \mbox{\Hypertarget{structRow_a43d70cbe697594504027206fdbf52fce}\label{structRow_a43d70cbe697594504027206fdbf52fce}} 
+\index{Row@{Row}!size@{size}}
+\index{size@{size}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Row\+::size}
+
+Numero effettivo di tessere nella riga. \mbox{\Hypertarget{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}\label{structRow_ae73b8450f6d5ffcef374ea5d3b156a2f}} 
+\index{Row@{Row}!tessere@{tessere}}
+\index{tessere@{tessere}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{tessere}{tessere}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTessera}{Tessera}}$\ast$ Row\+::tessere}
+
+Array di tessere nella riga. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

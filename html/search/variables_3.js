@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['tessere_78',['tessere',['../structRow.html#ae73b8450f6d5ffcef374ea5d3b156a2f',1,'Row']]]
+  ['score_84',['score',['../structBoard.html#a7a44f4be355783a0136e42c79733724a',1,'Board']]],
+  ['selected_85',['selected',['../structTessera.html#ac70a4116e5d5f36d6754e4d03e043aec',1,'Tessera']]],
+  ['size_86',['size',['../structRow.html#a43d70cbe697594504027206fdbf52fce',1,'Row::size()'],['../structBoard.html#aedef7105f0accc0949b601afa97e9678',1,'Board::size()']]]
 ];

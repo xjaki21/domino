@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertical_79',['vertical',['../structTessera.html#abf503ed02eb6dc33957030cbaa147f0c',1,'Tessera']]]
+  ['tessere_87',['tessere',['../structRow.html#ae73b8450f6d5ffcef374ea5d3b156a2f',1,'Row']]]
 ];

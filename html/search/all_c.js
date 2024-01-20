@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['update_5fscreen_38',['update_screen',['../logic_8h.html#a8e809eeef914d8a2756c3add21468f64',1,'logic.c']]]
+  ['tessera_40',['Tessera',['../structTessera.html',1,'']]],
+  ['tessere_41',['tessere',['../structRow.html#ae73b8450f6d5ffcef374ea5d3b156a2f',1,'Row']]],
+  ['tessere_2eh_42',['tessere.h',['../tessere_8h.html',1,'']]]
 ];

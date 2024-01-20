@@ -9,102 +9,103 @@
 #include "tessere.h"
 
 #ifdef _WIN32
-    #define CLEAR_SCREEN "cls"
+    #define CLEAR_SCREEN "cls" ///< Comando per pulire lo schermo (WINDOWS).
 #else
-    #define CLEAR_SCREEN "clear"
+    #define CLEAR_SCREEN "clear" ///< Comando per pulire lo schermo (LINUX).
 #endif
 
 /**
- * @brief Inizializza le tessere speciali.
+ * @brief Inizializza le tessere speciali con valori predefiniti.
+ *
+ * Inizializza le tessere speciali con valori specifici, consentendo il corretto funzionamento del gioco.
+ *
  * @param speciali Array di tessere speciali da inizializzare.
  * @param size Dimensione dell'array di tessere speciali.
  */
 void init_speciali(Tessera *speciali, int size);
 
 /**
- * @brief Inizializza un array di tessere con valori casuali.
- * @param tessera Array di tessere da inizializzare.
- * @param size_tessere Dimensione dell'array di tessere.
+ * @brief Inizializza le tessere normali con valori casuali.
+ *
+ * Inizializza le tessere normali assegnando a ciascuna una coppia di numeri casuali compresi tra 1 e 6.
+ *
+ * @param tessera Array di tessere normali da inizializzare.
+ * @param size_tessere Dimensione dell'array di tessere normali.
  */
 void init(Tessera *tessera, int size_tessere);
 
 /**
- * @brief Verifica se il gioco è terminato.
- * @param tessere Array di tessere disponibili.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size_tessere Dimensione dell'array di tessere disponibili.
- * @param size_piano Dimensione dell'array di righe della scacchiera di gioco.
- * @return true se il gioco è terminato, false altrimenti.
+ * @brief Verifica se la partita è terminata.
+ *
+ * Verifica se la partita è terminata, controllando se è possibile accostare ulteriori tessere sulla scacchiera.
+ *
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param tessere Array di tessere normali.
+ * @param size_tessere Dimensione dell'array di tessere normali.
+ * @return True se la partita è terminata, False altrimenti.
  */
-bool game_finished(Tessera *tessere, Row *piano, int size_tessere, int size_piano);
+bool game_finished(Board *board, Tessera *tessere, int size_tessere);
 
 /**
  * @brief Aggiorna lo schermo di gioco.
- * @param tessere Array di tessere disponibili.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param speciali Array di tessere speciali disponibili.
- * @param size_tessere Dimensione dell'array di tessere disponibili.
- * @param size_piano Dimensione dell'array di righe della scacchiera di gioco.
- * @param size_speciali Dimensione dell'array di tessere speciali disponibili.
- * @param score Punteggio corrente.
+ *
+ * Aggiorna lo schermo di gioco stampando il punteggio, le tessere giocate e quelle disponibili.
+ *
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param tessere Array di tessere normali.
+ * @param speciali Array di tessere speciali.
+ * @param size_tessere Dimensione dell'array di tessere normali.
+ * @param size_speciali Dimensione dell'array di tessere speciali.
  */
-void update_screen(Tessera *tessere, Row *piano, Tessera *speciali, int size_tessere, int size_piano, int size_speciali, int score);
+void update_screen(Board *board, Tessera *tessere, Tessera *speciali, int size_tessere, int size_speciali);
 
 /**
- * @brief Calcola e restituisce il punteggio corrente.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size Dimensione dell'array di righe della scacchiera di gioco.
- * @return Il punteggio corrente.
+ * @brief Aggiorna il punteggio sulla scacchiera di gioco.
+ *
+ * Aggiorna il punteggio sommando i valori delle tessere giocate sulla scacchiera.
+ *
+ * @param board Puntatore alla scacchiera di gioco.
  */
-int score_update(Row *piano, int size);
+void score_update(Board *board);
 
 /**
- * @brief Avvia il gioco umano.
- * @param tessere Array di tessere disponibili.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param speciali Array di tessere speciali disponibili.
- * @param size_tessere Dimensione dell'array di tessere disponibili.
- * @param size_piano Dimensione dell'array di righe della scacchiera di gioco.
- * @param size_speciali Dimensione dell'array di tessere speciali disponibili.
+ * @brief Avvia una partita in modalità interattiva.
+ *
+ * Avvia una partita in modalità interattiva, consentendo all'utente di selezionare e posizionare le tessere sulla scacchiera.
+ *
+ * @param board Puntatore alla scacchiera di gioco..
+ * @param tessere Array di tessere normali.
+ * @param speciali Array di tessere speciali.
+ * @param size_tessere Dimensione dell'array di tessere normali.
+ * @param size_speciali Dimensione dell'array di tessere speciali.
  */
-void game_start(Tessera *tessere, Row *piano, Tessera *speciali, int *size_tessere, int *size_piano, int *size_speciali);
+void game_start(Board *board, Tessera *tessere, Tessera *speciali, int size_tessere, int size_speciali);
 
 /**
- * @brief Crea una copia dell'array di tessere.
- * @param tessere Array di tessere da copiare.
- * @param size_tessere Dimensione dell'array di tessere.
- * @return Puntatore alla copia dell'array di tessere.
+ * @brief Trova la migliore combinazione di tessere per iniziare il gioco.
+ *
+ * Trova la migliore combinazione di tessere tra quelle disponibili per iniziare il gioco, massimizzando il punteggio ottenibile.
+ *
+ * @param board Puntatore alla scacchiera di gioco..
+ * @param tessere Array di tessere normali.
+ * @param speciali Array di tessere speciali.
+ * @param size_tessere Dimensione dell'array di tessere normali.
+ * @param size_speciali Dimensione dell'array di tessere speciali.
+ * @return Puntatore alla scacchiera di gioco con la migliore combinazione.
  */
-Tessera *copy_tessere(Tessera *tessere, int size_tessere);
+Board *first_match(Board *board, Tessera *tessere, Tessera *speciali, int size_tessere, int size_speciali);
 
 /**
- * @brief Crea una copia dell'array di righe della scacchiera.
- * @param piano Array di righe della scacchiera da copiare.
- * @param size Dimensione dell'array di righe della scacchiera.
- * @return Puntatore alla copia dell'array di righe della scacchiera.
- */
-Row *copy_piano(Row *piano, int size);
-
-/**
- * @brief Trova la prima combinazione valida di tessere e aggiorna la scacchiera.
- * @param tessere Array di tessere disponibili.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param speciali Array di tessere speciali disponibili.
- * @param size_tessere Dimensione dell'array di tessere disponibili.
- * @param size_piano Dimensione dell'array di righe della scacchiera di gioco.
- * @param size_speciali Dimensione dell'array di tessere speciali disponibili.
- * @return Puntatore alla scacchiera aggiornata.
- */
-Row *first_match(Tessera *tessere, Row *piano, Tessera *speciali, int size_tessere, int size_piano, int size_speciali);
-
-/**
- * @brief Avvia il gioco automatico (AI).
- * @param tessere Array di tessere disponibili.
- * @param speciali Array di tessere speciali disponibili.
- * @param size_tessere Dimensione dell'array di tessere disponibili.
- * @param size_speciali Dimensione dell'array di tessere speciali disponibili.
+ * @brief Avvia una partita in modalità intelligenza artificiale.
+ *
+ * Avvia una partita in modalità intelligenza artificiale, con il computer che seleziona e posiziona automaticamente le tessere per ottenere il punteggio massimo.
+ *
+ * @param tessere Array di tessere normali.
+ * @param speciali Array di tessere speciali.
+ * @param size_tessere Dimensione dell'array di tessere normali.
+ * @param size_speciali Dimensione dell'array di tessere speciali.
  */
 void game_start_ai(Tessera *tessere, Tessera *speciali, int size_tessere, int size_speciali);
-//bool add_tessera(Row *row, Tessera new_tessera);
-//void add_special(Row *row,Tessera new_tessera);
-#endif
+
+
+#endif // LOGIC_H

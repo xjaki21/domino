@@ -8,10 +8,63 @@
 
 Row *create_row(){
   Row *new=(Row*)malloc(sizeof(Row));
+  if(!new) exit(EXIT_FAILURE);
   new->capacity=10;
   new->tessere=(Tessera*)malloc(sizeof(Tessera)*new->capacity);
-  new->size=0;
+  if(!new->tessere) exit(EXIT_FAILURE);
+  new->size=1;
 
+  return new;
+}
+
+Board *create_board(int max_size){
+  Board *new=(Board*)malloc(sizeof(Board));
+  if(!new)exit(EXIT_FAILURE);
+  new->size=1;
+  new->score=0;
+
+  new->rows=(Row*)malloc(sizeof(Row)*max_size);
+  if(!new->rows) exit(EXIT_FAILURE);
+  new->rows[0]=*create_row();
+  new->rows[0].size=0;
+  return new;
+}
+
+void free_board(Board *board){
+  for(int i=0;i<board->size;i++){
+    free(board->rows[i].tessere);
+  }
+  free(board);
+}
+
+Tessera *copy_tessere(Tessera *tessere,int size_tessere){
+  Tessera *new=(Tessera*)malloc(sizeof(Tessera)*size_tessere);
+  if(!new) exit(EXIT_FAILURE);
+  for(int i=0;i<size_tessere;i++){
+    new[i].n1=tessere[i].n1;
+    new[i].n2=tessere[i].n2;
+    new[i].num=tessere[i].num;
+    new[i].selected=tessere[i].selected;
+    new[i].vertical=tessere[i].vertical;
+  }
+  return new;
+}
+
+
+Board *copy_board(Board *board){
+  Board *new=create_board(10);
+  if(!new) exit(EXIT_FAILURE);
+
+  new->size=board->size;
+  new->score=board->score;
+  for(int i=0;i<board->size;i++){
+    //new->rows[i]=*create_row();
+
+    new->rows[i].tessere=copy_tessere(board->rows[i].tessere,board->rows[i].size);
+    new->rows[i].size=board->rows[i].size;
+    new->rows[i].capacity=board->rows[i].capacity;
+  }
+  
   return new;
 }
 
@@ -32,6 +85,7 @@ void extend_arr_tessere(Row *r){
 
 Tessera *create_arr_tessere(int size){
   Tessera *new=(Tessera*)malloc(sizeof(Tessera)*size);
+  if(!new)exit(EXIT_FAILURE);
   for(int i=0;i<size;i++){
     new[i].n1=-1;
     new[i].n2=-1;
@@ -62,18 +116,20 @@ bool match_right(Tessera a, Tessera b) {
 }
 
 //matrice che restituisce le possibili scelte
-int *scelte_possibili(Row *piano,int size,Tessera tessera,int *num_scelte){
+int *scelte_possibili(Board *board,Tessera tessera,int *num_scelte){
   
-  int *scelte=(int*)malloc(sizeof(int)*size*100);
+  int *scelte=(int*)malloc(sizeof(int)*1000);
+  if(!scelte)exit(EXIT_FAILURE);
+
   int k=0;
   /*
   int scelte={{1,2},
               {0,1},
               {1,1}}
   */
-  for(int i=0;i<size;i++){
-    Tessera *a=piano[i].tessere;
-    int a_size=piano[i].size;
+  for(int i=0;i<board->size;i++){
+    Tessera *a=board->rows[i].tessere;
+    int a_size=board->rows[i].size;
     for(int j=0;j<a_size;j++){
       if(a[j].selected){
         if((j==0 || !a[j-1].selected) && match_left(tessera,a[j])){
@@ -130,27 +186,27 @@ void print_disponibili(Tessera * tessere, Tessera * speciali, int size_tessere, 
   printf("\n");
 }
 
-int max_row(Row *piano,int size){
-  int max=piano[0].size;
-  for(int i=1;i<size;i++){
-    if(piano[i].size>max){
-      max=piano[i].size;
+int max_row(Board *board){
+  int max=board->rows[0].size;
+  for(int i=1;i<board->size;i++){
+    if(board->rows[i].size>max){
+      max=board->rows[i].size;
     }
   }
   return max;
 }
 
-void print_giocate(Row * piano, int size) {
+void print_giocate(Board *board) {
 
   printf("Tessere giocate:\n");
   printf("\t  ");
-  for(int i=0;i<max_row(piano,size);i++){
+  for(int i=0;i<max_row(board);i++){
     printf("%d\t  ",i);
   }
-  printf("%d\n",max_row(piano,size));
-  for(int i=0;i<size;i++){
-    Tessera *a=piano[i].tessere;
-    int size_a=piano[i].size;
+  printf("%d\n",max_row(board));
+  for(int i=0;i<board->size;i++){
+    Tessera *a=board->rows[i].tessere;
+    int size_a=board->rows[i].size;
     printf("%d\t",i);
     for(int j=0;j<size_a;j++){
       if(a[j].vertical && a[j].selected){
@@ -166,6 +222,24 @@ void print_giocate(Row * piano, int size) {
     printf("\n");
   }
   printf("\n\n");
+}
+
+int char_to_int(char*s){
+  int sum=0;
+  int sign=1;
+  int i=0;
+  if(s[0]=='-'){
+    sign=-1;
+    i=1;
+  }
+  while(i<strlen(s)){
+    int cifra=s[i]-48;
+    if(cifra<0 || cifra>=10) // se non è una cifra valida restituisco 0;
+      return 0;
+    sum=sum+cifra*pow(10,strlen(s)-i-1);
+    i++;
+  }
+  return sum*sign;
 }
 
 /*
@@ -189,9 +263,9 @@ Tessera * remove_tessera(Tessera * tessera, int *size, int index) {
   return new_arr;
 }
 
-void put_front_tessera(Row *piano,int size_piano,Row *r,Tessera tessera){
-  for(int i=0;i<size_piano;i++){
-    Row *row=&piano[i];
+void put_front_tessera(Board *board,Row *r,Tessera tessera){
+  for(int i=0;i<board->size;i++){
+    Row *row=&board->rows[i];
     extend_arr_tessere(row);
     for(int j=row->size-1;j>=0;j--){
       row->tessere[j+1]=row->tessere[j];
@@ -202,7 +276,7 @@ void put_front_tessera(Row *piano,int size_piano,Row *r,Tessera tessera){
     row->tessere[0].vertical=false;
     ++row->size;
   }
-  if(tessera.n2!=r->tessere[1].n1){
+  if(r->tessere[1].n1!=0 && tessera.n2!=r->tessere[1].n1){
     int n2=tessera.n2;
     tessera.n2=tessera.n1;
     tessera.n1=n2;
@@ -246,15 +320,15 @@ adiacente dopo averla incrementata di 1. Esempio: [1|6][6|3][11|11] diventa [2|1
 posizione e le sue cifre vegono sostituite con le cifre della tessera adiacente in ordine inverso. Esempio:
 [1|2][2|3][12|21] diventa [1|2][2|3][3|2]
 */
-void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tessera){
+void put_tessera_speciale(Board *board,Row *row,int pos,Tessera tessera){
   if(pos>=row->size){
     extend_arr_tessere(row);
     ++row->size;
   }
   if(tessera.n1==11){
     //sommo 1 a tutte le tessere
-    for(int i=0;i<size_piano;i++){
-      Row *r=&piano[i];
+    for(int i=0;i<board->size;i++){
+      Row *r=&board->rows[i];
       Tessera *tessere=r->tessere;
       for(int j=0;j<r->size;j++){
         //se 4%6=4 e 4+1=5, quindi va bene
@@ -285,7 +359,7 @@ void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tes
   }
   //se è zero inserisco normalmente
   if(pos<0){
-    put_front_tessera(piano,size_piano,row,tessera);
+    put_front_tessera(board,row,tessera);
     return;
   }
  // tessera.selected=true;
@@ -293,33 +367,17 @@ void put_tessera_speciale(Row *piano,int size_piano,Row *row,int pos,Tessera tes
 }
 
 
-int char_to_int(char*s){
-  int sum=0;
-  int sign=1;
-  int i=0;
-  if(s[0]=='-'){
-    sign=-1;
-    i=1;
-  }
-  while(i<strlen(s)){
-    int cifra=s[i]-48;
-    if(cifra<0 || cifra>=10) // se non è una cifra valida restituisco 0;
-      return 0;
-    sum=sum+cifra*pow(10,strlen(s)-i-1);
-    i++;
-  }
-  return sum*sign;
-}
 
-bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera){
-  Row *r_0=&piano[0];
+
+bool posiziona_tessera(Board *board,Tessera tessera){
+  Row *r_0=&board->rows[0];
   if(r_0->size==0){
     r_0->tessere[0]=tessera;
     r_0->size=1;
     return true;
   }
   int num_scelte=0;
-  int *scelte=scelte_possibili(piano,*size_piano,tessera,&num_scelte);
+  int *scelte=scelte_possibili(board,tessera,&num_scelte);
   int s;
   if(num_scelte<=0){
     return false;
@@ -340,26 +398,26 @@ bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera){
   }
   int pos=scelte[s*2+1]; //num col
   int num_row=scelte[s*2]; //num row
-  Row *r=&piano[num_row];
+  Row *r=&(board->rows[num_row]);
   //put_tessera()
   if(pos>=0){
     //put_first()
     if(is_special(tessera)){
-      put_tessera_speciale(piano,*size_piano,r,pos,tessera);
+      put_tessera_speciale(board,r,pos,tessera);
     }else{
       put_tessera(r,tessera,pos);
     }
   }else{ //pos=-1
     //put_tessera
     if(is_special(tessera)){
-      put_tessera_speciale(piano,*size_piano,r,pos,tessera);
+      put_tessera_speciale(board,r,pos,tessera);
     }else{
-      put_front_tessera(piano,*size_piano,r,tessera);
+      put_front_tessera(board,r,tessera);
     }
     pos=0;
   }
 
-  if(num_row+1>=*size_piano || !piano[num_row+1].tessere[pos].selected){
+  if(num_row+1>=board->size || !board->rows[num_row+1].tessere[pos].selected){
 
     char scelta=0;
     while(scelta!='v' && scelta!='h'){
@@ -367,12 +425,13 @@ bool posiziona_tessera(Row *piano,int *size_piano,Tessera tessera){
       scanf(" %c",&scelta);
     }
     if(scelta=='v'){
-      if(num_row+1>=*size_piano){
-        ++*size_piano;
-        piano[num_row+1].tessere=create_arr_tessere(r->size);
-        piano[num_row+1].size=r->size;
+      if(num_row+1>=board->size){
+        ++board->size;
+        //board->rows[num_row+1]=*create_row();
+        board->rows[num_row+1].tessere=create_arr_tessere(r->size);
+        board->rows[num_row+1].size=r->size;
       }
-      Row *under_row=&piano[num_row+1];
+      Row *under_row=&(board->rows[num_row+1]);
 
       if(r->size>under_row->size){
         int old_size=under_row->size;

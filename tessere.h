@@ -9,95 +9,125 @@
 
 /**
  * @struct Tessera
- * @brief Struttura che rappresenta una tessera con due numeri (n1 e n2).
+ * @brief Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.
  */
 typedef struct Tessera{
-  int n1;          ///< Primo numero sulla tessera.
-  int n2;          ///< Secondo numero sulla tessera.
-  bool selected;   ///< Flag che indica se la tessera è selezionata.
-  bool vertical;   ///< Flag che indica se la tessera è orientata verticalmente.
-  int num;         ///< Flag che indica il numero per l'interfaccia utente, quelli che scelgo da tastiera.
+  int n1;        /**< Primo numero della tessera. */
+  int n2;        /**< Secondo numero della tessera. */
+  int num;       /**< Numero identificativo della tessera. */
+  bool selected; /**< Indica se la tessera è stata selezionata. */
+  bool vertical; /**< Indica se la tessera è posizionata verticalmente. */
 } Tessera;
 
 /**
  * @struct Row
- * @brief Struttura che rappresenta una riga sulla scacchiera di gioco.
+ * @brief Rappresenta una riga della scacchiera di gioco con un array di tessere.
  */
-typedef struct Row{
-  Tessera *tessere; ///< Array di tessere nella riga.
-  int capacity;    ///< Capacità dell'array.
-  int size;        ///< Numero di tessere attualmente nella riga.
+typedef struct Row {
+  Tessera *tessere; /**< Array di tessere nella riga. */
+  int size;         /**< Numero effettivo di tessere nella riga. */
+  int capacity;     /**< Capacità massima dell'array di tessere. */
 } Row;
 
 /**
- * @brief Crea una nuova riga.
- * @return Un puntatore alla nuova riga creata.
+ * @struct Board
+ * @brief Rappresenta la scacchiera di gioco con un array di righe.
+ */
+typedef struct Board {
+  Row *rows; /**< Array di righe della scacchiera. */
+  int size;  /**< Numero effettivo di righe nella scacchiera. */
+  int score; /**< Punteggio del giocatore. */
+} Board;
+
+/**
+ * @brief Crea una nuova riga della scacchiera.
+ * @return Puntatore alla nuova riga creata.
  */
 Row *create_row();
 
 /**
- * @brief Estende l'array di tessere in una riga.
+ * @brief Crea una nuova scacchiera di gioco.
+ * @param max_size Massima dimensione della scacchiera.
+ * @return Puntatore alla nuova scacchiera creato.
+ */
+Board *create_board(int max_size);
+
+/**
+ * @brief Dealloca la memoria utilizzata dalla scacchiera di gioco.
+ * @param board Puntatore alla scacchiera di gioco da deallocare.
+ */
+void free_board(Board *board);
+
+/**
+ * @brief Copia le tessere da un array a un altro.
+ * @param tessere Array di tessere da copiare.
+ * @param size_tessere Dimensione dell'array di tessere.
+ * @return Puntatore al nuovo array di tessere copiate.
+ */
+Tessera *copy_tessere(Tessera *tessere, int size_tessere);
+
+/**
+ * @brief Copia una intera scacchiera di gioco.
+ * @param board Puntatore alla scacchiera da copiare.
+ * @return Puntatore alla nuova scacchiera copiato.
+ */
+Board *copy_board(Board *board);
+
+/**
+ * @brief Estende l'array di tessere di una riga se necessario.
  * @param r Puntatore alla riga.
  */
 void extend_arr_tessere(Row *r);
 
 /**
- * @brief Crea un array di tessere.
- * @param size Numero di tessere da creare.
- * @return Un puntatore all'array di tessere.
+ * @brief Crea un nuovo array di tessere con dimensione specificata.
+ * @param size Dimensione dell'array di tessere.
+ * @return Puntatore al nuovo array di tessere creato.
  */
 Tessera *create_arr_tessere(int size);
 
 /**
- * @brief Converte una tessera in una rappresentazione stringa.
- * @param tessera La tessera da convertire.
- * @return Una stringa allocata dinamicamente che rappresenta la tessera.
- */
-char *string_tessera(Tessera tessera);
-
-/**
- * @brief Verifica se una tessera è una tessera speciale.
- * @param a La tessera da verificare.
- * @return true se la tessera è speciale, false altrimenti.
+ * @brief Verifica se una tessera è speciale.
+ * @param a Tessera da verificare.
+ * @return True se la tessera è speciale, False altrimenti.
  */
 bool is_special(Tessera a);
 
 /**
- * @brief Verifica se due tessere possono essere abbinate sul lato sinistro.
+ * @brief Verifica se due tessere possono essere accostate a sinistra.
  * @param a Prima tessera.
  * @param b Seconda tessera.
- * @return true se le tessere possono essere abbinate a sinistra, false altrimenti.
+ * @return True se le tessere possono essere accostate a sinistra, False altrimenti.
  */
 bool match_left(Tessera a, Tessera b);
 
 /**
- * @brief Verifica se due tessere possono essere abbinate sul lato destro.
+ * @brief Verifica se due tessere possono essere accostate a destra.
  * @param a Prima tessera.
  * @param b Seconda tessera.
- * @return true se le tessere possono essere abbinate a destra, false altrimenti.
+ * @return True se le tessere possono essere accostate a destra, False altrimenti.
  */
 bool match_right(Tessera a, Tessera b);
 
 /**
- * @brief Genera un array di scelte possibili per posizionare una tessera sulla scacchiera di gioco.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size Dimensione dell'array di righe.
- * @param tessera La tessera da posizionare.
- * @param num_scelte Parametro di output per memorizzare il numero di scelte.
- * @return Un array allocato dinamicamente di interi che rappresenta le scelte.
+ * @brief Restituisce le posizioni possibili per accostare una tessera.
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param tessera Tessera da accostare.
+ * @param num_scelte Puntatore alla variabile che conterrà il numero di scelte possibili.
+ * @return Puntatore all'array di posizioni possibili.
  */
-int *scelte_possibili(Row *piano, int size, Tessera tessera, int *num_scelte);
+int *scelte_possibili(Board *board, Tessera tessera, int *num_scelte);
 
 /**
- * @brief Stampa l'array di scelte per posizionare una tessera.
- * @param m Array di scelte.
- * @param size Dimensione dell'array.
+ * @brief Stampa le scelte possibili per accostare una tessera.
+ * @param m Array di posizioni possibili.
+ * @param size Dimensione dell'array di posizioni.
  */
 void print_scelte(int *m, int size);
 
 /**
- * @brief Stampa le tessere disponibili e le tessere speciali.
- * @param tessere Array di tessere.
+ * @brief Stampa le tessere disponibili nella scacchiera di gioco.
+ * @param tessere Array di tessere nella scacchiera.
  * @param speciali Array di tessere speciali.
  * @param size_tessere Dimensione dell'array di tessere.
  * @param size_speciali Dimensione dell'array di tessere speciali.
@@ -105,70 +135,65 @@ void print_scelte(int *m, int size);
 void print_disponibili(Tessera *tessere, Tessera *speciali, int size_tessere, int size_speciali);
 
 /**
- * @brief Trova la dimensione massima tra tutte le righe nella scacchiera di gioco.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size Dimensione dell'array di righe.
- * @return La dimensione massima tra tutte le righe.
+ * @brief Restituisce il massimo numero di tessere in una riga della scacchiera.
+ * @param board Puntatore alla scacchiera di gioco.
+ * @return Massimo numero di tessere in una riga.
  */
-int max_row(Row *piano, int size);
+int max_row(Board *board);
 
 /**
- * @brief Stampa lo stato attuale della scacchiera di gioco.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size Dimensione dell'array di righe.
+ * @brief Stampa le tessere giocate nella scacchiera di gioco.
+ * @param board Puntatore alla scacchiera di gioco.
  */
-void print_giocate(Row *piano, int size);
-
-/**
- * @brief Rimuove una tessera da un array di tessere.
- * @param tessera Array di tessere.
- * @param size Puntatore alla dimensione dell'array.
- * @param index Indice della tessera da rimuovere.
- * @return Un nuovo array di tessere allocato dinamicamente con la tessera specificata rimossa.
- */
-Tessera *remove_tessera(Tessera *tessera, int *size, int index);
-
-/**
- * @brief Posiziona una tessera all'inizio di una riga sulla scacchiera di gioco.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size_piano Puntatore alla dimensione dell'array di righe.
- * @param r Puntatore alla riga in cui posizionare la tessera.
- * @param tessera La tessera da posizionare.
- */
-void put_front_tessera(Row *piano, int size_piano, Row *r, Tessera tessera);
-
-/**
- * @brief Posiziona una tessera in una posizione specificata all'interno di una riga sulla scacchiera di gioco.
- * @param r Puntatore alla riga in cui posizionare la tessera.
- * @param tessera La tessera da posizionare.
- * @param pos Posizione in cui posizionare la tessera.
- */
-void put_tessera(Row *r, Tessera tessera, int pos);
-
-/**
- * @brief Posiziona una tessera speciale in una posizione specificata all'interno di una riga sulla scacchiera di gioco.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size_piano Puntatore alla dimensione dell'array di righe.
- * @param row Puntatore alla riga in cui posizionare la tessera speciale.
- * @param pos Posizione in cui posizionare la tessera speciale.
- * @param tessera La tessera speciale da posizionare.
- */
-void put_tessera_speciale(Row *piano, int size_piano, Row *row, int pos, Tessera tessera);
+void print_giocate(Board *board);
 
 /**
  * @brief Converte una stringa in un intero.
- * @param s La stringa da convertire.
- * @return Il valore intero ottenuto dalla conversione.
+ * @param s Stringa da convertire.
+ * @return Valore intero convertito.
  */
 int char_to_int(char *s);
 
 /**
- * @brief Verifica se è possibile posizionare una tessera sulla scacchiera di gioco e la posiziona.
- * @param piano Array di righe che rappresenta la scacchiera di gioco.
- * @param size_piano Puntatore alla dimensione dell'array di righe.
- * @param tessera La tessera da posizionare.
- * @return true se la tessera è stata posizionata con successo, false altrimenti.
+ * @brief Rimuove l'elemento n dall'array di tessera.
+ * @param tessera Array di tessere.
+ * @param size Puntatore alla dimensione dell'array di tessere.
+ * @param index Indice dell'elemento da rimuovere.
+ * @return Nuovo array di tessere senza l'elemento rimosso.
  */
-bool posiziona_tessera(Row *piano, int *size_piano, Tessera tessera);
+Tessera *remove_tessera(Tessera *tessera, int *size, int index);
 
-#endif // TESSERE_H
+/**
+ * @brief Inserisce una tessera all'inizio della riga.
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param r Puntatore alla riga.
+ * @param tessera Tessera da inserire.
+ */
+void put_front_tessera(Board *board, Row *r, Tessera tessera);
+
+/**
+ * @brief Inserisce una tessera in una posizione specifica della riga.
+ * @param r Puntatore alla riga.
+ * @param tessera Tessera da inserire.
+ * @param pos Posizione in cui inserire la tessera.
+ */
+void put_tessera(Row *r, Tessera tessera, int pos);
+
+/**
+ * @brief Inserisce una tessera speciale in una posizione specifica della riga.
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param row Puntatore alla riga.
+ * @param pos Posizione in cui inserire la tessera.
+ * @param tessera Tessera speciale da inserire.
+ */
+void put_tessera_speciale(Board *board, Row *row, int pos, Tessera tessera);
+
+/**
+ * @brief Posiziona una tessera nella scacchiera di gioco.
+ * @param board Puntatore alla scacchiera di gioco.
+ * @param tessera Tessera da posizionare.
+ * @return True se la tessera è stata posizionata con successo, False altrimenti.
+ */
+bool posiziona_tessera(Board *board, Tessera tessera);
+
+#endif  // TESSERE_H

@@ -69,37 +69,103 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Struttura che rappresenta una tessera con due numeri (n1 e n2).  
+<p>Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.  
  <a href="structTessera.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tessere_8h_source.html">tessere.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a088f0f1bbf9fdd8e684bab3313a25e8b"><td class="memItemLeft" align="right" valign="top"><a id="a088f0f1bbf9fdd8e684bab3313a25e8b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#a088f0f1bbf9fdd8e684bab3313a25e8b">n1</a></td></tr>
-<tr class="memdesc:a088f0f1bbf9fdd8e684bab3313a25e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primo numero sulla tessera. <br /></td></tr>
+<tr class="memitem:a088f0f1bbf9fdd8e684bab3313a25e8b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#a088f0f1bbf9fdd8e684bab3313a25e8b">n1</a></td></tr>
 <tr class="separator:a088f0f1bbf9fdd8e684bab3313a25e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee82985e3acfd9d352a679de43760cfe"><td class="memItemLeft" align="right" valign="top"><a id="aee82985e3acfd9d352a679de43760cfe"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#aee82985e3acfd9d352a679de43760cfe">n2</a></td></tr>
-<tr class="memdesc:aee82985e3acfd9d352a679de43760cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secondo numero sulla tessera. <br /></td></tr>
+<tr class="memitem:aee82985e3acfd9d352a679de43760cfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#aee82985e3acfd9d352a679de43760cfe">n2</a></td></tr>
 <tr class="separator:aee82985e3acfd9d352a679de43760cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac70a4116e5d5f36d6754e4d03e043aec"><td class="memItemLeft" align="right" valign="top"><a id="ac70a4116e5d5f36d6754e4d03e043aec"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#ac70a4116e5d5f36d6754e4d03e043aec">selected</a></td></tr>
-<tr class="memdesc:ac70a4116e5d5f36d6754e4d03e043aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag che indica se la tessera è selezionata. <br /></td></tr>
-<tr class="separator:ac70a4116e5d5f36d6754e4d03e043aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf503ed02eb6dc33957030cbaa147f0c"><td class="memItemLeft" align="right" valign="top"><a id="abf503ed02eb6dc33957030cbaa147f0c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#abf503ed02eb6dc33957030cbaa147f0c">vertical</a></td></tr>
-<tr class="memdesc:abf503ed02eb6dc33957030cbaa147f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag che indica se la tessera è orientata verticalmente. <br /></td></tr>
-<tr class="separator:abf503ed02eb6dc33957030cbaa147f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2faad401b5c237b3ba7b28781f2278a"><td class="memItemLeft" align="right" valign="top"><a id="ab2faad401b5c237b3ba7b28781f2278a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#ab2faad401b5c237b3ba7b28781f2278a">num</a></td></tr>
-<tr class="memdesc:ab2faad401b5c237b3ba7b28781f2278a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag che indica il numero per l'interfaccia utente, quelli che scelgo da tastiera. <br /></td></tr>
+<tr class="memitem:ab2faad401b5c237b3ba7b28781f2278a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#ab2faad401b5c237b3ba7b28781f2278a">num</a></td></tr>
 <tr class="separator:ab2faad401b5c237b3ba7b28781f2278a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac70a4116e5d5f36d6754e4d03e043aec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#ac70a4116e5d5f36d6754e4d03e043aec">selected</a></td></tr>
+<tr class="separator:ac70a4116e5d5f36d6754e4d03e043aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf503ed02eb6dc33957030cbaa147f0c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html#abf503ed02eb6dc33957030cbaa147f0c">vertical</a></td></tr>
+<tr class="separator:abf503ed02eb6dc33957030cbaa147f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Struttura che rappresenta una tessera con due numeri (n1 e n2). </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p>Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a088f0f1bbf9fdd8e684bab3313a25e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088f0f1bbf9fdd8e684bab3313a25e8b">&#9670;&nbsp;</a></span>n1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Tessera::n1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Primo numero della tessera. </p>
+
+</div>
+</div>
+<a id="aee82985e3acfd9d352a679de43760cfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee82985e3acfd9d352a679de43760cfe">&#9670;&nbsp;</a></span>n2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Tessera::n2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Secondo numero della tessera. </p>
+
+</div>
+</div>
+<a id="ab2faad401b5c237b3ba7b28781f2278a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2faad401b5c237b3ba7b28781f2278a">&#9670;&nbsp;</a></span>num</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Tessera::num</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Numero identificativo della tessera. </p>
+
+</div>
+</div>
+<a id="ac70a4116e5d5f36d6754e4d03e043aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac70a4116e5d5f36d6754e4d03e043aec">&#9670;&nbsp;</a></span>selected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tessera::selected</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Indica se la tessera è stata selezionata. </p>
+
+</div>
+</div>
+<a id="abf503ed02eb6dc33957030cbaa147f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf503ed02eb6dc33957030cbaa147f0c">&#9670;&nbsp;</a></span>vertical</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tessera::vertical</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Indica se la tessera è posizionata verticalmente. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="tessere_8h_source.html">tessere.h</a></li>
 </ul>
 </div><!-- contents -->

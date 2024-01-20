@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertical_39',['vertical',['../structTessera.html#abf503ed02eb6dc33957030cbaa147f0c',1,'Tessera']]]
+  ['update_5fscreen_43',['update_screen',['../logic_8h.html#a1fc0d9ab93d94f4086e4e5711edb474b',1,'logic.c']]]
 ];

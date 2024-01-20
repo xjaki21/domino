@@ -24,13 +24,17 @@ int main() {
   scanf("%d", &size_tessere);
   
   if(size_tessere>0){
+
     tessere = (Tessera * ) realloc(tessere, sizeof(Tessera) * size_tessere);
     init(tessere,size_tessere);
     // tessere giocate/scelte dal giocatore, il numero viene aggiornato ogni qualvolta che si aggiunge una tessera
+    /*
     Row *piano=(Row*)malloc(sizeof(Row)*size_tessere);
     piano[0]=*create_row();
     piano[0].size=0;
     int size_piano=1;
+    */
+
 
     char mod=0;
     printf("Modalita':\n1.Interattiva\n2.AI\n");
@@ -40,8 +44,10 @@ int main() {
       mod=mod-48;
     }while(mod!=1 && mod!=2);
 
-    if(mod==1)
-      game_start(tessere,piano,speciali,&size_tessere,&size_piano,&size_speciali);
+    if(mod==1){
+      Board *board=create_board(size_tessere);
+      game_start(board,tessere,speciali,size_tessere,size_speciali);
+    }
     if(mod==2){
       game_start_ai(tessere,speciali,size_tessere,size_speciali);
     }

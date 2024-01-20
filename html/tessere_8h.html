@@ -83,10 +83,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTessera.html">Tessera</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struttura che rappresenta una tessera con due numeri (n1 e n2).  <a href="structTessera.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.  <a href="structTessera.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRow.html">Row</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struttura che rappresenta una riga sulla scacchiera di gioco.  <a href="structRow.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rappresenta una riga della scacchiera di gioco con un array di tessere.  <a href="structRow.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBoard.html">Board</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rappresenta la scacchiera di gioco con un array di righe.  <a href="structBoard.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -97,63 +100,75 @@ typedef struct <a class="el" href="structTessera.html">Tessera</a>&#160;</td><td
 <tr class="memitem:a7bc1f54d1bc7d1c5c3faa1190f194b07"><td class="memItemLeft" align="right" valign="top"><a id="a7bc1f54d1bc7d1c5c3faa1190f194b07"></a>
 typedef struct <a class="el" href="structRow.html">Row</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Row</b></td></tr>
 <tr class="separator:a7bc1f54d1bc7d1c5c3faa1190f194b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23ebcc73fdb69bb37ce7dc92a2a3d008"><td class="memItemLeft" align="right" valign="top"><a id="a23ebcc73fdb69bb37ce7dc92a2a3d008"></a>
+typedef struct <a class="el" href="structBoard.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Board</b></td></tr>
+<tr class="separator:a23ebcc73fdb69bb37ce7dc92a2a3d008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a03a6abda1fbee68e7663115270f94d24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRow.html">Row</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a03a6abda1fbee68e7663115270f94d24">create_row</a> ()</td></tr>
-<tr class="memdesc:a03a6abda1fbee68e7663115270f94d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea una nuova riga.  <a href="tessere_8h.html#a03a6abda1fbee68e7663115270f94d24">More...</a><br /></td></tr>
+<tr class="memdesc:a03a6abda1fbee68e7663115270f94d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea una nuova riga della scacchiera.  <a href="tessere_8h.html#a03a6abda1fbee68e7663115270f94d24">More...</a><br /></td></tr>
 <tr class="separator:a03a6abda1fbee68e7663115270f94d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec941ecac87ec9f260387a64ecf48fbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structBoard.html">Board</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#aec941ecac87ec9f260387a64ecf48fbb">create_board</a> (int max_size)</td></tr>
+<tr class="memdesc:aec941ecac87ec9f260387a64ecf48fbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea una nuova scacchiera di gioco.  <a href="tessere_8h.html#aec941ecac87ec9f260387a64ecf48fbb">More...</a><br /></td></tr>
+<tr class="separator:aec941ecac87ec9f260387a64ecf48fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66c023a25a1e14ad069a96b4d42baed0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a66c023a25a1e14ad069a96b4d42baed0">free_board</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:a66c023a25a1e14ad069a96b4d42baed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dealloca la memoria utilizzata dalla scacchiera di gioco.  <a href="tessere_8h.html#a66c023a25a1e14ad069a96b4d42baed0">More...</a><br /></td></tr>
+<tr class="separator:a66c023a25a1e14ad069a96b4d42baed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe1a1b4421f405b997baf580b24542e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTessera.html">Tessera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#abe1a1b4421f405b997baf580b24542e9">copy_tessere</a> (<a class="el" href="structTessera.html">Tessera</a> *tessere, int size_tessere)</td></tr>
+<tr class="memdesc:abe1a1b4421f405b997baf580b24542e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia le tessere da un array a un altro.  <a href="tessere_8h.html#abe1a1b4421f405b997baf580b24542e9">More...</a><br /></td></tr>
+<tr class="separator:abe1a1b4421f405b997baf580b24542e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284c0b7481f401f3c015224ef483f8ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structBoard.html">Board</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a284c0b7481f401f3c015224ef483f8ec">copy_board</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:a284c0b7481f401f3c015224ef483f8ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia una intera scacchiera di gioco.  <a href="tessere_8h.html#a284c0b7481f401f3c015224ef483f8ec">More...</a><br /></td></tr>
+<tr class="separator:a284c0b7481f401f3c015224ef483f8ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43e9af00e975c9e1f1155fe03ad06142"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a43e9af00e975c9e1f1155fe03ad06142">extend_arr_tessere</a> (<a class="el" href="structRow.html">Row</a> *r)</td></tr>
-<tr class="memdesc:a43e9af00e975c9e1f1155fe03ad06142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estende l'array di tessere in una riga.  <a href="tessere_8h.html#a43e9af00e975c9e1f1155fe03ad06142">More...</a><br /></td></tr>
+<tr class="memdesc:a43e9af00e975c9e1f1155fe03ad06142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estende l'array di tessere di una riga se necessario.  <a href="tessere_8h.html#a43e9af00e975c9e1f1155fe03ad06142">More...</a><br /></td></tr>
 <tr class="separator:a43e9af00e975c9e1f1155fe03ad06142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77273a0ac680e1a2b2ea6f8e92f8dc58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTessera.html">Tessera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a77273a0ac680e1a2b2ea6f8e92f8dc58">create_arr_tessere</a> (int size)</td></tr>
-<tr class="memdesc:a77273a0ac680e1a2b2ea6f8e92f8dc58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un array di tessere.  <a href="tessere_8h.html#a77273a0ac680e1a2b2ea6f8e92f8dc58">More...</a><br /></td></tr>
+<tr class="memdesc:a77273a0ac680e1a2b2ea6f8e92f8dc58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un nuovo array di tessere con dimensione specificata.  <a href="tessere_8h.html#a77273a0ac680e1a2b2ea6f8e92f8dc58">More...</a><br /></td></tr>
 <tr class="separator:a77273a0ac680e1a2b2ea6f8e92f8dc58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a458ee6f5c2684719c2d4f05bcb284c93"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a458ee6f5c2684719c2d4f05bcb284c93">string_tessera</a> (<a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
-<tr class="memdesc:a458ee6f5c2684719c2d4f05bcb284c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converte una tessera in una rappresentazione stringa.  <a href="tessere_8h.html#a458ee6f5c2684719c2d4f05bcb284c93">More...</a><br /></td></tr>
-<tr class="separator:a458ee6f5c2684719c2d4f05bcb284c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67485a7580384cf445ae6b64beecdf37"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a67485a7580384cf445ae6b64beecdf37">is_special</a> (<a class="el" href="structTessera.html">Tessera</a> a)</td></tr>
-<tr class="memdesc:a67485a7580384cf445ae6b64beecdf37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se una tessera è una tessera speciale.  <a href="tessere_8h.html#a67485a7580384cf445ae6b64beecdf37">More...</a><br /></td></tr>
+<tr class="memdesc:a67485a7580384cf445ae6b64beecdf37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se una tessera è speciale.  <a href="tessere_8h.html#a67485a7580384cf445ae6b64beecdf37">More...</a><br /></td></tr>
 <tr class="separator:a67485a7580384cf445ae6b64beecdf37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7651749f0e6c4fcbbed264205a30eafa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a7651749f0e6c4fcbbed264205a30eafa">match_left</a> (<a class="el" href="structTessera.html">Tessera</a> a, <a class="el" href="structTessera.html">Tessera</a> b)</td></tr>
-<tr class="memdesc:a7651749f0e6c4fcbbed264205a30eafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se due tessere possono essere abbinate sul lato sinistro.  <a href="tessere_8h.html#a7651749f0e6c4fcbbed264205a30eafa">More...</a><br /></td></tr>
+<tr class="memdesc:a7651749f0e6c4fcbbed264205a30eafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se due tessere possono essere accostate a sinistra.  <a href="tessere_8h.html#a7651749f0e6c4fcbbed264205a30eafa">More...</a><br /></td></tr>
 <tr class="separator:a7651749f0e6c4fcbbed264205a30eafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee53fac254138f383ffee228cf364437"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#aee53fac254138f383ffee228cf364437">match_right</a> (<a class="el" href="structTessera.html">Tessera</a> a, <a class="el" href="structTessera.html">Tessera</a> b)</td></tr>
-<tr class="memdesc:aee53fac254138f383ffee228cf364437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se due tessere possono essere abbinate sul lato destro.  <a href="tessere_8h.html#aee53fac254138f383ffee228cf364437">More...</a><br /></td></tr>
+<tr class="memdesc:aee53fac254138f383ffee228cf364437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se due tessere possono essere accostate a destra.  <a href="tessere_8h.html#aee53fac254138f383ffee228cf364437">More...</a><br /></td></tr>
 <tr class="separator:aee53fac254138f383ffee228cf364437"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a984614f2789e46cf63228dd30f5d00c5"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a984614f2789e46cf63228dd30f5d00c5">scelte_possibili</a> (<a class="el" href="structRow.html">Row</a> *piano, int size, <a class="el" href="structTessera.html">Tessera</a> tessera, int *num_scelte)</td></tr>
-<tr class="memdesc:a984614f2789e46cf63228dd30f5d00c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un array di scelte possibili per posizionare una tessera sulla scacchiera di gioco.  <a href="tessere_8h.html#a984614f2789e46cf63228dd30f5d00c5">More...</a><br /></td></tr>
-<tr class="separator:a984614f2789e46cf63228dd30f5d00c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa66967007935ea49898953194bdd634d"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#aa66967007935ea49898953194bdd634d">scelte_possibili</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="structTessera.html">Tessera</a> tessera, int *num_scelte)</td></tr>
+<tr class="memdesc:aa66967007935ea49898953194bdd634d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce le posizioni possibili per accostare una tessera.  <a href="tessere_8h.html#aa66967007935ea49898953194bdd634d">More...</a><br /></td></tr>
+<tr class="separator:aa66967007935ea49898953194bdd634d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecb16d6b825f375288603d9943854afb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#aecb16d6b825f375288603d9943854afb">print_scelte</a> (int *m, int size)</td></tr>
-<tr class="memdesc:aecb16d6b825f375288603d9943854afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa l'array di scelte per posizionare una tessera.  <a href="tessere_8h.html#aecb16d6b825f375288603d9943854afb">More...</a><br /></td></tr>
+<tr class="memdesc:aecb16d6b825f375288603d9943854afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa le scelte possibili per accostare una tessera.  <a href="tessere_8h.html#aecb16d6b825f375288603d9943854afb">More...</a><br /></td></tr>
 <tr class="separator:aecb16d6b825f375288603d9943854afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5555b1b36e0498b9e0a68b55d858692a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a5555b1b36e0498b9e0a68b55d858692a">print_disponibili</a> (<a class="el" href="structTessera.html">Tessera</a> *tessere, <a class="el" href="structTessera.html">Tessera</a> *speciali, int size_tessere, int size_speciali)</td></tr>
-<tr class="memdesc:a5555b1b36e0498b9e0a68b55d858692a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa le tessere disponibili e le tessere speciali.  <a href="tessere_8h.html#a5555b1b36e0498b9e0a68b55d858692a">More...</a><br /></td></tr>
+<tr class="memdesc:a5555b1b36e0498b9e0a68b55d858692a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa le tessere disponibili nella scacchiera di gioco.  <a href="tessere_8h.html#a5555b1b36e0498b9e0a68b55d858692a">More...</a><br /></td></tr>
 <tr class="separator:a5555b1b36e0498b9e0a68b55d858692a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3d2c8fa08b72269d285324969e118c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#adc3d2c8fa08b72269d285324969e118c">max_row</a> (<a class="el" href="structRow.html">Row</a> *piano, int size)</td></tr>
-<tr class="memdesc:adc3d2c8fa08b72269d285324969e118c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trova la dimensione massima tra tutte le righe nella scacchiera di gioco.  <a href="tessere_8h.html#adc3d2c8fa08b72269d285324969e118c">More...</a><br /></td></tr>
-<tr class="separator:adc3d2c8fa08b72269d285324969e118c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70f58aed201144bc1093cf50ae0e5ea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a70f58aed201144bc1093cf50ae0e5ea5">print_giocate</a> (<a class="el" href="structRow.html">Row</a> *piano, int size)</td></tr>
-<tr class="memdesc:a70f58aed201144bc1093cf50ae0e5ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa lo stato attuale della scacchiera di gioco.  <a href="tessere_8h.html#a70f58aed201144bc1093cf50ae0e5ea5">More...</a><br /></td></tr>
-<tr class="separator:a70f58aed201144bc1093cf50ae0e5ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1375372f7f66ec723bd67d65b9f61faf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTessera.html">Tessera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a1375372f7f66ec723bd67d65b9f61faf">remove_tessera</a> (<a class="el" href="structTessera.html">Tessera</a> *tessera, int *size, int index)</td></tr>
-<tr class="memdesc:a1375372f7f66ec723bd67d65b9f61faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rimuove una tessera da un array di tessere.  <a href="tessere_8h.html#a1375372f7f66ec723bd67d65b9f61faf">More...</a><br /></td></tr>
-<tr class="separator:a1375372f7f66ec723bd67d65b9f61faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94e23d66917b020362886fd4f10e7101"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a94e23d66917b020362886fd4f10e7101">put_front_tessera</a> (<a class="el" href="structRow.html">Row</a> *piano, int size_piano, <a class="el" href="structRow.html">Row</a> *r, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
-<tr class="memdesc:a94e23d66917b020362886fd4f10e7101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posiziona una tessera all'inizio di una riga sulla scacchiera di gioco.  <a href="tessere_8h.html#a94e23d66917b020362886fd4f10e7101">More...</a><br /></td></tr>
-<tr class="separator:a94e23d66917b020362886fd4f10e7101"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a734f142bede49200ac43c9fddb8b3060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a734f142bede49200ac43c9fddb8b3060">put_tessera</a> (<a class="el" href="structRow.html">Row</a> *r, <a class="el" href="structTessera.html">Tessera</a> tessera, int pos)</td></tr>
-<tr class="memdesc:a734f142bede49200ac43c9fddb8b3060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posiziona una tessera in una posizione specificata all'interno di una riga sulla scacchiera di gioco.  <a href="tessere_8h.html#a734f142bede49200ac43c9fddb8b3060">More...</a><br /></td></tr>
-<tr class="separator:a734f142bede49200ac43c9fddb8b3060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92023f92bbcc6d7867c9942dd89b5af7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a92023f92bbcc6d7867c9942dd89b5af7">put_tessera_speciale</a> (<a class="el" href="structRow.html">Row</a> *piano, int size_piano, <a class="el" href="structRow.html">Row</a> *row, int pos, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
-<tr class="memdesc:a92023f92bbcc6d7867c9942dd89b5af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posiziona una tessera speciale in una posizione specificata all'interno di una riga sulla scacchiera di gioco.  <a href="tessere_8h.html#a92023f92bbcc6d7867c9942dd89b5af7">More...</a><br /></td></tr>
-<tr class="separator:a92023f92bbcc6d7867c9942dd89b5af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e4b51a21eb4daa14387c8f29167278"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#af9e4b51a21eb4daa14387c8f29167278">max_row</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:af9e4b51a21eb4daa14387c8f29167278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce il massimo numero di tessere in una riga della scacchiera.  <a href="tessere_8h.html#af9e4b51a21eb4daa14387c8f29167278">More...</a><br /></td></tr>
+<tr class="separator:af9e4b51a21eb4daa14387c8f29167278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37f86ad7438f43fae865ab3c9ea134ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a37f86ad7438f43fae865ab3c9ea134ff">print_giocate</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:a37f86ad7438f43fae865ab3c9ea134ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stampa le tessere giocate nella scacchiera di gioco.  <a href="tessere_8h.html#a37f86ad7438f43fae865ab3c9ea134ff">More...</a><br /></td></tr>
+<tr class="separator:a37f86ad7438f43fae865ab3c9ea134ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad941bb431e900f49f1af85d316566c44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#ad941bb431e900f49f1af85d316566c44">char_to_int</a> (char *s)</td></tr>
 <tr class="memdesc:ad941bb431e900f49f1af85d316566c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converte una stringa in un intero.  <a href="tessere_8h.html#ad941bb431e900f49f1af85d316566c44">More...</a><br /></td></tr>
 <tr class="separator:ad941bb431e900f49f1af85d316566c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0a007a9d91d0bd6cad6af7b86212805"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#aa0a007a9d91d0bd6cad6af7b86212805">posiziona_tessera</a> (<a class="el" href="structRow.html">Row</a> *piano, int *size_piano, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
-<tr class="memdesc:aa0a007a9d91d0bd6cad6af7b86212805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se è possibile posizionare una tessera sulla scacchiera di gioco e la posiziona.  <a href="tessere_8h.html#aa0a007a9d91d0bd6cad6af7b86212805">More...</a><br /></td></tr>
-<tr class="separator:aa0a007a9d91d0bd6cad6af7b86212805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1375372f7f66ec723bd67d65b9f61faf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTessera.html">Tessera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a1375372f7f66ec723bd67d65b9f61faf">remove_tessera</a> (<a class="el" href="structTessera.html">Tessera</a> *tessera, int *size, int index)</td></tr>
+<tr class="memdesc:a1375372f7f66ec723bd67d65b9f61faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rimuove l'elemento n dall'array di tessera.  <a href="tessere_8h.html#a1375372f7f66ec723bd67d65b9f61faf">More...</a><br /></td></tr>
+<tr class="separator:a1375372f7f66ec723bd67d65b9f61faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a330a505fbc4f88e292606021542fa8a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a330a505fbc4f88e292606021542fa8a0">put_front_tessera</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="structRow.html">Row</a> *r, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
+<tr class="memdesc:a330a505fbc4f88e292606021542fa8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserisce una tessera all'inizio della riga.  <a href="tessere_8h.html#a330a505fbc4f88e292606021542fa8a0">More...</a><br /></td></tr>
+<tr class="separator:a330a505fbc4f88e292606021542fa8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734f142bede49200ac43c9fddb8b3060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a734f142bede49200ac43c9fddb8b3060">put_tessera</a> (<a class="el" href="structRow.html">Row</a> *r, <a class="el" href="structTessera.html">Tessera</a> tessera, int pos)</td></tr>
+<tr class="memdesc:a734f142bede49200ac43c9fddb8b3060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserisce una tessera in una posizione specifica della riga.  <a href="tessere_8h.html#a734f142bede49200ac43c9fddb8b3060">More...</a><br /></td></tr>
+<tr class="separator:a734f142bede49200ac43c9fddb8b3060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8894f0cd4047141681bc877561ca5275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a8894f0cd4047141681bc877561ca5275">put_tessera_speciale</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="structRow.html">Row</a> *row, int pos, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
+<tr class="memdesc:a8894f0cd4047141681bc877561ca5275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserisce una tessera speciale in una posizione specifica della riga.  <a href="tessere_8h.html#a8894f0cd4047141681bc877561ca5275">More...</a><br /></td></tr>
+<tr class="separator:a8894f0cd4047141681bc877561ca5275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90fecb76e0d9c4f1ce4ba21ce1a2b3f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tessere_8h.html#a90fecb76e0d9c4f1ce4ba21ce1a2b3f3">posiziona_tessera</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="structTessera.html">Tessera</a> tessera)</td></tr>
+<tr class="memdesc:a90fecb76e0d9c4f1ce4ba21ce1a2b3f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posiziona una tessera nella scacchiera di gioco.  <a href="tessere_8h.html#a90fecb76e0d9c4f1ce4ba21ce1a2b3f3">More...</a><br /></td></tr>
+<tr class="separator:a90fecb76e0d9c4f1ce4ba21ce1a2b3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File header contenente le funzioni e le strutture per la gestione di una scacchiera di tessere. </p>
@@ -177,11 +192,76 @@ Functions</h2></td></tr>
 <p>Converte una stringa in un intero. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>La stringa da convertire. </td></tr>
+    <tr><td class="paramname">s</td><td>Stringa da convertire. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Il valore intero ottenuto dalla conversione. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Valore intero convertito. </dd></dl>
+
+</div>
+</div>
+<a id="a284c0b7481f401f3c015224ef483f8ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284c0b7481f401f3c015224ef483f8ec">&#9670;&nbsp;</a></span>copy_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBoard.html">Board</a>* copy_board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copia una intera scacchiera di gioco. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera da copiare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore alla nuova scacchiera copiato. </dd></dl>
+
+</div>
+</div>
+<a id="abe1a1b4421f405b997baf580b24542e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe1a1b4421f405b997baf580b24542e9">&#9670;&nbsp;</a></span>copy_tessere()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTessera.html">Tessera</a>* copy_tessere </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTessera.html">Tessera</a> *&#160;</td>
+          <td class="paramname"><em>tessere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size_tessere</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copia le tessere da un array a un altro. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tessere</td><td>Array di tessere da copiare. </td></tr>
+    <tr><td class="paramname">size_tessere</td><td>Dimensione dell'array di tessere. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore al nuovo array di tessere copiate. </dd></dl>
 
 </div>
 </div>
@@ -201,14 +281,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Crea un array di tessere. </p>
+<p>Crea un nuovo array di tessere con dimensione specificata. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>Numero di tessere da creare. </td></tr>
+    <tr><td class="paramname">size</td><td>Dimensione dell'array di tessere. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Un puntatore all'array di tessere. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore al nuovo array di tessere creato. </dd></dl>
+
+</div>
+</div>
+<a id="aec941ecac87ec9f260387a64ecf48fbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec941ecac87ec9f260387a64ecf48fbb">&#9670;&nbsp;</a></span>create_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structBoard.html">Board</a>* create_board </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crea una nuova scacchiera di gioco. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_size</td><td>Massima dimensione della scacchiera. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore alla nuova scacchiera creato. </dd></dl>
 
 </div>
 </div>
@@ -227,8 +334,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Crea una nuova riga. </p>
-<dl class="section return"><dt>Returns</dt><dd>Un puntatore alla nuova riga creata. </dd></dl>
+<p>Crea una nuova riga della scacchiera. </p>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore alla nuova riga creata. </dd></dl>
 
 </div>
 </div>
@@ -248,10 +355,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Estende l'array di tessere in una riga. </p>
+<p>Estende l'array di tessere di una riga se necessario. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>Puntatore alla riga. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a66c023a25a1e14ad069a96b4d42baed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c023a25a1e14ad069a96b4d42baed0">&#9670;&nbsp;</a></span>free_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dealloca la memoria utilizzata dalla scacchiera di gioco. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco da deallocare. </td></tr>
   </table>
   </dd>
 </dl>
@@ -274,14 +407,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica se una tessera è una tessera speciale. </p>
+<p>Verifica se una tessera è speciale. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>La tessera da verificare. </td></tr>
+    <tr><td class="paramname">a</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> da verificare. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true se la tessera è speciale, false altrimenti. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True se la tessera è speciale, False altrimenti. </dd></dl>
 
 </div>
 </div>
@@ -311,7 +444,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica se due tessere possono essere abbinate sul lato sinistro. </p>
+<p>Verifica se due tessere possono essere accostate a sinistra. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>Prima tessera. </td></tr>
@@ -319,7 +452,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true se le tessere possono essere abbinate a sinistra, false altrimenti. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True se le tessere possono essere accostate a sinistra, False altrimenti. </dd></dl>
 
 </div>
 </div>
@@ -349,7 +482,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica se due tessere possono essere abbinate sul lato destro. </p>
+<p>Verifica se due tessere possono essere accostate a destra. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>Prima tessera. </td></tr>
@@ -357,12 +490,12 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true se le tessere possono essere abbinate a destra, false altrimenti. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True se le tessere possono essere accostate a destra, False altrimenti. </dd></dl>
 
 </div>
 </div>
-<a id="adc3d2c8fa08b72269d285324969e118c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc3d2c8fa08b72269d285324969e118c">&#9670;&nbsp;</a></span>max_row()</h2>
+<a id="af9e4b51a21eb4daa14387c8f29167278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e4b51a21eb4daa14387c8f29167278">&#9670;&nbsp;</a></span>max_row()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -370,37 +503,26 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int max_row </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Trova la dimensione massima tra tutte le righe nella scacchiera di gioco. </p>
+<p>Restituisce il massimo numero di tessere in una riga della scacchiera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size</td><td>Dimensione dell'array di righe. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>La dimensione massima tra tutte le righe. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Massimo numero di tessere in una riga. </dd></dl>
 
 </div>
 </div>
-<a id="aa0a007a9d91d0bd6cad6af7b86212805"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0a007a9d91d0bd6cad6af7b86212805">&#9670;&nbsp;</a></span>posiziona_tessera()</h2>
+<a id="a90fecb76e0d9c4f1ce4ba21ce1a2b3f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90fecb76e0d9c4f1ce4ba21ce1a2b3f3">&#9670;&nbsp;</a></span>posiziona_tessera()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,14 +530,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool posiziona_tessera </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>size_piano</em>, </td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -431,16 +547,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica se è possibile posizionare una tessera sulla scacchiera di gioco e la posiziona. </p>
+<p>Posiziona una tessera nella scacchiera di gioco. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size_piano</td><td>Puntatore alla dimensione dell'array di righe. </td></tr>
-    <tr><td class="paramname">tessera</td><td>La tessera da posizionare. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
+    <tr><td class="paramname">tessera</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> da posizionare. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true se la tessera è stata posizionata con successo, false altrimenti. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True se la tessera è stata posizionata con successo, False altrimenti. </dd></dl>
 
 </div>
 </div>
@@ -482,10 +597,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stampa le tessere disponibili e le tessere speciali. </p>
+<p>Stampa le tessere disponibili nella scacchiera di gioco. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tessere</td><td>Array di tessere. </td></tr>
+    <tr><td class="paramname">tessere</td><td>Array di tessere nella scacchiera. </td></tr>
     <tr><td class="paramname">speciali</td><td>Array di tessere speciali. </td></tr>
     <tr><td class="paramname">size_tessere</td><td>Dimensione dell'array di tessere. </td></tr>
     <tr><td class="paramname">size_speciali</td><td>Dimensione dell'array di tessere speciali. </td></tr>
@@ -495,8 +610,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a70f58aed201144bc1093cf50ae0e5ea5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70f58aed201144bc1093cf50ae0e5ea5">&#9670;&nbsp;</a></span>print_giocate()</h2>
+<a id="a37f86ad7438f43fae865ab3c9ea134ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f86ad7438f43fae865ab3c9ea134ff">&#9670;&nbsp;</a></span>print_giocate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -504,28 +619,17 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void print_giocate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stampa lo stato attuale della scacchiera di gioco. </p>
+<p>Stampa le tessere giocate nella scacchiera di gioco. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size</td><td>Dimensione dell'array di righe. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
   </table>
   </dd>
 </dl>
@@ -558,19 +662,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stampa l'array di scelte per posizionare una tessera. </p>
+<p>Stampa le scelte possibili per accostare una tessera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>Array di scelte. </td></tr>
-    <tr><td class="paramname">size</td><td>Dimensione dell'array. </td></tr>
+    <tr><td class="paramname">m</td><td>Array di posizioni possibili. </td></tr>
+    <tr><td class="paramname">size</td><td>Dimensione dell'array di posizioni. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a94e23d66917b020362886fd4f10e7101"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94e23d66917b020362886fd4f10e7101">&#9670;&nbsp;</a></span>put_front_tessera()</h2>
+<a id="a330a505fbc4f88e292606021542fa8a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a330a505fbc4f88e292606021542fa8a0">&#9670;&nbsp;</a></span>put_front_tessera()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -578,14 +682,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void put_front_tessera </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size_piano</em>, </td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -607,13 +705,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Posiziona una tessera all'inizio di una riga sulla scacchiera di gioco. </p>
+<p>Inserisce una tessera all'inizio della riga. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size_piano</td><td>Puntatore alla dimensione dell'array di righe. </td></tr>
-    <tr><td class="paramname">r</td><td>Puntatore alla riga in cui posizionare la tessera. </td></tr>
-    <tr><td class="paramname">tessera</td><td>La tessera da posizionare. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
+    <tr><td class="paramname">r</td><td>Puntatore alla riga. </td></tr>
+    <tr><td class="paramname">tessera</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> da inserire. </td></tr>
   </table>
   </dd>
 </dl>
@@ -652,20 +749,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Posiziona una tessera in una posizione specificata all'interno di una riga sulla scacchiera di gioco. </p>
+<p>Inserisce una tessera in una posizione specifica della riga. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>Puntatore alla riga in cui posizionare la tessera. </td></tr>
-    <tr><td class="paramname">tessera</td><td>La tessera da posizionare. </td></tr>
-    <tr><td class="paramname">pos</td><td>Posizione in cui posizionare la tessera. </td></tr>
+    <tr><td class="paramname">r</td><td>Puntatore alla riga. </td></tr>
+    <tr><td class="paramname">tessera</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> da inserire. </td></tr>
+    <tr><td class="paramname">pos</td><td>Posizione in cui inserire la tessera. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a92023f92bbcc6d7867c9942dd89b5af7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92023f92bbcc6d7867c9942dd89b5af7">&#9670;&nbsp;</a></span>put_tessera_speciale()</h2>
+<a id="a8894f0cd4047141681bc877561ca5275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8894f0cd4047141681bc877561ca5275">&#9670;&nbsp;</a></span>put_tessera_speciale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -673,14 +770,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void put_tessera_speciale </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size_piano</em>, </td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -708,14 +799,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Posiziona una tessera speciale in una posizione specificata all'interno di una riga sulla scacchiera di gioco. </p>
+<p>Inserisce una tessera speciale in una posizione specifica della riga. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size_piano</td><td>Puntatore alla dimensione dell'array di righe. </td></tr>
-    <tr><td class="paramname">row</td><td>Puntatore alla riga in cui posizionare la tessera speciale. </td></tr>
-    <tr><td class="paramname">pos</td><td>Posizione in cui posizionare la tessera speciale. </td></tr>
-    <tr><td class="paramname">tessera</td><td>La tessera speciale da posizionare. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
+    <tr><td class="paramname">row</td><td>Puntatore alla riga. </td></tr>
+    <tr><td class="paramname">pos</td><td>Posizione in cui inserire la tessera. </td></tr>
+    <tr><td class="paramname">tessera</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> speciale da inserire. </td></tr>
   </table>
   </dd>
 </dl>
@@ -754,21 +844,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Rimuove una tessera da un array di tessere. </p>
+<p>Rimuove l'elemento n dall'array di tessera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tessera</td><td>Array di tessere. </td></tr>
-    <tr><td class="paramname">size</td><td>Puntatore alla dimensione dell'array. </td></tr>
-    <tr><td class="paramname">index</td><td>Indice della tessera da rimuovere. </td></tr>
+    <tr><td class="paramname">size</td><td>Puntatore alla dimensione dell'array di tessere. </td></tr>
+    <tr><td class="paramname">index</td><td>Indice dell'elemento da rimuovere. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Un nuovo array di tessere allocato dinamicamente con la tessera specificata rimossa. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Nuovo array di tessere senza l'elemento rimosso. </dd></dl>
 
 </div>
 </div>
-<a id="a984614f2789e46cf63228dd30f5d00c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a984614f2789e46cf63228dd30f5d00c5">&#9670;&nbsp;</a></span>scelte_possibili()</h2>
+<a id="aa66967007935ea49898953194bdd634d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa66967007935ea49898953194bdd634d">&#9670;&nbsp;</a></span>scelte_possibili()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -776,14 +866,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int* scelte_possibili </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRow.html">Row</a> *&#160;</td>
-          <td class="paramname"><em>piano</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -805,44 +889,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Genera un array di scelte possibili per posizionare una tessera sulla scacchiera di gioco. </p>
+<p>Restituisce le posizioni possibili per accostare una tessera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">piano</td><td>Array di righe che rappresenta la scacchiera di gioco. </td></tr>
-    <tr><td class="paramname">size</td><td>Dimensione dell'array di righe. </td></tr>
-    <tr><td class="paramname">tessera</td><td>La tessera da posizionare. </td></tr>
-    <tr><td class="paramname">num_scelte</td><td>Parametro di output per memorizzare il numero di scelte. </td></tr>
+    <tr><td class="paramname">board</td><td>Puntatore alla scacchiera di gioco. </td></tr>
+    <tr><td class="paramname">tessera</td><td><a class="el" href="structTessera.html" title="Rappresenta una tessera con due numeri interi e alcune informazioni aggiuntive.">Tessera</a> da accostare. </td></tr>
+    <tr><td class="paramname">num_scelte</td><td>Puntatore alla variabile che conterrà il numero di scelte possibili. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Un array allocato dinamicamente di interi che rappresenta le scelte. </dd></dl>
-
-</div>
-</div>
-<a id="a458ee6f5c2684719c2d4f05bcb284c93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a458ee6f5c2684719c2d4f05bcb284c93">&#9670;&nbsp;</a></span>string_tessera()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* string_tessera </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structTessera.html">Tessera</a>&#160;</td>
-          <td class="paramname"><em>tessera</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Converte una tessera in una rappresentazione stringa. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tessera</td><td>La tessera da convertire. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Una stringa allocata dinamicamente che rappresenta la tessera. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntatore all'array di posizioni possibili. </dd></dl>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['first_5fmatch_7',['first_match',['../logic_8h.html#a5668054cf3ecffa4b14b52d408954762',1,'logic.c']]]
+  ['extend_5farr_5ftessere_9',['extend_arr_tessere',['../tessere_8h.html#a43e9af00e975c9e1f1155fe03ad06142',1,'tessere.c']]]
 ];
