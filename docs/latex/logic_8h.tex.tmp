@@ -1,0 +1,209 @@
+\hypertarget{logic_8h}{}\doxysection{Riferimenti per il file logic.\+h}
+\label{logic_8h}\index{logic.h@{logic.h}}
+
+
+Dichiarazioni delle funzioni per la logica del gioco.  
+
+
+{\ttfamily \#include \char`\"{}tessere.\+h\char`\"{}}\newline
+Grafo delle dipendenze di inclusione per logic.\+h\+:
+% FIG 0
+\doxysubsection*{Definizioni}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{logic_8h_a788be1e5263200d55dddebd3606ccad4}\label{logic_8h_a788be1e5263200d55dddebd3606ccad4}} 
+\#define {\bfseries CLEAR\+\_\+\+SCREEN}~\char`\"{}clear\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}{init\+\_\+speciali}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size)
+\begin{DoxyCompactList}\small\item\em Inizializza le tessere speciali con valori specifici, consentendo il corretto funzionamento del gioco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}{init}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessera, int size\+\_\+tessere)
+\begin{DoxyCompactList}\small\item\em Inizializza le tessere normali assegnando a ciascuna una coppia di numeri casuali compresi tra 1 e 6. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{logic_8h_a6f65b921203d1c43f065a31b30452f3e}{game\+\_\+finished}} (\mbox{\hyperlink{structBoard}{Board}} $\ast$board, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, int size\+\_\+tessere)
+\begin{DoxyCompactList}\small\item\em Verifica se la partita è terminata, controllando se è possibile accostare ulteriori tessere sulla scacchiera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a1fc0d9ab93d94f4086e4e5711edb474b}{update\+\_\+screen}} (\mbox{\hyperlink{structBoard}{Board}} $\ast$board, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Aggiorna lo schermo di gioco stampando il punteggio, le tessere giocate e quelle disponibili. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a1ea7b5417187ac07cf2ab1605cfc1285}{score\+\_\+update}} (\mbox{\hyperlink{structBoard}{Board}} $\ast$board)
+\begin{DoxyCompactList}\small\item\em Aggiorna il punteggio sommando i valori delle tessere giocate sulla scacchiera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a6f82c55fd588863856cfe07f7f731568}{game\+\_\+start}} (\mbox{\hyperlink{structBoard}{Board}} $\ast$board, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Avvia una partita in modalità interattiva, consentendo all\textquotesingle{}utente di selezionare e posizionare le tessere sulla scacchiera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structBoard}{Board}} $\ast$ \mbox{\hyperlink{logic_8h_a32e30ef6e32878fb161e87e46e061c31}{best\+\_\+match}} (\mbox{\hyperlink{structBoard}{Board}} $\ast$board, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Trova la miglior tessera inseribile(quello con il punteggio più alto), se invece non è presente alcuna tessera normale, viene inserita una speciale, quando non c\textquotesingle{}è più nessun match né tra quelle speicali e né tra quelle normali la partita finisce. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logic_8h_a695b067cb9b6a64b754902d9853d2408}{game\+\_\+start\+\_\+ai}} (\mbox{\hyperlink{structTessera}{Tessera}} $\ast$tessere, \mbox{\hyperlink{structTessera}{Tessera}} $\ast$speciali, int size\+\_\+tessere, int size\+\_\+speciali)
+\begin{DoxyCompactList}\small\item\em Avvia una partita in modalità intelligenza artificiale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrizione dettagliata}
+Dichiarazioni delle funzioni per la logica del gioco. 
+
+
+
+\doxysubsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{logic_8h_a32e30ef6e32878fb161e87e46e061c31}\label{logic_8h_a32e30ef6e32878fb161e87e46e061c31}} 
+\index{logic.h@{logic.h}!best\_match@{best\_match}}
+\index{best\_match@{best\_match}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{best\_match()}{best\_match()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structBoard}{Board}}$\ast$ best\+\_\+match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBoard}{Board}} $\ast$}]{board,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Trova la miglior tessera inseribile(quello con il punteggio più alto), se invece non è presente alcuna tessera normale, viene inserita una speciale, quando non c\textquotesingle{}è più nessun match né tra quelle speicali e né tra quelle normali la partita finisce. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & Puntatore alla scacchiera di gioco.. \\
+\hline
+{\em tessere} & Array di tessere normali. \\
+\hline
+{\em speciali} & Array di tessere speciali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+Puntatore alla scacchiera di gioco con la migliore combinazione. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{logic_8h_a6f65b921203d1c43f065a31b30452f3e}\label{logic_8h_a6f65b921203d1c43f065a31b30452f3e}} 
+\index{logic.h@{logic.h}!game\_finished@{game\_finished}}
+\index{game\_finished@{game\_finished}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_finished()}{game\_finished()}}
+{\footnotesize\ttfamily bool game\+\_\+finished (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBoard}{Board}} $\ast$}]{board,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{int}]{size\+\_\+tessere }\end{DoxyParamCaption})}
+
+
+
+Verifica se la partita è terminata, controllando se è possibile accostare ulteriori tessere sulla scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & Puntatore alla scacchiera di gioco. \\
+\hline
+{\em tessere} & Array di tessere normali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+True se la partita è terminata, False altrimenti. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{logic_8h_a6f82c55fd588863856cfe07f7f731568}\label{logic_8h_a6f82c55fd588863856cfe07f7f731568}} 
+\index{logic.h@{logic.h}!game\_start@{game\_start}}
+\index{game\_start@{game\_start}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_start()}{game\_start()}}
+{\footnotesize\ttfamily void game\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBoard}{Board}} $\ast$}]{board,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Avvia una partita in modalità interattiva, consentendo all\textquotesingle{}utente di selezionare e posizionare le tessere sulla scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & Puntatore alla scacchiera di gioco.. \\
+\hline
+{\em tessere} & Array di tessere normali. \\
+\hline
+{\em speciali} & Array di tessere speciali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logic_8h_a695b067cb9b6a64b754902d9853d2408}\label{logic_8h_a695b067cb9b6a64b754902d9853d2408}} 
+\index{logic.h@{logic.h}!game\_start\_ai@{game\_start\_ai}}
+\index{game\_start\_ai@{game\_start\_ai}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{game\_start\_ai()}{game\_start\_ai()}}
+{\footnotesize\ttfamily void game\+\_\+start\+\_\+ai (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Avvia una partita in modalità intelligenza artificiale. 
+
+Creo una scacchiera per ogni tessera di quelle generate all\textquotesingle{}inizio, per ogni tessera creo una scacchiera e trovo i best match, confronto tutte le scacchiere trovate per trova quella con più punteggio
+
+
+\begin{DoxyParams}{Parametri}
+{\em tessere} & Array di tessere normali. \\
+\hline
+{\em speciali} & Array di tessere speciali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}\label{logic_8h_a44e0e58b31024cdb06bf22b26db00b14}} 
+\index{logic.h@{logic.h}!init@{init}}
+\index{init@{init}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessera,  }\item[{int}]{size\+\_\+tessere }\end{DoxyParamCaption})}
+
+
+
+Inizializza le tessere normali assegnando a ciascuna una coppia di numeri casuali compresi tra 1 e 6. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em tessera} & Array di tessere normali da inizializzare. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}\label{logic_8h_a7b9b81798caeff851f367b56f9f80d1c}} 
+\index{logic.h@{logic.h}!init\_speciali@{init\_speciali}}
+\index{init\_speciali@{init\_speciali}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{init\_speciali()}{init\_speciali()}}
+{\footnotesize\ttfamily void init\+\_\+speciali (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Inizializza le tessere speciali con valori specifici, consentendo il corretto funzionamento del gioco. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em speciali} & Array di tessere speciali da inizializzare. \\
+\hline
+{\em size} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logic_8h_a1ea7b5417187ac07cf2ab1605cfc1285}\label{logic_8h_a1ea7b5417187ac07cf2ab1605cfc1285}} 
+\index{logic.h@{logic.h}!score\_update@{score\_update}}
+\index{score\_update@{score\_update}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{score\_update()}{score\_update()}}
+{\footnotesize\ttfamily void score\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBoard}{Board}} $\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Aggiorna il punteggio sommando i valori delle tessere giocate sulla scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & Puntatore alla scacchiera di gioco. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{logic_8h_a1fc0d9ab93d94f4086e4e5711edb474b}\label{logic_8h_a1fc0d9ab93d94f4086e4e5711edb474b}} 
+\index{logic.h@{logic.h}!update\_screen@{update\_screen}}
+\index{update\_screen@{update\_screen}!logic.h@{logic.h}}
+\doxysubsubsection{\texorpdfstring{update\_screen()}{update\_screen()}}
+{\footnotesize\ttfamily void update\+\_\+screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBoard}{Board}} $\ast$}]{board,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{tessere,  }\item[{\mbox{\hyperlink{structTessera}{Tessera}} $\ast$}]{speciali,  }\item[{int}]{size\+\_\+tessere,  }\item[{int}]{size\+\_\+speciali }\end{DoxyParamCaption})}
+
+
+
+Aggiorna lo schermo di gioco stampando il punteggio, le tessere giocate e quelle disponibili. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & Puntatore alla scacchiera di gioco. \\
+\hline
+{\em tessere} & Array di tessere normali. \\
+\hline
+{\em speciali} & Array di tessere speciali. \\
+\hline
+{\em size\+\_\+tessere} & Dimensione dell\textquotesingle{}array di tessere normali. \\
+\hline
+{\em size\+\_\+speciali} & Dimensione dell\textquotesingle{}array di tessere speciali. \\
+\hline
+\end{DoxyParams}
